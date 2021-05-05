@@ -86,3 +86,6 @@
     margin-top: 10px;
     margin-bottom: 10px;
   }
+  .btnCreateSubreddit.disabled, .btnCreateSubreddit:disabled {
+    opacity: 0.50;
+} 

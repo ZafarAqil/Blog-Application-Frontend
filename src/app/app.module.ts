@@ -11,6 +11,8 @@ import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserProfileComponent } from './auth/user-profile/user-profile.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ViewCommunityComponent,
     SigninComponent,
     SignupComponent,
-    HeaderComponent
+    HeaderComponent,
+    UserProfileComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
