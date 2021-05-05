@@ -3,7 +3,7 @@ export interface Post {
     description: string,
     content: string,
     notSafeForWork: boolean,
-    Spoiler: boolean,
+    spoiler: boolean,
     originalContent: boolean,
     flairs: string[]
 }
