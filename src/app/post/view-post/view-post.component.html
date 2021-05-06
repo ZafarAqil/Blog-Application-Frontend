@@ -1,13 +1,13 @@
 <div class="container">
-    <div class="row">
-      <hr />
-      <div class="col-md-9">
-        <div class="row post">
-          <div class="col-md-1">
-            <!-- <app-vote-button [post]="post"></app-vote-button> -->
-          </div>
-          <div class="col-md-11">
-            <!-- <span>
+  <div class="row">
+    <hr />
+    <div class="col-md-9">
+      <div class="row post">
+        <div class="col-md-1">
+          <!-- <app-vote-button [post]="post"></app-vote-button> -->
+        </div>
+        <div class="col-md-11">
+          <!-- <span>
               <span class="subreddit-text"><a class="post-url" href="">{{post.subredditName}}</a></span>
               <span> . Posted
                 <span> {{post.duration}} </span>
@@ -15,37 +15,48 @@
                 <a class="username" href="">{{post.userName}}</a>
               </span>
             </span> -->
-            <hr />
-            <p>{{ post?.title }}</p>
-            <div>
-              <p class="post-text" [innerHtml]="post?.description"></p>
-            </div>
-            <!-- <div class="post-comment">
-              <form [formGroup]="commentForm" (ngSubmit)="postComment()">
-                <div class="form-group">
-                  <textarea class="form-control" [formControlName]="'text'" placeholder="Your Thoughts?"></textarea>
-                </div>
-                <button type="submit" class="login float-right">Comment</button>
-              </form>
-            </div> -->
-            <div style="margin-top: 60px;" *ngFor="let comment of post?.comments">
-              <div class="comment">
-                <div class="username">
-                  <a routerLink="/user/comment.username">{{comment.commentDescription}}</a>
-                </div>
-                <div>
-                  <p>{{comment.duration}}</p>
-                </div>
-                <b>{{comment.text}}</b>
+          <hr />
+          <p>{{ post?.title }}</p>
+          <div>
+            <p class="post-text" [innerHtml]="post?.description"></p>
+          </div>
+          <div class="post-comment">
+            <form [formGroup]="commentForm" (ngSubmit)="postComment(commentForm)">
+              <div class="form-group">
+                <textarea class="form-control" [formControlName]="'commentDescription'"
+                  placeholder="Your Thoughts?"></textarea>
               </div>
-              <hr />
+              <span>
+                <div style="margin-top: 5px" class="float-right">
+                  <!-- <button (click)="discardPost()" class="btnDiscard">
+                    Discard
+                  </button> -->
+                  <button class="btnCreatePost" [disabled]="commentForm.invalid">
+                    POST COMMENT
+                  </button>
+                </div>
+              </span>
+            </form>
+          </div>
+          <div style="margin-top: 60px;" *ngFor="let comment of post?.comments | reverse">
+            <div class="comment">
+              <div class="username">
+                <a routerLink="/user/comment.username">{{ 'u/' + comment.bloggerName }}</a>
+              </div>
+              <div>
+                <p>{{ comment.createdDateTime | date:'medium' }}</p>
+                <p>{{ comment.commentDescription }}</p>
+              </div>
+              <b>{{comment.text}}</b>
             </div>
+            <hr />
           </div>
         </div>
       </div>
-      <div class="col-md-3">
-        <!-- <app-side-bar></app-side-bar> -->
-        <!-- <app-subreddit-side-bar></app-subreddit-side-bar> -->
-      </div>
+    </div>
+    <div class="col-md-3">
+      <!-- <app-side-bar></app-side-bar> -->
+      <!-- <app-subreddit-side-bar></app-subreddit-side-bar> -->
     </div>
   </div>
+</div>

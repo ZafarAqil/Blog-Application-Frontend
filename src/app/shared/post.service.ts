@@ -19,6 +19,11 @@ export class PostService {
   }
 
   getPostById(postId: number) {
-    return this.httpClient.get(this.baseURL + `/post/${postId}`, httpOptions);
+    return this.httpClient.get(this.baseURL + `/post/${postId}`, httpOptions).pipe(
+    );
   }
+
+  postComment(comment: any, userId: number, postId: number) {
+    return this.httpClient.post(this.baseURL + `/blogger/${userId}/posts/${postId}/comment`, comment, httpOptions);
+  } 
 }

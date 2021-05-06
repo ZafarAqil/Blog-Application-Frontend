@@ -35,7 +35,6 @@
         <div class="row">
           <div class="col-md-9">
             <div>
-              <p>{{ change() }}</p>
               <h1>{{ community?.title }}</h1>
             </div>
             <!-- Display Posts-->
@@ -74,11 +73,11 @@
                   >
                   <span>
                     . Posted by
-                    <a class="username" routerLink="/user/{{ post.userName }}">{{
-                      post.userName
+                    <a class="username" routerLink="/user/{{ post.userName }}">{{'u/' +
+                      post.bloggerName
                     }}</a></span
                   >
-                  <span> . {{ post.createdDateTime | timeAgo }}</span>
+                  <span> . {{ post.createdDateTime | date:'medium' }}</span>
                 </span>
                 <hr />
                 <div class="post-title">
