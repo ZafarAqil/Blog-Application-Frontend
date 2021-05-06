@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Post } from 'src/app/models/post-model';
+import { throwError } from 'rxjs';
+import { Post, PostType } from 'src/app/models/post-model';
+import { CommunityService } from 'src/app/shared/community.service';
+import { PostService } from 'src/app/shared/post.service';
+import { TokenStorageService } from 'src/app/shared/token-storage.service';
 
 @Component({
   selector: 'app-create-post',
@@ -11,11 +15,19 @@ import { Post } from 'src/app/models/post-model';
 export class CreatePostComponent implements OnInit {
   createPostForm: FormGroup;
   post: Post;
+  communities: any;
+  communityId: any;
+  userId: any;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+    private communityService: CommunityService,
+    private postService: PostService,
+    private tokenService: TokenStorageService
+  ) {
     this.createPostForm = this.formBuilder.group({
       title: ['', [Validators.required]],
       description: ['', [Validators.required]],
+      communityTitle: [''],
       notSafeForWork: [''],
       spoiler: [''],
       originalContent: [''],
@@ -23,7 +35,7 @@ export class CreatePostComponent implements OnInit {
     this.post = {
       title: '',
       description: '',
-      content: '',
+      content: PostType.TEXT,
       notSafeForWork: false,
       spoiler: false,
       originalContent: false,
@@ -31,7 +43,13 @@ export class CreatePostComponent implements OnInit {
     };
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.communityService.getCommunities().subscribe(data => {
+      this.communities = data;
+    }, error => {
+      throwError(error);
+    })
+  }
 
   createPost(form: FormGroup) {
     this.post.title = form.get('title')?.value;
@@ -42,10 +60,17 @@ export class CreatePostComponent implements OnInit {
       ? true
       : false;
     this.post.flairs = form.get('flairs')?.value;
-
+    
+    this.communityId = form.get('communityTitle')?.value;
+    this.userId = this.tokenService.getUser().id;
     console.log(this.post);
+    console.log(this.communityId);
+    console.log(this.userId);
+
+    this.postService.addPost(this.post, this.communityId, this.userId).subscribe(data => console.log(data));
+
     form.reset();
   }
 
-  discardPost() {}
+  discardPost() { }
 }

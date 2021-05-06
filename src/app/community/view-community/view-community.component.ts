@@ -15,10 +15,6 @@ export class ViewCommunityComponent implements OnInit {
   constructor(private communityService: CommunityService) { }
  
   ngOnInit(): void {
-    // this.communityService.getCommunities().subscribe(data =>this.communities = data
-    // );
-    this.communityService.getCommunityById(2).subscribe(data => this.community = data);
-
     this.communityService.getCommunities().subscribe(
       data => {
         console.log(data);
