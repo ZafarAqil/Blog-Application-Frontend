@@ -31,9 +31,9 @@ export class CommunityDetailsComponent implements OnInit {
     );
   }
  
-  change() {
-    for (let post of this.community.posts) {
-      post.createdDateTime = new Date(post.createdDateTime);
-    }
-  }
+  // change() {
+  //   for (let post of this.community.posts) {
+  //     post.createdDateTime = new Date(post.createdDateTime);
+  //   }
+  // }
 }

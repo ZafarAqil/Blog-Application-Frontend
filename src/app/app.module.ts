@@ -19,6 +19,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { CommunityDetailsComponent } from './community/community-details/community-details.component';
 import { NgPipesModule } from 'ngx-pipes';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ReversePipe } from './shared/reverse.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HeaderComponent,
     UserProfileComponent,
     HomeComponent,
-    CommunityDetailsComponent
+    CommunityDetailsComponent,
+    ReversePipe
   ],
   imports: [
     BrowserModule,
