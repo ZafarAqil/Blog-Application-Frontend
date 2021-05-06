@@ -18,7 +18,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { CommunityDetailsComponent } from './community/community-details/community-details.component';
 import { NgPipesModule } from 'ngx-pipes';
-import { MatButtonToggleGroup } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -44,8 +43,7 @@ import { MatButtonToggleGroup } from '@angular/material/button-toggle';
     EditorModule,
     NgPipesModule
   ],
-  providers: [
-    MatButtonToggleGroup],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
