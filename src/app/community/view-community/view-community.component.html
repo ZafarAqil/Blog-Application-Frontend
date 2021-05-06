@@ -3,71 +3,28 @@
   <div class="row">
     <div class="col-md-9">
       <div class="row">
-        <div class="col-md-6">
-          <div class="card" style="width: auto; margin-bottom: 1rem">
+        <div class="col-md-6" *ngFor='let community of communities' >
+          <div class="card" style="width: auto; margin-bottom: 1rem" >
             <img
               class="card-img-top"
               src="https://thumbor.forbes.com/thumbor/711x473/https://specials-images.forbesimg.com/imageserve/1156260993/960x0.jpg"
               alt="Card image cap"
             />
             <div class="card-body">
-              <h5 class="card-title">r/Cricket</h5>
+              <h5 class="card-title">{{community.title}}</h5>
               <h6 class="card-subtitle mb-2 text-muted">
-                A commmunity for cricket lovers
+                A commmunity for {{community.title}}
               </h6>
               <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+                {{community.communityDescription}}
               </p>
               <a href="#" class="card-link">Subscribe</a>
-              <a href="#" class="card-link">Open Community</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card" style="width: auto; margin-bottom: 1rem">
-            <img
-              class="card-img-top"
-              src="https://cdn.britannica.com/s:800x1000/51/190751-050-147B93F7/soccer-ball-goal.jpg"
-              alt="Card image cap"
-            />
-            <div class="card-body">
-              <h5 class="card-title">r/Football</h5>
-              <h6 class="card-subtitle mb-2 text-muted">
-                A commmunity for Football lovers
-              </h6>
-              <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <a href="#" class="card-link">Subscribe</a>
-              <a href="#" class="card-link">Open Community</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card" style="width: auto; margin-bottom: 1rem">
-            <img
-              class="card-img-top"
-              src="https://cdn.britannica.com/s:800x1000/51/190751-050-147B93F7/soccer-ball-goal.jpg"
-              alt="Card image cap"
-            />
-            <div class="card-body">
-              <h5 class="card-title">r/Football</h5>
-              <h6 class="card-subtitle mb-2 text-muted">
-                A commmunity for Football lovers
-              </h6>
-              <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <a href="#" class="card-link">Subscribe</a>
-              <a href="#" class="card-link">Open Community</a>
+              <a [routerLink]="['/community',community.communityId]" class="card-link">Open Community</a>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div> 
 
     <div class="col-md-3">
       <div class="sidebar">
@@ -94,4 +51,12 @@
 </div>
 
 <!-- <div *ngFor='let community of communities'>{{community}}</div> -->
-<div *ngIf='community'>{{community.title}}</div>
+<div *ngIf='community'>
+<div>
+  {{community.title}}
+</div>
+<div>{{community.communityDescription}}</div>
+
+
+
+</div>

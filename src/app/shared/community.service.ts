@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Community } from '../models/community-model';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -16,10 +17,10 @@ export class CommunityService {
  
   getCommunities() :Observable<any>{
     console.log('getCommu')
-    return this.httpClient.get(`${this.baseURL}/communities`);
+    return this.httpClient.get<any>(`${this.baseURL}/communities`, httpOptions);
   }
  
-  getCommunityById(id: number):Observable<any> {
-    return this.httpClient.get(`${this.baseURL}/community/${id}`,httpOptions);
+  getCommunityById(id: number):Observable<Community> {
+    return this.httpClient.get<Community>(`${this.baseURL}/community/${id}`,httpOptions);
   }
 }
