@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div>
+                <h1>{{ community?.title }}</h1>
+                <p>{{ change() }}</p>
+            </div>
+            <div *ngFor = 'let post of community?.posts'>
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.description }}</p>
+                <p>{{ post.createdDateTime | timeAgo }}</p>
+            </div>
+        </div>
+ 
+        <div class="col-md-3">
+            <div class="sidebar">
+                <img src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png" />
+                <div style="text-align: center; font-size: 1em">
+                    Welcome to Blog Application home page. Come here to check in with your
+                    favorite subreddits.
+                </div>
+                <div style="text-align: center">
+                    <a routerLink="/create-post">
+                        <button class="btnCreatePost">Create Post</button></a>
+                </div>
+                <div style="text-align: center">
+                    <a routerLink="/create-community">
+                        <button class="btnCreateSubreddit">Create Community</button></a>
+                </div>
+            </div>
+        </div>
+    </div>

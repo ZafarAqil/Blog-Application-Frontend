@@ -1,1 +1,152 @@
-<p>home works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="jumbotron jumbotron-fluid bg-dark">
+              <div class="jumbotron-background">
+                <img src="https://placeimg.com/2000/1000/nature" class="blur" />
+              </div>
+   
+              <div class="container text-white">
+                <h1 class="display-4 text-center">Welcome to Blog Application</h1>
+                <p class="lead">
+                  This is a simple hero unit, a simple jumbotron-style component
+                  for calling extra attention to featured content or information.
+                </p>
+                <hr class="my-4" />
+                <p>
+                  It uses utility classes for typography and spacing to space
+                  content out within the larger container.
+                </p>
+                <a class="btn btn-primary btn-lg" href="#" role="button"
+                  >Register</a
+                >
+              </div>
+            </div>
+          </div>
+   
+          <div><h2>Trending Today</h2></div>
+   
+          <div class="row" style="margin-bottom: 1rem">
+            <div class="col-sm-3" *ngFor='let community of communities'>
+              <div class="card h-100" style="width: auto; margin-bottom: 1rem">
+                <img
+                  class="card-img-top"
+                  src="https://i.redd.it/ms9hyj8wzax61.jpg"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">{{community.title}}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">
+                    A commmunity for  {{community.title}} lovers
+                  </h6>
+                  <p class="card-text">
+                    {{community.communityDescription}}
+                  </p>
+                </div>
+                <div class="card-footer text-center">
+                  <a href="#" class="card-link">Vote</a>
+                  <a href="#" class="card-link">Comment</a>
+                </div>
+              </div>
+            </div>
+   
+            <!-- <div class="col-sm-3">
+              <div class="card h-100" style="width: auto; margin-bottom: 1rem">
+                <img
+                  class="card-img-top"
+                  src="https://i1.wp.com/theathleteshub.org/wp-content/uploads/2021/04/EURO-Group-A.jpg"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">r/Football</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">
+                    A commmunity for Football lovers
+                  </h6>
+                  <p class="card-text">
+                    Euro 2021 Preview: Group A: Italy, Turkey, Switzerland and
+                    Wales
+                  </p>
+                </div>
+                <div class="card-footer text-center">
+                  <a href="#" class="card-link">Vote</a>
+                  <a href="#" class="card-link">Comment</a>
+                </div>
+              </div>
+            </div>
+   
+            <div class="col-sm-3">
+              <div class="card h-100" style="width: auto; margin-bottom: 1rem">
+                <img
+                  class="card-img-top"
+                  src="https://i.redd.it/9kdje737ifx61.jpg"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">r/Memes</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">
+                    A commmunity for Meme lovers
+                  </h6>
+                  <p class="card-text">
+                    I want you to know you make everyday a special day, by just
+                    you being you.
+                  </p>
+                </div>
+                <div class="card-footer text-center">
+                  <a href="#" class="card-link">Vote</a>
+                  <a href="#" class="card-link">Comment</a>
+                </div>
+              </div>
+            </div>
+   
+            <div class="col-sm-3">
+              <div class="card h-100" style="width: auto; margin-bottom: 1rem">
+                <img
+                  class="card-img-top"
+                  src="https://i.redd.it/w0cc9odovax61.jpg"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">r/Food</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">
+                    A commmunity for Food lovers
+                  </h6>
+                  <p class="card-text">
+                    [Homemade] Fried Chicken and Jalapeño & Cheddar Cornbread
+                    Waffles
+                  </p>
+                </div>
+                <div class="card-footer text-center">
+                  <a href="#" class="card-link">Vote</a>
+                  <a href="#" class="card-link">Comment</a>
+                </div>
+              </div>
+            </div>-->
+          </div> 
+        </div>
+      </div>
+   
+      <div class="col-md-3">
+        <div class="sidebar">
+          <img
+            src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png"
+          />
+          <div style="text-align: center; font-size: 1em">
+            Welcome to Blog Application home page. Come here to check in with your
+            favorite subreddits.
+          </div>
+          <div style="text-align: center">
+            <a routerLink="/create-post">
+              <button class="btnCreatePost">Create Post</button></a
+            >
+          </div>
+          <div style="text-align: center">
+            <a routerLink="/create-community">
+              <button class="btnCreateSubreddit">Create Community</button></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

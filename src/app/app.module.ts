@@ -15,6 +15,9 @@ import { UserProfileComponent } from './auth/user-profile/user-profile.component
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { CommunityDetailsComponent } from './community/community-details/community-details.component';
+import { NgPipesModule } from 'ngx-pipes';
 
 
 @NgModule({
@@ -28,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     SignupComponent,
     HeaderComponent,
     UserProfileComponent,
-    HomeComponent
+    HomeComponent,
+    CommunityDetailsComponent
     
   ],
   imports: [
@@ -37,7 +41,9 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    EditorModule,
+    NgPipesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
