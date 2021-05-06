@@ -18,10 +18,10 @@
             placeholder="Title"
           />
 
-          <!-- <select class="form-control" style="margin-top: 10px" [formControlName]="'subredditName'">
-                        <option value="" selected disabled>Select Subreddit</option>
-                        <option *ngFor="let subreddit of subreddits">{{subreddit.name}}</option>
-                    </select> -->
+          <select class="form-control" style="margin-top: 10px" [formControlName]="'communityTitle'">
+                        <option value="" selected disabled>Select Community</option>
+                        <option *ngFor="let community of communities" [value]="community.communityId">{{community.title}}</option>
+                    </select>
 
                     <editor [formControlName]="'description'" [init]="{
                       height: 200,
@@ -60,6 +60,12 @@
             />
             Original Content
           </div>
+          <!-- <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle value="bold">Bold</mat-button-toggle>
+            <mat-button-toggle value="italic">Italic</mat-button-toggle>
+            <mat-button-toggle value="underline">Underline</mat-button-toggle>
+          </mat-button-toggle-group> -->
+          
           <span>
             <div style="margin-top: 5px" class="float-right">
               <button (click)="discardPost()" class="btnDiscard">

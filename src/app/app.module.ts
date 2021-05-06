@@ -19,7 +19,6 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { CommunityDetailsComponent } from './community/community-details/community-details.component';
 import { NgPipesModule } from 'ngx-pipes';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +32,6 @@ import { NgPipesModule } from 'ngx-pipes';
     UserProfileComponent,
     HomeComponent,
     CommunityDetailsComponent
-    
   ],
   imports: [
     BrowserModule,

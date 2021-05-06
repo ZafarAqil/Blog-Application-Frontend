@@ -10,7 +10,6 @@ const httpOptions = {
 })
 export class CommunityService {
 
-
   baseURL: string = `http://localhost:9090`;
  
   constructor(private httpClient: HttpClient) {}
@@ -23,4 +22,5 @@ export class CommunityService {
   getCommunityById(id: number):Observable<Community> {
     return this.httpClient.get<Community>(`${this.baseURL}/community/${id}`,httpOptions);
   }
+  
 }
