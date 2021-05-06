@@ -17,4 +17,8 @@ export class PostService {
   addPost(post: any, communityId: number, userId: number) {
     return this.httpClient.post(this.baseURL + `/community/${communityId}/blogger/${userId}/post`, post, httpOptions)
   }
+
+  getPostById(postId: number) {
+    return this.httpClient.get(this.baseURL + `/post/${postId}`, httpOptions);
+  }
 }

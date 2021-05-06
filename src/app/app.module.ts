@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { CommunityDetailsComponent } from './community/community-details/community-details.component';
 import { NgPipesModule } from 'ngx-pipes';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { NgPipesModule } from 'ngx-pipes';
     BrowserAnimationsModule,
     HttpClientModule,
     EditorModule,
-    NgPipesModule
+    NgPipesModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
