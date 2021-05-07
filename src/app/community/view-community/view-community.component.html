@@ -5,11 +5,11 @@
   <div class="row">
     <div>
       <nav
-        class="navbar navbar-light bg-light"
-        style="margin-top: 10px; margin-bottom: 10px"
+        class="navbar navbar-light bg-light shadow rounded"
+        style="margin-top: 10px; margin-bottom: 20px; border: 1px solid #e9ecef; margin-left: 170px;"
       >
         <span class="navbar-brand">
-          <span class="navbar-brand mb-0 h1">List of all Communities</span>
+          <span class="navbar-brand mb-0 h1">Search Communities: </span>
           <span
             ><input
               style="margin: auto"
@@ -26,7 +26,10 @@
           class="col-md-6"
           *ngFor="let community of filteredCommunities | reverse"
         >
-          <div class="card" style="width: auto; margin-bottom: 1rem">
+          <div
+            class="card shadow rounded"
+            style="width: auto; margin-bottom: 1rem"
+          >
             <img
               class="card-img-top"
               src="https://thumbor.forbes.com/thumbor/711x473/https://specials-images.forbesimg.com/imageserve/1156260993/960x0.jpg"
@@ -36,9 +39,11 @@
               <h4 class="card-title">
                 <strong>r/{{ community.title }}</strong>
               </h4>
+
               <h5 class="card-subtitle mb-2 text-muted">
                 A commmunity for {{ community.title }}
               </h5>
+              <hr />
               <p class="card-text">
                 {{ community.communityDescription }}
               </p>
@@ -63,7 +68,7 @@
     </div>
 
     <div class="col-md-3">
-      <div class="sidebar">
+      <div class="sidebar shadow rounded">
         <img
           src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png"
           style="width: 100%"

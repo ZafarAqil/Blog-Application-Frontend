@@ -19,6 +19,7 @@
     color: #1c1c1c;
     -ms-flex: 1;
     flex: 1;
+    margin-top: 10px;
   }
   
   .btnCreateSubreddit {
@@ -69,6 +70,7 @@
     font-weight: 500;
     line-height: 20px;
     color: #1c1c1c;
+    margin-top: 10px;
   }
   
   .sidebar {

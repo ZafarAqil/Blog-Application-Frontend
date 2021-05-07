@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <hr />
-    <div class="create-post-container col-md-12 ">
+    <div class="create-post-container col-md-12 shadow rounded">
       <form
         class="post-form"
         [formGroup]="createPostForm"
@@ -18,24 +18,38 @@
             placeholder="Title"
           />
 
-          <select class="form-control" style="margin-top: 10px" [formControlName]="'communityTitle'">
-                        <option value="" selected disabled>Select Community</option>
-                        <option *ngFor="let community of communities" [value]="community.communityId">{{community.title}}</option>
-                    </select>
+          <select
+            class="form-control"
+            style="margin-top: 10px"
+            [formControlName]="'communityTitle'"
+          >
+            <option value="" selected disabled>Select Community</option>
+            <option
+              *ngFor="let community of communities"
+              [value]="community.communityId"
+            >
+              {{ community.title }}
+            </option>
+          </select>
 
-                    <editor [formControlName]="'description'" [init]="{
-                      height: 200,
-                      menubar: false,
-                      plugins: [
-                        'advlist autolink lists link image charmap print preview anchor',
-                        'searchreplace visualblocks code fullscreen',
-                        'insertdatetime media table paste code help wordcount'
-                      ],
-                      toolbar:
-                        'undo redo | formatselect | bold italic backcolor | \
+          <br/>
+
+          <editor
+            [formControlName]="'description'"
+            [init]="{
+              height: 200,
+              menubar: false,
+              plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste code help wordcount'
+              ],
+              toolbar:
+                'undo redo | formatselect | bold italic backcolor | \
                         alignleft aligncenter alignright alignjustify | \
                         bullist numlist outdent indent | removeformat | help'
-                    }"></editor>
+            }"
+          ></editor>
           <div class="form-check">
             <input
               type="checkbox"
@@ -65,7 +79,7 @@
             <mat-button-toggle value="italic">Italic</mat-button-toggle>
             <mat-button-toggle value="underline">Underline</mat-button-toggle>
           </mat-button-toggle-group> -->
-          
+
           <span>
             <div style="margin-top: 5px" class="float-right">
               <button (click)="discardPost()" class="btnDiscard">
