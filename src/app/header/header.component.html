@@ -36,6 +36,8 @@
             </div>
             <a routerLink="/community" class="float-right login mr-2">Community</a>
             <a routerLink="/create-post" class="float-right login mr-2">Post</a>
+            <a *ngIf="showAdminBoard" routerLink="/admin" class="float-right login mr-2">Admin</a>
+            <a *ngIf="showModeratorBoard" routerLink="/moderator" class="float-right login mr-2">Moderator</a>
         </div>
 
 

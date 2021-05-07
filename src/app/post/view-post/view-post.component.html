@@ -3,27 +3,51 @@
     <hr />
     <div class="col-md-9">
       <div class="row post">
+        <!-- Section to Display Votes-->
         <div class="col-md-1">
-          <!-- <app-vote-button [post]="post"></app-vote-button> -->
-        </div>
-        <div class="col-md-11">
-          <!-- <span>
-              <span class="subreddit-text"><a class="post-url" href="">{{post.subredditName}}</a></span>
-              <span> . Posted
-                <span> {{post.duration}} </span>
-                by              
-                <a class="username" href="">{{post.userName}}</a>
-              </span>
-            </span> -->
-          <hr />
-          <p>{{ post?.title }}</p>
-          <div>
-            <p class="post-text" [innerHtml]="post?.description"></p>
+          <div class="d-flex flex-column text-center votebox">
+            <div class="p-2">
+              <fa-icon (click)="upvotePost(post.postId)" class="upvote" [icon]="faArrowUp"
+                [style.color]="post.upVote ? 'green' : ''">
+              </fa-icon>
+            </div>
+            <div class="p-2 votecount">{{ post.votes }}</div>
+            <div class="p-2">
+              <fa-icon (click)="downvotePost(post.postId)" class="downvote" [icon]="faArrowDown"
+                [style.color]="post.downVote ? 'red' : ''">
+              </fa-icon>
+            </div>
           </div>
+        </div>
+        <!-- Section to Display Post Information-->
+        <div class="col-md-11" style="margin-top: 20px; margin-bottom: 20px">
+          <span class="subreddit-info">
+            <span class="subreddit-text"><a class="posturl" (click)="ngOnInit()">{{
+                post.communityName
+                }}</a></span>
+            <span>
+              • Posted by
+              <a class="username" [routerLink]="['/profile', post.bloggerName]">{{ "u/" + post.bloggerName }}</a></span>
+            <span> • {{ post.createdDateTime | date: "medium" }}</span>
+            <span *ngIf="post.notSafeForWork"> • NSFW</span>
+            <span *ngIf="post.originalContent"> • OC</span>
+            <span *ngIf="post.spoiler"> • Spoiler</span>
+          </span>
+          <hr />
+          <div class="post-title">
+            <a class="postname" [routerLink]="['/post', post.postId]">{{
+              post.title
+              }}</a>
+          </div>
+          <div>
+            <p class="post-text" [innerHtml]="post.description"></p>
+          </div>
+          <hr />
+
           <div class="post-comment" *ngIf="isLoggedIn">
             <form [formGroup]="commentForm" (ngSubmit)="postComment(commentForm)">
               <div class="form-group">
-                <textarea class="form-control" [formControlName]="'commentDescription'"
+                <textarea rows="5" cols="40" class="form-control" [formControlName]="'commentDescription'"
                   placeholder="Your Thoughts?"></textarea>
               </div>
               <span>
@@ -38,10 +62,11 @@
               </span>
             </form>
           </div>
+
           <div class="post-comment" *ngIf="!isLoggedIn">
             <form [formGroup]="commentForm" (ngSubmit)="postComment(commentForm)">
               <div class="form-group">
-                <textarea class="form-control" [formControlName]="'commentDescription'"
+                <textarea rows="5" cols="40" class="form-control" [formControlName]="'commentDescription'"
                   placeholder="Please, Login to comment..."></textarea>
               </div>
               <span>
@@ -49,24 +74,33 @@
                   <!-- <button (click)="discardPost()" class="btnDiscard">
                     Discard
                   </button> -->
-                  <button class="btnCreatePost">
-                    LOGIN
-                  </button>
+                  <button class="btnCreatePost">LOGIN</button>
                 </div>
               </span>
             </form>
           </div>
+        </div>
+      </div>
+      <div class="row post" *ngIf="post.comments.length > 0">
+        <div class="col-md-1"></div>
 
-          <div style="margin-top: 60px;" *ngFor="let comment of post?.comments | reverse">
-            <div class="comment">
+        <div class="col-md-11">
+          <div style="margin-top: 60px" *ngFor="let comment of post?.comments | reverse">
+            <div class="comment" style="display: inline">
               <div class="username">
-                <a [routerLink]="['/profile',comment.bloggerName]">{{ 'u/' + comment.bloggerName }}</a>
+                <img class="account-icon" src="https://www.redditstatic.com/avatars/avatar_default_08_D4E815.png" />
+                &nbsp;
+                <a [routerLink]="['/profile', comment.bloggerName]">{{
+                  "u/" + comment.bloggerName
+                  }}</a>
+                <p class="text-right">
+                  {{ comment.createdDateTime | date: "medium" }}
+                </p>
               </div>
               <div>
-                <p>{{ comment.createdDateTime | date:'medium' }}</p>
                 <p>{{ comment.commentDescription }}</p>
               </div>
-              <b>{{comment.text}}</b>
+              <!-- <b>{{ comment.text }}</b> -->
             </div>
             <hr />
           </div>
