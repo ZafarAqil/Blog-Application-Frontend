@@ -169,3 +169,20 @@
 .votecount{
     font-weight: bold;    
 }
+
+.profile-subreddit-view {
+  color: #0079d3;
+}
+
+.account-icon{
+  border-radius: 4px;
+  float: left;
+  margin-right: 5px;
+  max-height: 24px;
+  max-width: 24px;
+}
+
+.subreddit-info {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

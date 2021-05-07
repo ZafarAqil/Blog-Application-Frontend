@@ -1,133 +1,195 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-9">
-            <div>
-                <h1>{{ user?.username }}</h1>
+  <div class="row">
+    <div class="col-md-9">
+      <!-- <div>
+        <h1>{{ user?.username }}</h1>
+      </div> -->
+
+      <!-- <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1"
+          ><img
+            class="account-icon"
+            src="https://www.redditstatic.com/avatars/avatar_default_08_D4E815.png"
+        /></span>
+        <span class="navbar-brand mb-0 h1"
+        ><strong>u/{{ user?.username }}</strong></span
+      >
+      </nav> -->
+
+      <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand" href="#">
+          <img
+            class="account-icon"
+            src="https://www.redditstatic.com/avatars/avatar_default_08_D4E815.png"
+          />
+          <span class="navbar-brand mb-0 h1"
+            >Welcome <strong>u/{{ user?.username }}</strong> to your
+            profile!</span
+          >
+        </span>
+      </nav>
+
+      <!-- Display Posts-->
+      <div class="row post" *ngFor="let post of user?.posts | reverse">
+        <!-- Section to Display Votes-->
+        <div class="col-md-1">
+          <div class="d-flex flex-column votebox text-center">
+            <div class="p-2">
+              <fa-icon
+                (click)="upvotePost(post.postId)"
+                class="upvote"
+                [icon]="faArrowUp"
+              >
+              </fa-icon>
             </div>
-            <!-- Display Posts-->
-            <div class="row post" *ngFor="let post of user?.posts | reverse">
-                <!-- Section to Display Votes-->
-                <div class="col-md-1">
-                    <div class="d-flex flex-column votebox text-center">
-                        <div class="p-2">
-                            <fa-icon (click)="upvotePost(post.postId)" class="upvote" [icon]="faArrowUp"> </fa-icon>
-                        </div>
-                        <div class="p-2 votecount">{{ post?.votes }}</div>
-                        <div class="p-2">
-                            <fa-icon (click)="downvotePost(post.postId)" class="downvote" [icon]="faArrowDown"> </fa-icon>
-                        </div>
-                    </div>
-                </div>
-                <!-- Section to Display Post Information-->
-                <div class="col-md-11">
-                    <span class="subreddit-info">
-                        <span class="subreddit-text">Posted in
-                            <a class="posturl" [routerLink]="['/community', post.communityName?.substring(2,post.communityName.length)]">{{
-                                post.communityName
-                                }}</a></span>
-                        <!-- <span>
+            <div class="p-2 votecount">{{ post?.votes }}</div>
+            <div class="p-2">
+              <fa-icon
+                (click)="downvotePost(post.postId)"
+                class="downvote"
+                [icon]="faArrowDown"
+              >
+              </fa-icon>
+            </div>
+          </div>
+        </div>
+        <!-- Section to Display Post Information-->
+        <div class="col-md-11 subreddit-info">
+          <span>
+            <span class="subreddit-text"
+              >Posted in
+              <a
+                class="posturl"
+                [routerLink]="[
+                  '/community',
+                  post.communityName
+                    ?.substring(0, post.communityName.length)
+                    .toLowerCase()
+                ]"
+                >r/{{ post.communityName }}</a
+              ></span
+            >
+            <!-- <span>
                 . Posted by
                 <a class="username" [routerLink]="['/profile', user.username]">{{
                   "u/" + user.bloggerName
                 }}</a></span
               > -->
-                        <span> • {{ post.createdDateTime | date: "medium" }}</span>
-                        <span *ngIf="post.notSafeForWork"> • NSFW</span>
-                        <span *ngIf="post.originalContent"> • OC</span>
-                        <span *ngIf="post.spoiler"> • Spoiler</span>
+            <span> • {{ post.createdDateTime | date: "medium" }}</span>
+            <span *ngIf="post.notSafeForWork"> • NSFW</span>
+            <span *ngIf="post.originalContent"> • OC</span>
+            <span *ngIf="post.spoiler"> • Spoiler</span>
+          </span>
+          <hr />
+          <div class="post-title">
+            <a class="postname" [routerLink]="['/post', post.postId]">{{
+              post.title
+            }}</a>
+          </div>
+          <div>
+            <p class="post-text" [innerHtml]="post.description"></p>
+          </div>
+          <hr />
+          <span>
+            <a
+              class="btnCommments col-md-3"
+              role="button"
+              [routerLink]="['/post', post.postId]"
+            >
+              <fa-icon [icon]="faComments"></fa-icon>
+              Comments({{ post.comments.length }})
+            </a>
+            <span class="btnAwards col-md-3" role="button">
+              <fa-icon [icon]="faAward"></fa-icon>
+              Awards Received({{ post.awardsReceived.length }})
+            </span>
 
-                    </span>
-                    <hr />
-                    <div class="post-title">
-                        <a class="postname" [routerLink]="['/post', post.postId]">{{
-                            post.title
-                            }}</a>
-                    </div>
-                    <div>
-                        <p class="post-text" [innerHtml]="post.description"></p>
-                    </div>
-                    <hr />
-                    <span>
-                        <a class="btnCommments col-md-3" role="button" [routerLink]="['/post', post.postId]">
-                            <fa-icon [icon]="faComments"></fa-icon>
-                            Comments({{ post.comments.length }})
-                        </a>
-                        <a class="btnAwards col-md-3" role="button">
-                            <fa-icon [icon]="faAward"></fa-icon>
-                            Awards Received({{ post.awardsReceived.length }})
-                        </a>
-
-                        <button class="login btn btn-outline-primary btn-sm col-md-3"
-                            [routerLink]="['/post', post.postId]">
-                            Read Post
-                        </button>
-                    </span>
-                </div>
-            </div>
+            <button
+              class="login btn btn-outline-primary btn-sm col-md-3"
+              [routerLink]="['/post', post.postId]"
+            >
+              Read Post
+            </button>
+          </span>
         </div>
-        <div class="col-md-3">
-            <div class="sidebar">
-                <img style="width: 100%;"
-                    src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png" />
-                <div style="
-              text-align: center;
-              font-size: 1em;
-              margin-bottom: 10px;
-              margin-top: 10px;
-            ">
-                    Welcome to Blog Application. Come here to check in with your favorite
-                    communities
-                </div>
-                <div style="text-align: center">
-                    <a routerLink="/create-post">
-                        <button class="btnCreatePost">Create Post</button></a>
-                </div>
-                <div style="text-align: center; margin-top: 5px">
-                    <a routerLink="/create-community">
-                        <button class="btnCreateSubreddit">Create Community</button></a>
-                </div>
-            </div>
-
-            <div class="sidebar-view-user text-center">
-                <div style="color: black; font-weight: bold">User Details</div>
-                <hr />
-                <span style="color: black; font-weight: bold" class="subreddit-text">
-                    <p>Username: {{ user?.username }}</p>
-                </span>
-                <hr />
-                <span style="color: black; font-weight: bold" class="subreddit-text">
-                    <p>Email: {{ user?.email }}</p>
-                </span>
-                <hr />
-                <span style="color: black; font-weight: bold" class="subreddit-text">
-                    <p>Karma: {{ user?.karma }}</p>
-                </span>
-                <hr />
-                <span style="color: black; font-weight: bold" class="subreddit-text">
-                    <p>Awards Given: {{ user?.awardsGiven.length }}</p>
-                </span>
-                <hr />
-                <span style="color: black; font-weight: bold" class="subreddit-text">
-                    <p>Awards Received: {{ user?.awardsReceived.length }}</p>
-                </span>
-            </div>
-
-            <div class="sidebar-view-subreddit text-center">
-                <div style="color: black; font-weight: bold">Browse Communities</div>
-                <hr />
-                <span *ngFor="let community of communities | reverse">
-                    <span class="subreddit-text"><a [routerLink]="['/community', community?.title.substring(2,community.title.length)]" class="posturl"
-                            (click)="ngOnInit()">{{ community.title }}</a></span>
-                    <!-- <span class="subreddit-text col-md-2"
-            ><p>Total Members: {{ community.totalMembers }}</p></span
-          > -->
-                    <hr />
-                </span>
-                <div style="text-align: center" *ngIf="displayViewAll">
-                    <!-- <div style="text-align: center"> -->
-                    <a style="font-weight: bold" routerLink="/community">View All</a>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="col-md-3">
+      <div class="sidebar">
+        <img
+          style="width: 100%"
+          src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png"
+        />
+        <div
+          style="
+            text-align: center;
+            font-size: 1em;
+            margin-bottom: 10px;
+            margin-top: 10px;
+          "
+        >
+          Welcome to Blog Application. Come here to check in with your favorite
+          communities
+        </div>
+        <div style="text-align: center">
+          <a routerLink="/create-post">
+            <button class="btnCreatePost">Create Post</button></a
+          >
+        </div>
+        <div style="text-align: center; margin-top: 5px">
+          <a routerLink="/create-community">
+            <button class="btnCreateSubreddit">Create Community</button></a
+          >
+        </div>
+      </div>
+
+      <div class="sidebar-view-user text-center">
+        <div style="color: black; font-weight: bold">User Details</div>
+        <hr />
+        <span style="color: black; font-weight: bold" class="subreddit-text">
+          <p>Username: {{ user?.username }}</p>
+        </span>
+        <hr />
+        <span style="color: black; font-weight: bold" class="subreddit-text">
+          <p>Email: {{ user?.email }}</p>
+        </span>
+        <hr />
+        <span style="color: black; font-weight: bold" class="subreddit-text">
+          <p>Karma: {{ user?.karma }}</p>
+        </span>
+        <hr />
+        <span style="color: black; font-weight: bold" class="subreddit-text">
+          <p>Awards Given: {{ user?.awardsGiven.length }}</p>
+        </span>
+        <hr />
+        <span style="color: black; font-weight: bold" class="subreddit-text">
+          <p>Awards Received: {{ user?.awardsReceived.length }}</p>
+        </span>
+      </div>
+
+      <div class="sidebar-view-subreddit text-center">
+        <div style="color: black; font-weight: bold">Browse Communities</div>
+        <hr />
+        <span *ngFor="let community of communities | reverse">
+          <span class="subreddit-text"
+            ><a
+              style="font-weight: bold"
+              [routerLink]="['/community', community.title.toLowerCase()]"
+              class="posturl profile-subreddit-view"
+              (click)="ngOnInit()"
+              >r/{{ community.title }}</a
+            >
+            &nbsp; &nbsp;
+            <span> Total Members: {{ community.totalMembers }} </span>
+          </span>
+
+          <hr />
+        </span>
+        <div style="text-align: center" *ngIf="displayViewAll">
+          <!-- <div style="text-align: center"> -->
+          <a style="font-weight: bold" routerLink="/community">View All</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -5,21 +5,21 @@
   <div class="row">
     <div class="col-md-9">
       <div class="row">
-        <div class="col-md-6" *ngFor='let community of filteredCommunities'>
+        <div class="col-md-6" *ngFor='let community of filteredCommunities | reverse'>
           <div class="card" style="width: auto; margin-bottom: 1rem">
             <img class="card-img-top"
               src="https://thumbor.forbes.com/thumbor/711x473/https://specials-images.forbesimg.com/imageserve/1156260993/960x0.jpg"
               alt="Card image cap" />
             <div class="card-body">
-              <h5 class="card-title">{{community.title}}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">
+              <h4 class="card-title"><strong>r/{{community.title}}</strong></h4>
+              <h5 class="card-subtitle mb-2 text-muted">
                 A commmunity for {{community.title}}
-              </h6>
+              </h5>
               <p class="card-text">
                 {{community.communityDescription}}
               </p>
               <a href="#" class="card-link">Subscribe</a>
-              <a [routerLink]="['/community', community.title.substring(2,community.title.length)]" class="card-link">Open Community</a>
+              <a [routerLink]="['/community', community.title.toLowerCase()]" class="card-link">Open Community</a>
             </div>
           </div>
         </div>

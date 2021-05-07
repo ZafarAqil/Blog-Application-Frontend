@@ -22,7 +22,7 @@
         <!-- Section to Display Post Information-->
         <div class="col-md-11" style="margin-top: 20px; margin-bottom: 20px">
           <span class="subreddit-info">
-            <span class="subreddit-text"><a class="posturl" (click)="ngOnInit()">{{
+            <span class="subreddit-text"><a class="posturl" (click)="ngOnInit()" [routerLink]="['/community', post.communityName.toLowerCase()]">r/{{
                 post.communityName
                 }}</a></span>
             <span>
@@ -35,9 +35,9 @@
           </span>
           <hr />
           <div class="post-title">
-            <a class="postname" [routerLink]="['/post', post.postId]">{{
+            <p class="postname">{{
               post.title
-              }}</a>
+              }}</p>
           </div>
           <div>
             <p class="post-text" [innerHtml]="post.description"></p>
