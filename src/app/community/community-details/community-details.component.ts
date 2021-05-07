@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommunityService } from 'src/app/shared/community.service';
 import { faComments, faArrowUp, faArrowDown, faAward } from '@fortawesome/free-solid-svg-icons';
+import { TokenStorageService } from 'src/app/shared/token-storage.service';
 
 @Component({
   selector: 'app-community-details',

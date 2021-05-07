@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from 'src/app/shared/post.service';
 import { TokenStorageService } from 'src/app/shared/token-storage.service';
 
@@ -16,8 +16,9 @@ export class ViewPostComponent implements OnInit {
   comment: any;
   userId: any;
   postId: any;
+  isLoggedIn: boolean = false;
 
-  constructor(private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute, private router: Router,
     private postService: PostService,
     private formBuilder: FormBuilder,
     private tokenService: TokenStorageService
@@ -32,9 +33,12 @@ export class ViewPostComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.tokenService.getToken()) {
+      this.isLoggedIn = true;
+    }
     const param = this.route.snapshot.paramMap.get('pid');
     if (param) {
-      this.postId = +param;
+      this.postId = param;
       this.getPost(this.postId);
     }
   }
@@ -42,7 +46,9 @@ export class ViewPostComponent implements OnInit {
   postComment(form: FormGroup) {
     this.comment.commentDescription = form.get('commentDescription')?.value;
     this.userId = this.tokenService.getUser().id;
-
+    if(!this.userId){
+      this.router.navigate(['signin']);
+    }
     this.postService.postComment(this.comment, this.userId, this.postId).subscribe(data => console.log(data));
     form.reset();
     this.ngOnInit();
