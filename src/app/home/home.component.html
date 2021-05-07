@@ -3,7 +3,7 @@
     <div class="col-md-9">
       <div class="row">
         <div class="col-md-12">
-          <div class="jumbotron jumbotron-fluid bg-dark">
+          <!-- <div class="jumbotron jumbotron-fluid bg-dark">
             <div class="jumbotron-background">
               <img src="https://placeimg.com/2000/1000/nature" class="blur" />
             </div>
@@ -19,31 +19,55 @@
                 It uses utility classes for typography and spacing to space
                 content out within the larger container.
               </p>
-              <a class="btn btn-primary btn-lg" href="#" role="button">Register</a>
+              <a class="btn btn-primary btn-lg" href="#" role="button"
+                >Register</a
+              >
             </div>
+          </div> -->
+          <div class="jumbotron">
+            <h1 class="display-4">Welcome to Blog Application!</h1>
+            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+            <hr class="my-4">
+            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            <p class="lead text-center" *ngIf="!isLoggedIn">
+              <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+            </p>
           </div>
         </div>
 
-        <div>
-          <h2>Trending Today</h2>
-        </div>
+        <!-- <div>
+          <h2>Trending Communities</h2>
+        </div> -->
 
-        <div class="row" style="margin-bottom: 1rem">
-          <div class="col-sm-3" *ngFor='let community of communities'>
+        <nav class="navbar navbar-light bg-light">
+          <span class="navbar-brand mb-0 h1">Trending Communities</span>
+        </nav>
+
+        <div class="row" style="margin-bottom: 1rem; margin-top: 10px;">
+          <div class="col-sm-3" *ngFor="let community of communities">
             <div class="card h-100" style="width: auto; margin-bottom: 1rem">
-              <img class="card-img-top" src="https://i.redd.it/ms9hyj8wzax61.jpg" alt="Card image cap" />
+              <img
+                class="card-img-top"
+                src="https://i.redd.it/ms9hyj8wzax61.jpg"
+                alt="Card image cap"
+              />
               <div class="card-body">
-                <h5 class="card-title">{{community.title}}</h5>
+                <h4 class="card-title"><strong>r/{{ community.title }}</strong></h4>
                 <h6 class="card-subtitle mb-2 text-muted">
-                  A commmunity for {{community.title}} lovers
+                  A commmunity for {{ community.title }} lovers
                 </h6>
                 <p class="card-text">
-                  {{community.communityDescription}}
+                  {{ community.communityDescription }}
                 </p>
               </div>
               <div class="card-footer text-center">
-                <a href="#" class="card-link">Vote</a>
-                <a href="#" class="card-link">Comment</a>
+                <!-- <a href="#" class="card-link">Vote</a>
+                <a href="#" class="card-link">Comment</a> -->
+                <a
+                  [routerLink]="['/community', community.title.toLowerCase()]"
+                  class="card-link"
+                  >Open Community</a
+                >
               </div>
             </div>
           </div>
@@ -125,24 +149,32 @@
 
     <div class="col-md-3">
       <div class="sidebar">
-        <img src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png" style="width: 100%;" />
-        <div style="
+        <img
+          src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png"
+          style="width: 100%"
+        />
+        <div
+          style="
             text-align: center;
             font-size: 1em;
             margin-bottom: 10px;
             margin-top: 10px;
-          ">
+          "
+        >
           Welcome to Blog Application. Come here to check in with your favorite
           communities
           <div style="text-align: center">
             <a routerLink="/create-post">
-              <button class="btnCreatePost">Create Post</button></a>
+              <button class="btnCreatePost">Create Post</button></a
+            >
           </div>
-          <div style="text-align: center;margin-top: 5px;">
+          <div style="text-align: center; margin-top: 5px">
             <a routerLink="/create-community">
-              <button class="btnCreateSubreddit">Create Community</button></a>
+              <button class="btnCreateSubreddit">Create Community</button></a
+            >
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

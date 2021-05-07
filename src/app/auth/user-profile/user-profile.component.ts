@@ -54,7 +54,7 @@ export class UserProfileComponent implements OnInit {
         this.communities = data;
 
         if (data.length > 3) {
-          this.communities = data.splice(0, 3);
+          this.communities = data.reverse().splice(0, 3);
           this.displayViewAll = true;
         } else {
           this.communities = data;

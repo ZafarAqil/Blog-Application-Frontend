@@ -61,9 +61,9 @@
         <!-- Section to Display Post Information-->
         <div class="col-md-11">
           <span class="subreddit-info">
-            <span class="subreddit-text"><a class="posturl" (click)="ngOnInit()">{{
+            <span class="subreddit-text"><span class="posturl" (click)="ngOnInit()">r/{{
                 post.communityName
-                }}</a></span>
+                }}</span></span>
             <span>
               • Posted by
               <a class="username" [routerLink]="['/profile', post.bloggerName]">{{'u/' +
@@ -87,10 +87,10 @@
               <fa-icon [icon]="faComments"></fa-icon>
               Comments({{ post.comments.length }})
             </a>
-            <a class="btnAwards col-md-3" role="button">
+            <span class="btnAwards col-md-3" role="button">
               <fa-icon [icon]="faAward"></fa-icon>
               Awards Received({{ post.awardsReceived.length }})
-            </a>
+            </span>
 
             <button class="login btn btn-outline-primary btn-sm col-md-3" [routerLink]="['/post', post.postId]">
               Read Post
