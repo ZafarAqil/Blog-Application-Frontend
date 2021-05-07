@@ -31,99 +31,94 @@
         </div>
     </div> -->
 
-    <div class="container">
-        <div class="row">
-          <div class="col-md-9">
-            <div>
-              <h1>{{ community?.title }}</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <div>
+        <h1>{{ community?.title }}</h1>
+        <span><input type="text" [(ngModel)]="listFilter" placeholder="Search" /></span>
+      </div>
+      <!-- Display Posts-->
+      <div class="row post" *ngFor="let post of filteredPosts | reverse">
+        <!-- <app-vote-button [post]="post"></app-vote-button> -->
+
+        <!-- Section to Display Votes-->
+        <div class="col-md-1">
+          <div class="d-flex flex-column text-center votebox">
+            <div class="p-2">
+              <fa-icon (click)="upvotePost(post.postId)" class="upvote" [icon]="faArrowUp"
+                [style.color]="post.upVote ? 'green' : ''">
+              </fa-icon>
             </div>
-            <!-- Display Posts-->
-            <div class="row post" *ngFor="let post of community?.posts">
-              <!-- <app-vote-button [post]="post"></app-vote-button> -->
-      
-              <!-- Section to Display Votes-->
-              <div class="col-md-1">
-                <div class="d-flex flex-column votebox">
-                  <div class="p-2">
-                    <fa-icon
-                      class="upvote"
-                      [icon]="faArrowUp"
-                      [style.color]="post.upVote ? 'green' : ''"
-                    >
-                    </fa-icon>
-                  </div>
-                  <div class="p-2 votecount">{{ post.votes }}</div>
-                  <div class="p-2">
-                    <fa-icon
-                      class="downvote"
-                      [icon]="faArrowDown"
-                      [style.color]="post.downVote ? 'red' : ''"
-                    >
-                    </fa-icon>
-                  </div>
-                </div>
-              </div>
-              <!-- Section to Display Post Information-->
-              <div class="col-md-11">
-                <span class="subreddit-info">
-                  <span class="subreddit-text"
-                    ><a class="posturl" (click)="ngOnInit()">{{
-                      post.communityName
-                    }}</a></span
-                  >
-                  <span>
-                    . Posted by
-                    <a class="username" [routerLink]="['/profile', post.bloggerName]">{{'u/' +
-                      post.bloggerName
-                    }}</a></span
-                  >
-                  <span> . {{ post.createdDateTime | date:'medium' }}</span>
-                </span>
-                <hr />
-                <div class="post-title">
-                  <a class="postname" [routerLink]="['/post', post.postId]">{{ post.title }}</a>
-                </div>
-                <div>
-                  <p class="post-text" [innerHtml]="post.description"></p>
-                </div>
-                <hr />
-                <span>
-                  <a class="btnCommments col-md-3" role="button" [routerLink]="['/post', post.postId]">
-                    <fa-icon [icon]="faComments"></fa-icon>
-                    Comments({{ post.comments.length }})
-                  </a>
-                  <a class="btnAwards col-md-3" role="button">
-                    <fa-icon [icon]="faAward"></fa-icon>
-                    Awards Received({{ post.awardsReceived.length }})
-                  </a>
-      
-                  <button class="login btn btn-outline-primary btn-sm col-md-3" [routerLink]="['/post', post.postId]">
-                    Read Post
-                  </button>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="sidebar">
-              <img
-                src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png"
-              />
-              <div style="text-align: center; font-size: 1em">
-                Welcome to Blog Application home page. Come here to check in with your
-                favorite subreddits.
-              </div>
-              <div style="text-align: center">
-                <a routerLink="/create-post">
-                  <button class="btnCreatePost">Create Post</button></a
-                >
-              </div>
-              <div style="text-align: center">
-                <a routerLink="/create-community">
-                  <button class="btnCreateSubreddit">Create Community</button></a
-                >
-              </div>
+            <div class="p-2 votecount">{{ post.votes }}</div>
+            <div class="p-2">
+              <fa-icon (click)="downvotePost(post.postId)" class="downvote" [icon]="faArrowDown"
+                [style.color]="post.downVote ? 'red' : ''">
+              </fa-icon>
             </div>
           </div>
         </div>
+        <!-- Section to Display Post Information-->
+        <div class="col-md-11">
+          <span class="subreddit-info">
+            <span class="subreddit-text"><a class="posturl" (click)="ngOnInit()">{{
+                post.communityName
+                }}</a></span>
+            <span>
+              • Posted by
+              <a class="username" [routerLink]="['/profile', post.bloggerName]">{{'u/' +
+                post.bloggerName
+                }}</a></span>
+            <span> • {{ post.createdDateTime | date:'medium' }}</span>
+            <span *ngIf="post.notSafeForWork"> • NSFW</span>
+            <span *ngIf="post.originalContent"> • OC</span>
+            <span *ngIf="post.spoiler"> • Spoiler</span>
+          </span>
+          <hr />
+          <div class="post-title">
+            <a class="postname" [routerLink]="['/post', post.postId]">{{ post.title }}</a>
+          </div>
+          <div>
+            <p class="post-text" [innerHtml]="post.description"></p>
+          </div>
+          <hr />
+          <span>
+            <a class="btnCommments col-md-3" role="button" [routerLink]="['/post', post.postId]">
+              <fa-icon [icon]="faComments"></fa-icon>
+              Comments({{ post.comments.length }})
+            </a>
+            <a class="btnAwards col-md-3" role="button">
+              <fa-icon [icon]="faAward"></fa-icon>
+              Awards Received({{ post.awardsReceived.length }})
+            </a>
+
+            <button class="login btn btn-outline-primary btn-sm col-md-3" [routerLink]="['/post', post.postId]">
+              Read Post
+            </button>
+          </span>
+        </div>
       </div>
+    </div>
+    <div class="col-md-3">
+      <div class="sidebar">
+        <img src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png" style="width:100%;" />
+        <div style="
+                  text-align: center;
+                  font-size: 1em;
+                  margin-bottom: 10px;
+                  margin-top: 10px;
+                ">
+          Welcome to Blog Application. Come here to check in with your favorite
+          communities
+          <div style="text-align: center">
+            <a routerLink="/create-post">
+              <button class="btnCreatePost">Create Post</button></a>
+          </div>
+          <div style="text-align: center;margin-top: 5px;">
+            <a routerLink="/create-community">
+              <button class="btnCreateSubreddit">Create Community</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

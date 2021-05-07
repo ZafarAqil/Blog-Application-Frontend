@@ -20,6 +20,8 @@ import { CommunityDetailsComponent } from './community/community-details/communi
 import { NgPipesModule } from 'ngx-pipes';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReversePipe } from './shared/reverse.pipe';
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { ReversePipe } from './shared/reverse.pipe';
     HttpClientModule,
     EditorModule,
     NgPipesModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

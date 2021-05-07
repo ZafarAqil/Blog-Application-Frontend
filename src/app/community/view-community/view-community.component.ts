@@ -12,6 +12,17 @@ export class ViewCommunityComponent implements OnInit {
   community: any;
   communities: any[] =[];
   error='';
+  filteredCommunities: any;
+
+  private _listFilter = '';
+  get listFilter(): string {
+    return this._listFilter;
+  }
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.filteredCommunities = this.performFilter(value);
+  }
+
   constructor(private communityService: CommunityService) { }
  
   ngOnInit(): void {
@@ -19,6 +30,7 @@ export class ViewCommunityComponent implements OnInit {
       data => {
         console.log(data);
         this.communities = data;
+        this.filteredCommunities = data;
       },
       err => {
         this.error = JSON.parse(err.error).message;
@@ -26,5 +38,10 @@ export class ViewCommunityComponent implements OnInit {
     );
   }
 
+  performFilter(filterBy: string) {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.communities.filter(community =>
+      community.title.toLocaleLowerCase().includes(filterBy));
+  }
  
 }

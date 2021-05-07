@@ -79,7 +79,8 @@ export class CreatePostComponent implements OnInit {
 
     this.postService.addPost(this.post, this.communityId, this.userId).subscribe(data => console.log(data));
 
-    form.reset();
+    // form.reset();
+    this.router.navigate(['community/',this.communityId])
   }
 
   discardPost() { }
