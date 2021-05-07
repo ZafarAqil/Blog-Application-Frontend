@@ -27,10 +27,17 @@
             profile!</span
           >
         </span>
+        <span
+        ><input
+          style="margin: auto;"
+          type="text"
+          [(ngModel)]="listFilter"
+          placeholder="Search"
+      /></span>
       </nav>
 
       <!-- Display Posts-->
-      <div class="row post" *ngFor="let post of user?.posts | reverse">
+      <div class="row post" *ngFor="let post of filteredPosts | reverse">
         <!-- Section to Display Votes-->
         <div class="col-md-1">
           <div class="d-flex flex-column votebox text-center">
@@ -180,7 +187,7 @@
               >r/{{ community.title }}</a
             >
             &nbsp; &nbsp;
-            <span> Total Members: {{ community.totalMembers }} </span>
+            <span> Total Members: {{ community.bloggers.length }} </span>
           </span>
 
           <hr />

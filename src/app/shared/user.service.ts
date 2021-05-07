@@ -17,4 +17,8 @@ export class UserService {
   getUserProfile(username: string) {
     return this.httpClient.get(this.baseURL + `/bloggers/${username}`, httpOptions);
   }
+
+  joinCommunity(communityId: number, userId: number) {
+    return this.httpClient.put(this.baseURL + `/blogger/${communityId}/${userId}`, httpOptions);
+  }
 }

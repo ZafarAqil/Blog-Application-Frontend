@@ -34,8 +34,8 @@
   }
    
   .post-title {
-    font-size: 28px;
-    font-weight: bold;
+    font-size: 20px;
+    font-weight: 500;
     opacity: 1;
   }
    
@@ -135,4 +135,9 @@
 
 .votecount{
     font-weight: bold;    
+}
+
+.subreddit-info {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

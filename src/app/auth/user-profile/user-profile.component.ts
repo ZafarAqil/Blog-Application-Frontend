@@ -29,10 +29,20 @@ export class UserProfileComponent implements OnInit {
   communities: any[] = [];
   error = '';
   displayViewAll: any;
+  filteredPosts: any;
 
   username: any;
   user: any;
   userId: any;
+
+  private _listFilter = '';
+  get listFilter(): string {
+    return this._listFilter;
+  }
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.filteredPosts = this.performFilter(value);
+  }
 
   constructor(
     private route: ActivatedRoute,
@@ -52,6 +62,7 @@ export class UserProfileComponent implements OnInit {
       (data) => {
         console.log(data);
         this.communities = data;
+        
 
         if (data.length > 3) {
           this.communities = data.reverse().splice(0, 3);
@@ -69,7 +80,9 @@ export class UserProfileComponent implements OnInit {
   getUserProfile(username: string) {
     this.userService
       .getUserProfile(username)
-      .subscribe((data) => (this.user = data));
+      .subscribe((data) => {this.user = data;
+        this.filteredPosts = this.user.posts;
+      });
     this.userService
       .getUserProfile(username)
       .subscribe((data) => console.log(data));
@@ -96,5 +109,11 @@ export class UserProfileComponent implements OnInit {
       this.toastr.error(error.error.message);
       throwError(error);
     });
+  }
+
+  performFilter(filterBy: string) {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.user.posts.filter((post: { title: string; description: string; }) =>
+      post.title.toLocaleLowerCase().includes(filterBy) || post.description.toLocaleLowerCase().includes(filterBy));
   }
 }
