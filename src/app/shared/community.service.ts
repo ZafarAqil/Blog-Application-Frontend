@@ -24,6 +24,10 @@ export class CommunityService {
     return this.httpClient.get<Community>(`${this.baseURL}/community/${id}`, httpOptions);
   }
 
+  getCommunityByTitle(title: string): Observable<Community> {
+    return this.httpClient.get<Community>(`${this.baseURL}/communityByTitle/${title}`, httpOptions);
+  }
+
   addCommunity(community: any, moderatorId: number) {
     return this.httpClient.post(this.baseURL + `/community/${moderatorId}`, community, httpOptions)
   }

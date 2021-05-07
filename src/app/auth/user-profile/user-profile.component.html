@@ -5,14 +5,14 @@
                 <h1>{{ user?.username }}</h1>
             </div>
             <!-- Display Posts-->
-            <div class="row post" *ngFor="let post of user.posts | reverse">
+            <div class="row post" *ngFor="let post of user?.posts | reverse">
                 <!-- Section to Display Votes-->
                 <div class="col-md-1">
                     <div class="d-flex flex-column votebox text-center">
                         <div class="p-2">
                             <fa-icon (click)="upvotePost(post.postId)" class="upvote" [icon]="faArrowUp"> </fa-icon>
                         </div>
-                        <div class="p-2 votecount">{{ post.votes }}</div>
+                        <div class="p-2 votecount">{{ post?.votes }}</div>
                         <div class="p-2">
                             <fa-icon (click)="downvotePost(post.postId)" class="downvote" [icon]="faArrowDown"> </fa-icon>
                         </div>
@@ -22,7 +22,7 @@
                 <div class="col-md-11">
                     <span class="subreddit-info">
                         <span class="subreddit-text">Posted in
-                            <a class="posturl" [routerLink]="['/community', post.communityName.substring(2,post.communityName.length)]">{{
+                            <a class="posturl" [routerLink]="['/community', post.communityName?.substring(2,post.communityName.length)]">{{
                                 post.communityName
                                 }}</a></span>
                         <!-- <span>
@@ -92,23 +92,23 @@
                 <div style="color: black; font-weight: bold">User Details</div>
                 <hr />
                 <span style="color: black; font-weight: bold" class="subreddit-text">
-                    <p>Username: {{ user.username }}</p>
+                    <p>Username: {{ user?.username }}</p>
                 </span>
                 <hr />
                 <span style="color: black; font-weight: bold" class="subreddit-text">
-                    <p>Email: {{ user.email }}</p>
+                    <p>Email: {{ user?.email }}</p>
                 </span>
                 <hr />
                 <span style="color: black; font-weight: bold" class="subreddit-text">
-                    <p>Karma: {{ user.karma }}</p>
+                    <p>Karma: {{ user?.karma }}</p>
                 </span>
                 <hr />
                 <span style="color: black; font-weight: bold" class="subreddit-text">
-                    <p>Awards Given: {{ user.awardsGiven.length }}</p>
+                    <p>Awards Given: {{ user?.awardsGiven.length }}</p>
                 </span>
                 <hr />
                 <span style="color: black; font-weight: bold" class="subreddit-text">
-                    <p>Awards Received: {{ user.awardsReceived.length }}</p>
+                    <p>Awards Received: {{ user?.awardsReceived.length }}</p>
                 </span>
             </div>
 
@@ -116,7 +116,7 @@
                 <div style="color: black; font-weight: bold">Browse Communities</div>
                 <hr />
                 <span *ngFor="let community of communities | reverse">
-                    <span class="subreddit-text"><a [routerLink]="['/community', community.communityId]" class="posturl"
+                    <span class="subreddit-text"><a [routerLink]="['/community', community?.title.substring(2,community.title.length)]" class="posturl"
                             (click)="ngOnInit()">{{ community.title }}</a></span>
                     <!-- <span class="subreddit-text col-md-2"
             ><p>Total Members: {{ community.totalMembers }}</p></span

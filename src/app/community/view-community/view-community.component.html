@@ -19,7 +19,7 @@
                 {{community.communityDescription}}
               </p>
               <a href="#" class="card-link">Subscribe</a>
-              <a [routerLink]="['/community',community.communityId]" class="card-link">Open Community</a>
+              <a [routerLink]="['/community', community.title.substring(2,community.title.length)]" class="card-link">Open Community</a>
             </div>
           </div>
         </div>

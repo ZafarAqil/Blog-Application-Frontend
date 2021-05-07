@@ -21,6 +21,8 @@ import { NgPipesModule } from 'ngx-pipes';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReversePipe } from './shared/reverse.pipe';
 import { ToastrModule } from 'ngx-toastr';
+import { AdminComponent } from './admin/admin.component';
+import { ModeratorComponent } from './moderator/moderator.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { ToastrModule } from 'ngx-toastr';
     UserProfileComponent,
     HomeComponent,
     CommunityDetailsComponent,
-    ReversePipe
+    ReversePipe,
+    AdminComponent,
+    ModeratorComponent
   ],
   imports: [
     BrowserModule,
