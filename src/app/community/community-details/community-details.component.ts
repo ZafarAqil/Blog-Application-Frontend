@@ -38,15 +38,34 @@ export class CommunityDetailsComponent implements OnInit {
      private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    const param = this.route.snapshot.paramMap.get('cid');
-    if (param) {
-      const cid = +param;
-      this.getCommunity(cid);
+    if (this.route.snapshot.paramMap.get('id'))
+    {
+      const param = this.route.snapshot.paramMap.get('id');
+      if(param) {
+        console.log(param);
+        const id = +param;
+        this.getCommunityById(id);
+      }
+    }
+    else (this.route.snapshot.paramMap.get('title'))
+    {
+      const param = this.route.snapshot.paramMap.get('title');
+      if(param) {
+        const title = param;
+        this.getCommunityByTitle(title);
+      }
     }
   }
 
-  getCommunity(cid: number) {
-    this.communityService.getCommunityById(cid).subscribe(
+  getCommunityById(id: number) {
+    this.communityService.getCommunityById(id).subscribe(
+      data => {
+        this.community = data;
+        this.filteredPosts = this.community.posts;
+      });
+  }
+  getCommunityByTitle(title: string) {
+    this.communityService.getCommunityByTitle(title).subscribe(
       data => {
         this.community = data;
         this.filteredPosts = this.community.posts;
