@@ -70,6 +70,7 @@ export class CreateCommunityComponent implements OnInit {
     this.communityService.addCommunity(this.community, this.moderatorId).subscribe(data => console.log(data));
 
     form.reset();
+    this.router.navigate(['/community'])
   }
 
   discard() {

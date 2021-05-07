@@ -1,15 +1,15 @@
 <div class="container">
-  <div><h1>List of Communities</h1></div>
+  <div>
+    <h1>List of Communities : <span><input type="text" [(ngModel)]="listFilter" placeholder="Search" /></span></h1>
+  </div>
   <div class="row">
     <div class="col-md-9">
       <div class="row">
-        <div class="col-md-6" *ngFor='let community of communities' >
-          <div class="card" style="width: auto; margin-bottom: 1rem" >
-            <img
-              class="card-img-top"
+        <div class="col-md-6" *ngFor='let community of filteredCommunities'>
+          <div class="card" style="width: auto; margin-bottom: 1rem">
+            <img class="card-img-top"
               src="https://thumbor.forbes.com/thumbor/711x473/https://specials-images.forbesimg.com/imageserve/1156260993/960x0.jpg"
-              alt="Card image cap"
-            />
+              alt="Card image cap" />
             <div class="card-body">
               <h5 class="card-title">{{community.title}}</h5>
               <h6 class="card-subtitle mb-2 text-muted">
@@ -24,39 +24,39 @@
           </div>
         </div>
       </div>
-    </div> 
+    </div>
 
     <div class="col-md-3">
       <div class="sidebar">
-        <img
-          src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png"
-        />
-        <div style="text-align: center; font-size: 1em">
-          Welcome to Blog Application home page. Come here to check in with your
-          favorite subreddits.
-        </div>
-        <div style="text-align: center">
-          <a routerLink="/create-post">
-            <button class="btnCreatePost">Create Post</button></a
-          >
-        </div>
-        <div style="text-align: center">
-          <a routerLink="/create-community">
-            <button class="btnCreateSubreddit">Create Community</button></a
-          >
+        <img src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png" style="width: 100%;" />
+        <div style="
+                  text-align: center;
+                  font-size: 1em;
+                  margin-bottom: 10px;
+                  margin-top: 10px;
+                ">
+          Welcome to Blog Application. Come here to check in with your favorite
+          communities
+          <div style="text-align: center">
+            <a routerLink="/create-post">
+              <button class="btnCreatePost">Create Post</button></a>
+          </div>
+          <div style="text-align: center;margin-top: 5px;">
+            <a routerLink="/create-community">
+              <button class="btnCreateSubreddit">Create Community</button></a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- <div *ngFor='let community of communities'>{{community}}</div> -->
-<div *ngIf='community'>
-<div>
-  {{community.title}}
-</div>
-<div>{{community.communityDescription}}</div>
-
+  <!-- <div *ngFor='let community of communities'>{{community}}</div> -->
+  <div *ngIf='community'>
+    <div>
+      {{community.title}}
+    </div>
+    <div>{{community.communityDescription}}</div>
 
 
-</div>
+
+  </div>
