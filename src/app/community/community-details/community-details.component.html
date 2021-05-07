@@ -34,14 +34,19 @@
 <div class="container">
   <div class="row">
     <div>
-      <nav class="navbar navbar-light bg-light" style="margin-top: 10px;">
+      <nav
+        class="navbar navbar-light bg-light shadow rounded"
+        style="margin-top: 15px; border: 1px solid #e9ecef; margin-left: 30px; margin-bottom: 20px;"
+      >
         <span class="navbar-brand">
           <span class="navbar-brand mb-0 h1"
-            >Welcome to <strong>r/{{ community?.title }}</strong> Community!</span
+            >Welcome to
+            <strong>r/{{ community?.title }}</strong> Community!</span
           >
-          <span
-            ><input
-              style="margin: auto;"
+          <span style="margin-left: 50px"
+            >Search Posts:
+            <input
+              style="margin: auto"
               type="text"
               [(ngModel)]="listFilter"
               placeholder="Search"
@@ -51,7 +56,10 @@
     </div>
     <div class="col-md-9">
       <!-- Display Posts-->
-      <div class="row post" *ngFor="let post of filteredPosts | reverse">
+      <div
+        class="row post shadow rounded"
+        *ngFor="let post of filteredPosts | reverse"
+      >
         <!-- <app-vote-button [post]="post"></app-vote-button> -->
 
         <!-- Section to Display Votes-->
@@ -135,7 +143,7 @@
       </div>
     </div>
     <div class="col-md-3">
-      <div class="sidebar">
+      <div class="sidebar shadow rounded">
         <img
           src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png"
           style="width: 100%"

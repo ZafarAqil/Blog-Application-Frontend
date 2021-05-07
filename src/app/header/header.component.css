@@ -10,7 +10,8 @@ header{
 .reddit-text{        
     font-weight: 700;
     height: 50px;
-    width: 50px;    
+    width: 50px; 
+    font-size: 18px;  
 }
 .logo{
     text-decoration: none;
@@ -86,6 +87,7 @@ header{
 
 .dropdown-menu{
     background-color: #f8f9fa;
+    min-width: 60px !important;
 }
 
 .account-icon{

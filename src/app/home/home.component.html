@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-9">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 ">
           <!-- <div class="jumbotron jumbotron-fluid bg-dark">
             <div class="jumbotron-background">
               <img src="https://placeimg.com/2000/1000/nature" class="blur" />
@@ -24,13 +24,13 @@
               >
             </div>
           </div> -->
-          <div class="jumbotron">
+          <div class="jumbotron shadow rounded" style="border: 2px solid #0069D9;">
             <h1 class="display-4">Welcome to Blog Application!</h1>
             <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
             <hr class="my-4">
             <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
             <p class="lead text-center" *ngIf="!isLoggedIn">
-              <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+              <a class="btn btn-primary btn-lg" routerLink="/signup" role="button">Sign Up</a>
             </p>
           </div>
         </div>
@@ -39,23 +39,24 @@
           <h2>Trending Communities</h2>
         </div> -->
 
-        <nav class="navbar navbar-light bg-light">
+        <nav class="navbar navbar-light bg-light shadow rounded" style="border: 1px solid #e9ecef;">
           <span class="navbar-brand mb-0 h1">Trending Communities</span>
         </nav>
 
-        <div class="row" style="margin-bottom: 1rem; margin-top: 10px;">
+        <div class="row" style="margin-bottom: 1rem; margin-top: 15px;">
           <div class="col-sm-3" *ngFor="let community of communities">
-            <div class="card h-100" style="width: auto; margin-bottom: 1rem">
+            <div class="card h-100 shadow rounded" style="width: auto; margin-bottom: 1rem">
               <img
                 class="card-img-top"
                 src="https://i.redd.it/ms9hyj8wzax61.jpg"
                 alt="Card image cap"
               />
               <div class="card-body">
-                <h4 class="card-title"><strong>r/{{ community.title }}</strong></h4>
+                <h4 class="card-title text-center"><strong>r/{{ community.title }}</strong></h4>
                 <h6 class="card-subtitle mb-2 text-muted">
                   A commmunity for {{ community.title }} lovers
                 </h6>
+                <hr/>
                 <p class="card-text">
                   {{ community.communityDescription }}
                 </p>
@@ -148,7 +149,7 @@
     </div>
 
     <div class="col-md-3">
-      <div class="sidebar">
+      <div class="sidebar shadow rounded">
         <img
           src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png"
           style="width: 100%"
