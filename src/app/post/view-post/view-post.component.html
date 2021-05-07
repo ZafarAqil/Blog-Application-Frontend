@@ -39,6 +39,7 @@
               post.title
               }}</p>
           </div>
+          
           <div>
             <p class="post-text" [innerHtml]="post.description"></p>
           </div>
@@ -56,7 +57,7 @@
                     Discard
                   </button> -->
                   <button class="btnCreatePost" [disabled]="commentForm.invalid">
-                    POST COMMENT
+                    ADD COMMENT
                   </button>
                 </div>
               </span>
@@ -85,7 +86,7 @@
         <div class="col-md-1"></div>
 
         <div class="col-md-11">
-          <div style="margin-top: 60px" *ngFor="let comment of post?.comments | reverse">
+          <div style="margin-top: 20px" *ngFor="let comment of post?.comments | reverse">
             <div class="comment" style="display: inline">
               <div class="username">
                 <img class="account-icon" src="https://www.redditstatic.com/avatars/avatar_default_08_D4E815.png" />
@@ -93,14 +94,14 @@
                 <a [routerLink]="['/profile', comment.bloggerName]">{{
                   "u/" + comment.bloggerName
                   }}</a>
-                <p class="text-right">
+                <span class="text-right" style="margin-left: 480px;">
                   {{ comment.createdDateTime | date: "medium" }}
-                </p>
+                </span>
               </div>
+              <br/>
               <div>
                 <p>{{ comment.commentDescription }}</p>
               </div>
-              <!-- <b>{{ comment.text }}</b> -->
             </div>
             <hr />
           </div>

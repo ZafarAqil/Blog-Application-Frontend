@@ -1,25 +1,61 @@
 <div class="container">
-  <div>
+  <!-- <div>
     <h1>List of Communities : <span><input type="text" [(ngModel)]="listFilter" placeholder="Search" /></span></h1>
-  </div>
+  </div> -->
   <div class="row">
+    <div>
+      <nav
+        class="navbar navbar-light bg-light"
+        style="margin-top: 10px; margin-bottom: 10px"
+      >
+        <span class="navbar-brand">
+          <span class="navbar-brand mb-0 h1">List of all Communities</span>
+          <span
+            ><input
+              style="margin: auto"
+              type="text"
+              [(ngModel)]="listFilter"
+              placeholder="Search"
+          /></span>
+        </span>
+      </nav>
+    </div>
     <div class="col-md-9">
       <div class="row">
-        <div class="col-md-6" *ngFor='let community of filteredCommunities | reverse'>
+        <div
+          class="col-md-6"
+          *ngFor="let community of filteredCommunities | reverse"
+        >
           <div class="card" style="width: auto; margin-bottom: 1rem">
-            <img class="card-img-top"
+            <img
+              class="card-img-top"
               src="https://thumbor.forbes.com/thumbor/711x473/https://specials-images.forbesimg.com/imageserve/1156260993/960x0.jpg"
-              alt="Card image cap" />
+              alt="Card image cap"
+            />
             <div class="card-body">
-              <h4 class="card-title"><strong>r/{{community.title}}</strong></h4>
+              <h4 class="card-title">
+                <strong>r/{{ community.title }}</strong>
+              </h4>
               <h5 class="card-subtitle mb-2 text-muted">
-                A commmunity for {{community.title}}
+                A commmunity for {{ community.title }}
               </h5>
               <p class="card-text">
-                {{community.communityDescription}}
+                {{ community.communityDescription }}
               </p>
-              <a href="#" class="card-link">Subscribe</a>
-              <a [routerLink]="['/community', community.title.toLowerCase()]" class="card-link">Open Community</a>
+
+              <a
+                class="card-link"
+                (click)="joinCommunity(community.communityId)"
+                *ngIf="!isSubscribed"
+                >Subscribe</a
+              >
+              <a class="card-link" *ngIf="isSubscribed">Subscribed</a>
+
+              <a
+                [routerLink]="['/community', community.title.toLowerCase()]"
+                class="card-link"
+                >Open Community</a
+              >
             </div>
           </div>
         </div>
@@ -28,22 +64,29 @@
 
     <div class="col-md-3">
       <div class="sidebar">
-        <img src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png" style="width: 100%;" />
-        <div style="
-                  text-align: center;
-                  font-size: 1em;
-                  margin-bottom: 10px;
-                  margin-top: 10px;
-                ">
+        <img
+          src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png"
+          style="width: 100%"
+        />
+        <div
+          style="
+            text-align: center;
+            font-size: 1em;
+            margin-bottom: 10px;
+            margin-top: 10px;
+          "
+        >
           Welcome to Blog Application. Come here to check in with your favorite
           communities
           <div style="text-align: center">
             <a routerLink="/create-post">
-              <button class="btnCreatePost">Create Post</button></a>
+              <button class="btnCreatePost">Create Post</button></a
+            >
           </div>
-          <div style="text-align: center;margin-top: 5px;">
+          <div style="text-align: center; margin-top: 5px">
             <a routerLink="/create-community">
-              <button class="btnCreateSubreddit">Create Community</button></a>
+              <button class="btnCreateSubreddit">Create Community</button></a
+            >
           </div>
         </div>
       </div>
@@ -51,12 +94,10 @@
   </div>
 
   <!-- <div *ngFor='let community of communities'>{{community}}</div> -->
-  <div *ngIf='community'>
+  <div *ngIf="community">
     <div>
-      {{community.title}}
+      {{ community.title }}
     </div>
-    <div>{{community.communityDescription}}</div>
-
-
-
+    <div>{{ community.communityDescription }}</div>
   </div>
+</div>
