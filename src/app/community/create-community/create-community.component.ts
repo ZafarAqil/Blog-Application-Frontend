@@ -19,7 +19,8 @@ export class CreateCommunityComponent implements OnInit {
   constructor(private router: Router,
     private formBuilder: FormBuilder,
     private tokenService: TokenStorageService,
-    private communityService: CommunityService) {
+    private communityService: CommunityService,
+    private tokenStorage: TokenStorageService) {
     this.createSubredditForm = this.formBuilder.group({
       title: ['', [Validators.required]],
       communityDescription: ['', [Validators.required]],
@@ -48,6 +49,9 @@ export class CreateCommunityComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (!this.tokenStorage.getToken()) {
+      this.router.navigate(['/signin']);
+    }
   }
 
   createSubreddit(form: FormGroup) {
@@ -58,6 +62,9 @@ export class CreateCommunityComponent implements OnInit {
     // this.community.flairs = form.get('flairs')?.value;
 
     this.moderatorId = this.tokenService.getUser().id;
+    if(!this.moderatorId){
+      this.router.navigate(['signin']);
+    }
 
     console.log(this.community);
     this.communityService.addCommunity(this.community, this.moderatorId).subscribe(data => console.log(data));

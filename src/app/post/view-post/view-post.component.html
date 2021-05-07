@@ -20,7 +20,7 @@
           <div>
             <p class="post-text" [innerHtml]="post?.description"></p>
           </div>
-          <div class="post-comment">
+          <div class="post-comment" *ngIf="isLoggedIn">
             <form [formGroup]="commentForm" (ngSubmit)="postComment(commentForm)">
               <div class="form-group">
                 <textarea class="form-control" [formControlName]="'commentDescription'"
@@ -38,10 +38,29 @@
               </span>
             </form>
           </div>
+          <div class="post-comment" *ngIf="!isLoggedIn">
+            <form [formGroup]="commentForm" (ngSubmit)="postComment(commentForm)">
+              <div class="form-group">
+                <textarea class="form-control" [formControlName]="'commentDescription'"
+                  placeholder="Please, Login to comment..."></textarea>
+              </div>
+              <span>
+                <div style="margin-top: 5px" class="float-right">
+                  <!-- <button (click)="discardPost()" class="btnDiscard">
+                    Discard
+                  </button> -->
+                  <button class="btnCreatePost">
+                    LOGIN
+                  </button>
+                </div>
+              </span>
+            </form>
+          </div>
+
           <div style="margin-top: 60px;" *ngFor="let comment of post?.comments | reverse">
             <div class="comment">
               <div class="username">
-                <a routerLink="/user/comment.username">{{ 'u/' + comment.bloggerName }}</a>
+                <a [routerLink]="['/profile',comment.bloggerName]">{{ 'u/' + comment.bloggerName }}</a>
               </div>
               <div>
                 <p>{{ comment.createdDateTime | date:'medium' }}</p>

@@ -15,32 +15,29 @@
                 </span>
             </a>
         </div>
-           
-            <div >
-                <a routerLink="/profile" class="float-right sign-up mr-2">Profile</a>
-                <a href class="nav-link" class="float-right sign-up mr-2" (click)="logout()">LogOut</a>
-                <a routerLink="/signup" class="float-right sign-up mr-2">Sign up</a>
-                <a routerLink="/signin" class="float-right login mr-2">Sign in</a>
-                <a routerLink="/community" class="float-right login mr-2">Community</a>
-                <a routerLink="/create-post" class="float-right login mr-2">Post</a>
+
+
+        <div class="flex-grow-1 float-right">
+            <div *ngIf="isLoggedIn" class="float-right dropdown">
+
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                    <img class="account-icon" src="https://www.redditstatic.com/avatars/avatar_default_08_D4E815.png">
+                    {{username}}</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" [routerLink]="['/profile', username]">Profile</a>
+                    <a class="dropdown-item" (click)="logout()">Logout</a>
+                </div>
+
             </div>
-        
+            <div *ngIf="!isLoggedIn">
+                <a routerLink="/signup" class="float-right sign-up mr-2">Sign up</a>
+                <a routerLink="/signin" class="float-right login mr-2">Login</a>
+
+            </div>
+            <a routerLink="/community" class="float-right login mr-2">Community</a>
+            <a routerLink="/create-post" class="float-right login mr-2">Post</a>
+        </div>
+
+
     </nav>
 </header>
-
-<!-- <div class="flex-grow-1 float-right">
-    <div *ngIf="isLoggedIn" ngbDropdown class="float-right">
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button (click)="goToUserProfile()" ngbDropdownItem>Profile</button>
-            <button (click)="logout()" ngbDropdownItem>Logout</button>
-        </div>
-        <button class="userdetails" id="dropdownBasic1" ngbDropdownToggle>
-            <img class="account-icon" src="https://www.redditstatic.com/avatars/avatar_default_08_D4E815.png">
-            {{username}}
-        </button>
-    </div>            
-    <div *ngIf="!isLoggedIn">
-        <a routerLink="/sign-up" class="float-right sign-up mr-2">Sign up</a>
-        <a routerLink="/login" class="float-right login mr-2">Login</a>
-    </div>
-</div> -->

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { Post, PostType } from 'src/app/models/post-model';
 import { CommunityService } from 'src/app/shared/community.service';
@@ -22,7 +23,8 @@ export class CreatePostComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private communityService: CommunityService,
     private postService: PostService,
-    private tokenService: TokenStorageService
+    private tokenService: TokenStorageService,
+    private router: Router
   ) {
     this.createPostForm = this.formBuilder.group({
       title: ['', [Validators.required]],
@@ -48,7 +50,11 @@ export class CreatePostComponent implements OnInit {
       this.communities = data;
     }, error => {
       throwError(error);
-    })
+    });
+
+    if (!this.tokenService.getToken()) {
+      this.router.navigate(['/signin']);
+    }
   }
 
   createPost(form: FormGroup) {
@@ -63,6 +69,10 @@ export class CreatePostComponent implements OnInit {
     
     this.communityId = form.get('communityTitle')?.value;
     this.userId = this.tokenService.getUser().id;
+    if(!this.userId){
+      this.router.navigate(['signin']);
+    }
+
     console.log(this.post);
     console.log(this.communityId);
     console.log(this.userId);

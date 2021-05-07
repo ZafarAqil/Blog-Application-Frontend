@@ -15,7 +15,7 @@ const routes: Routes = [
 { path: 'signin', component: SigninComponent },
 { path: 'signup', component: SignupComponent },
 { path: 'community',component: ViewCommunityComponent},
-{ path: 'profile',component: UserProfileComponent},
+{ path: 'profile/:username',component: UserProfileComponent},
 { path: 'create-community', component: CreateCommunityComponent},
 { path: 'create-post', component: CreatePostComponent},
 { path: 'community/:cid',component: CommunityDetailsComponent},

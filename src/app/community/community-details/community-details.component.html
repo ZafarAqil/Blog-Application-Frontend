@@ -67,13 +67,13 @@
               <div class="col-md-11">
                 <span class="subreddit-info">
                   <span class="subreddit-text"
-                    ><a class="posturl" routerLink="">{{
-                      post.subredditName
+                    ><a class="posturl" (click)="ngOnInit()">{{
+                      post.communityName
                     }}</a></span
                   >
                   <span>
                     . Posted by
-                    <a class="username" routerLink="/user/{{ post.userName }}">{{'u/' +
+                    <a class="username" [routerLink]="['/profile', post.bloggerName]">{{'u/' +
                       post.bloggerName
                     }}</a></span
                   >
