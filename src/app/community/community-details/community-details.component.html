@@ -1,36 +1,3 @@
-<!-- <div class="container">
-    <div class="row">
-        <div class="col-md-9">
-            <div>
-                <p>{{ change() }}</p>
-                <h1>{{ community?.title }}</h1>
-            </div>
-            <div *ngFor = 'let post of community?.posts'>
-                <h2>{{ post.title }}</h2>
-                <p>{{ post.description }}</p>
-                <p>{{ post.createdDateTime | timeAgo }}</p>
-            </div>
-        </div>
- 
-        <div class="col-md-3">
-            <div class="sidebar">
-                <img src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png" />
-                <div style="text-align: center; font-size: 1em">
-                    Welcome to Blog Application home page. Come here to check in with your
-                    favorite subreddits.
-                </div>
-                <div style="text-align: center">
-                    <a routerLink="/create-post">
-                        <button class="btnCreatePost">Create Post</button></a>
-                </div>
-                <div style="text-align: center">
-                    <a routerLink="/create-community">
-                        <button class="btnCreateSubreddit">Create Community</button></a>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
 <div class="container">
   <div class="row">
     <div>
@@ -143,12 +110,13 @@
             >
               Read Post
             </button>
+            &nbsp;
             <button
-            class="login btn btn-outline-primary btn-sm col-md-3"
-            *ngIf="post.bloggerName === username"
-          >
-            Delete Post
-          </button>
+              class="login btn btn-outline-primary btn-sm col-md-3"
+              *ngIf="post.bloggerName === username"
+            >
+              Delete Post
+            </button>
           </span>
         </div>
       </div>
@@ -165,10 +133,11 @@
             font-size: 1em;
             margin-bottom: 10px;
             margin-top: 10px;
+            color: black;
+            font-weight: bold;
           "
         >
-          Welcome to Blog Application. Come here to check in with your favorite
-          communities
+          {{ community?.communityDescription }}
           <div style="text-align: center">
             <a routerLink="/create-post">
               <button class="btnCreatePost">Create Post</button></a
@@ -186,11 +155,7 @@
         <div style="color: black; font-weight: bold">Community Details</div>
         <hr />
         <span style="color: black; font-weight: bold" class="subreddit-text">
-          <p>Community Name: r/{{ community?.title }}</p>
-        </span>
-        <hr />
-        <span style="color: black; font-weight: bold" class="subreddit-text">
-          <p>Community Description: {{ community?.communityDescription }}</p>
+          <p>Name: r/{{ community?.title }}</p>
         </span>
         <hr />
         <span style="color: black; font-weight: bold" class="subreddit-text">
@@ -204,14 +169,6 @@
         <span style="color: black; font-weight: bold" class="subreddit-text">
           <p>Total Members: {{ community?.totalMembers }}</p>
         </span>
-        <hr />
-        <!-- <span style="color: black; font-weight: bold" class="subreddit-text">
-          <p>Awards Given: {{ user?.awardsGiven.length }}</p>
-        </span>
-        <hr />
-        <span style="color: black; font-weight: bold" class="subreddit-text">
-          <p>Awards Received: {{ user?.awardsReceived.length }}</p>
-        </span> -->
       </div>
 
       <div class="sidebar-view-subreddit text-center shadow rounded">
@@ -227,13 +184,12 @@
               >r/{{ community.title }}</a
             >
             &nbsp; &nbsp;
-            <span> Total Members: {{ community.bloggers.length }} </span>
+            <span> Total Members: {{ community.totalMembers }} </span>
           </span>
 
           <hr />
         </span>
         <div style="text-align: center" *ngIf="displayViewAll">
-          <!-- <div style="text-align: center"> -->
           <a style="font-weight: bold" routerLink="/community">View All</a>
         </div>
       </div>
