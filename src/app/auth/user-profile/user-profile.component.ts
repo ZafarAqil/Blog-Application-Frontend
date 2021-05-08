@@ -30,6 +30,7 @@ export class UserProfileComponent implements OnInit {
   error = '';
   displayViewAll: any;
   filteredPosts: any;
+  isLoggedIn: boolean = false;
 
   username: any;
   user: any;
@@ -50,9 +51,13 @@ export class UserProfileComponent implements OnInit {
     private communityService: CommunityService,
     private tokenService: TokenStorageService,
     private voteService: VoteService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
+    if (this.tokenService.getToken()) {
+      this.isLoggedIn = true;
+    }
     const param = this.route.snapshot.paramMap.get('username');
     if (param) {
       this.username = param;
@@ -62,7 +67,6 @@ export class UserProfileComponent implements OnInit {
       (data) => {
         console.log(data);
         this.communities = data;
-        
 
         if (data.length > 3) {
           this.communities = data.reverse().splice(0, 3);
@@ -78,42 +82,56 @@ export class UserProfileComponent implements OnInit {
   }
 
   getUserProfile(username: string) {
-    this.userService
-      .getUserProfile(username)
-      .subscribe((data) => {this.user = data;
-        this.filteredPosts = this.user.posts;
-      });
+    this.userService.getUserProfile(username).subscribe((data) => {
+      this.user = data;
+      this.filteredPosts = this.user.posts;
+    });
     this.userService
       .getUserProfile(username)
       .subscribe((data) => console.log(data));
   }
 
   upvotePost(postId: number) {
-    this.userId = this.tokenService.getUser().id;
+    if (!this.isLoggedIn) this.toastr.error('Please, Login to vote');
+    else {
+      this.userId = this.tokenService.getUser().id;
 
-    this.voteService.vote(voteType.UPVOTE, this.userId, postId).subscribe(data => {
-      this.ngOnInit();
-    }, error => {
-      this.toastr.error(error.error.message);
-      throwError(error);
-    });
+      this.voteService.vote(voteType.UPVOTE, this.userId, postId).subscribe(
+        (data) => {
+          this.ngOnInit();
+        },
+        (error) => {
+          this.toastr.error(error.error.message);
+          throwError(error);
+        }
+      );
+    }
   }
 
   downvotePost(postId: number) {
-    this.userId = this.tokenService.getUser().id;
+    if (!this.isLoggedIn) this.toastr.error('Please, Login to vote');
+    else {
+      this.userId = this.tokenService.getUser().id;
 
-    this.voteService.vote(voteType.DOWNVOTE, this.userId, postId).subscribe(data => {
-      console.log(data);
-      this.ngOnInit();
-    }, error => {
-      this.toastr.error(error.error.message);
-      throwError(error);
-    });
+      this.voteService.vote(voteType.DOWNVOTE, this.userId, postId).subscribe(
+        (data) => {
+          console.log(data);
+          this.ngOnInit();
+        },
+        (error) => {
+          this.toastr.error(error.error.message);
+          throwError(error);
+        }
+      );
+    }
   }
 
   performFilter(filterBy: string) {
     filterBy = filterBy.toLocaleLowerCase();
-    return this.user.posts.filter((post: { title: string; description: string; }) =>
-      post.title.toLocaleLowerCase().includes(filterBy) || post.description.toLocaleLowerCase().includes(filterBy));
+    return this.user.posts.filter(
+      (post: { title: string; description: string }) =>
+        post.title.toLocaleLowerCase().includes(filterBy) ||
+        post.description.toLocaleLowerCase().includes(filterBy)
+    );
   }
 }
