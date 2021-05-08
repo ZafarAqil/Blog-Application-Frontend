@@ -36,7 +36,12 @@
     <div>
       <nav
         class="navbar navbar-light bg-light shadow rounded"
-        style="margin-top: 15px; border: 1px solid #e9ecef; margin-left: 30px; margin-bottom: 20px;"
+        style="
+          margin-top: 15px;
+          border: 1px solid #e9ecef;
+          margin-left: 30px;
+          margin-bottom: 20px;
+        "
       >
         <span class="navbar-brand">
           <span class="navbar-brand mb-0 h1"
@@ -168,6 +173,62 @@
               <button class="btnCreateSubreddit">Create Community</button></a
             >
           </div>
+        </div>
+      </div>
+
+      <div class="sidebar-view-user text-center shadow rounded">
+        <div style="color: black; font-weight: bold">Community Details</div>
+        <hr />
+        <span style="color: black; font-weight: bold" class="subreddit-text">
+          <p>Community Name: r/{{ community?.title }}</p>
+        </span>
+        <hr />
+        <span style="color: black; font-weight: bold" class="subreddit-text">
+          <p>Community Description: {{ community?.communityDescription }}</p>
+        </span>
+        <hr />
+        <span style="color: black; font-weight: bold" class="subreddit-text">
+          <p>Created on: {{ community?.createdOn | date: "longDate" }}</p>
+        </span>
+        <hr />
+        <span style="color: black; font-weight: bold" class="subreddit-text">
+          <p>Created by: u/{{ community?.moderatorName }}</p>
+        </span>
+        <hr />
+        <span style="color: black; font-weight: bold" class="subreddit-text">
+          <p>Total Members: {{ community?.totalMembers }}</p>
+        </span>
+        <hr />
+        <!-- <span style="color: black; font-weight: bold" class="subreddit-text">
+          <p>Awards Given: {{ user?.awardsGiven.length }}</p>
+        </span>
+        <hr />
+        <span style="color: black; font-weight: bold" class="subreddit-text">
+          <p>Awards Received: {{ user?.awardsReceived.length }}</p>
+        </span> -->
+      </div>
+
+      <div class="sidebar-view-subreddit text-center shadow rounded">
+        <div style="color: black; font-weight: bold">Browse Communities</div>
+        <hr />
+        <span *ngFor="let community of communities">
+          <span class="subreddit-text"
+            ><a
+              style="font-weight: bold"
+              [routerLink]="['/community', community.title.toLowerCase()]"
+              class="posturl profile-subreddit-view"
+              (click)="ngOnInit()"
+              >r/{{ community.title }}</a
+            >
+            &nbsp; &nbsp;
+            <span> Total Members: {{ community.bloggers.length }} </span>
+          </span>
+
+          <hr />
+        </span>
+        <div style="text-align: center" *ngIf="displayViewAll">
+          <!-- <div style="text-align: center"> -->
+          <a style="font-weight: bold" routerLink="/community">View All</a>
         </div>
       </div>
     </div>

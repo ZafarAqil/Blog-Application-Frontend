@@ -3,6 +3,7 @@ import { Community } from 'src/app/models/community-model';
 import { CommunityService } from 'src/app/shared/community.service';
 import { UserService } from 'src/app/shared/user.service';
 import { TokenStorageService } from 'src/app/shared/token-storage.service';
+import { HeaderComponent } from 'src/app/header/header.component';
 
 @Component({
   selector: 'app-view-community',
@@ -15,6 +16,8 @@ export class ViewCommunityComponent implements OnInit {
   error = '';
   filteredCommunities: any;
   isSubscribed: boolean = false;
+  isAdmin: boolean = HeaderComponent.showAdminBoard;
+  isModerator: boolean = HeaderComponent.showModeratorBoard;
 
   private _listFilter = '';
   get listFilter(): string {

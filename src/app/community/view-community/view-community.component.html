@@ -6,7 +6,12 @@
     <div>
       <nav
         class="navbar navbar-light bg-light shadow rounded"
-        style="margin-top: 10px; margin-bottom: 20px; border: 1px solid #e9ecef; margin-left: 170px;"
+        style="
+          margin-top: 10px;
+          margin-bottom: 20px;
+          border: 1px solid #e9ecef;
+          margin-left: 170px;
+        "
       >
         <span class="navbar-brand">
           <span class="navbar-brand mb-0 h1">Search Communities: </span>
@@ -60,6 +65,11 @@
                 [routerLink]="['/community', community.title.toLowerCase()]"
                 class="card-link"
                 >Open Community</a
+              >
+              <a *ngIf="isAdmin"
+                [routerLink]="['/community', community.title.toLowerCase()]"
+                class="card-link"
+                >Delete Community</a
               >
             </div>
           </div>
