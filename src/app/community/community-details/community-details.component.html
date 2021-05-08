@@ -138,6 +138,12 @@
             >
               Read Post
             </button>
+            <button
+            class="login btn btn-outline-primary btn-sm col-md-3"
+            *ngIf="post.bloggerName === username"
+          >
+            Delete Post
+          </button>
           </span>
         </div>
       </div>

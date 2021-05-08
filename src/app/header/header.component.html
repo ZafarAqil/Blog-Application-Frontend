@@ -26,10 +26,10 @@
             class="account-icon"
             src="https://www.redditstatic.com/avatars/avatar_default_08_D4E815.png"
           />
-          {{ username }}</a
+          {{ name }}</a
         >
         <div class="dropdown-menu shadow rounded">
-          <a class="dropdown-item" [routerLink]="['/profile', username]"
+          <a class="dropdown-item" [routerLink]="['/profile', name]"
             >Profile</a
           >
           <a class="dropdown-item" (click)="logout()">Logout</a>
@@ -56,13 +56,13 @@
         >Post</a
       >
       <a
-        *ngIf="showAdminBoard"
+        *ngIf="isAdmin"
         routerLink="/admin"
         class="float-right login mr-2 shadow-sm rounded"
         >Admin</a
       >
       <a
-        *ngIf="showModeratorBoard"
+        *ngIf="isModerator"
         routerLink="/moderator"
         class="float-right login mr-2 shadow-sm rounded"
         >Moderator</a

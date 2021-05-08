@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModeratorComponent } from '../moderator/moderator.component';
 import { TokenStorageService } from '../shared/token-storage.service';
 
 @Component({
@@ -9,9 +10,12 @@ import { TokenStorageService } from '../shared/token-storage.service';
 export class HeaderComponent implements OnInit {
   private roles: string[]=[];
   isLoggedIn = false;
-  showAdminBoard = false;
-  showModeratorBoard = false;
-  username: string='';
+ public static  showAdminBoard = false;
+ public static showModeratorBoard = false;
+ isModerator =false;
+ isAdmin =false;
+ public static username: string='';
+ name :string = '';
 
   constructor(private tokenStorageService: TokenStorageService) { }
 
@@ -22,10 +26,12 @@ export class HeaderComponent implements OnInit {
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
 
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-
-      this.username = user.username;
+      HeaderComponent.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.isAdmin=HeaderComponent.showAdminBoard;
+      HeaderComponent.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+      this.isModerator=HeaderComponent.showModeratorBoard;
+      HeaderComponent.username = user.username;
+      this.name=HeaderComponent.username
     }
   }
 

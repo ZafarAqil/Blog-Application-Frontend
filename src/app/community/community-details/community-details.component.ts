@@ -12,6 +12,7 @@ import { VoteService } from 'src/app/shared/vote.service';
 import { voteType } from 'src/app/models/voteType';
 import { throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { HeaderComponent } from 'src/app/header/header.component';
 
 @Component({
   selector: 'app-community-details',
@@ -27,6 +28,7 @@ export class CommunityDetailsComponent implements OnInit {
   filteredPosts: any;
   userId: any;
   isLoggedIn: boolean = false;
+  username:string = HeaderComponent.username;
 
   private _listFilter = '';
   get listFilter(): string {
