@@ -114,6 +114,7 @@
             <button
               class="login btn btn-outline-danger btn-sm col-md-3"
               *ngIf="post.bloggerName === username"
+              (click)="deletePost(post.postId)"
             >
               Delete Post
             </button>

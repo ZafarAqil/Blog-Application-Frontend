@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AwardType } from '../models/awardType';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -23,7 +24,15 @@ export class PostService {
     );
   }
 
+  deletePost(postId: number) {
+    return this.httpClient.delete(this.baseURL + `/community/blogger/post/${postId}`, httpOptions);
+  }
+
   postComment(comment: any, userId: number, postId: number) {
     return this.httpClient.post(this.baseURL + `/blogger/${userId}/posts/${postId}/comment`, comment, httpOptions);
-  } 
+  }
+
+  giveAward(award: AwardType, userId: number, postId: number) {
+    return this.httpClient.put(this.baseURL + `/community/blogger/${userId}/post/${postId}/award`, award, httpOptions);
+  }
 }
