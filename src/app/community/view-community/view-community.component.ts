@@ -4,6 +4,7 @@ import { CommunityService } from 'src/app/shared/community.service';
 import { UserService } from 'src/app/shared/user.service';
 import { TokenStorageService } from 'src/app/shared/token-storage.service';
 import { HeaderComponent } from 'src/app/header/header.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-view-community',
@@ -15,14 +16,19 @@ export class ViewCommunityComponent implements OnInit {
   communities: any[] = [];
   error = '';
   filteredCommunities: any;
-  isSubscribed: boolean = false;
-  isAdmin: boolean = HeaderComponent.showAdminBoard;
-  isModerator: boolean = HeaderComponent.showModeratorBoard;
+  isSubscribed: string[]= [];
+  isLoggedIn:boolean=false;
+  roles: string[]=[];
+  showAdminBoard:boolean = HeaderComponent.showAdminBoard;
+  showModeratorBoard = HeaderComponent.showModeratorBoard;
+  username: string='';
 
   private _listFilter = '';
   get listFilter(): string {
     return this._listFilter;
   }
+
+
   set listFilter(value: string) {
     this._listFilter = value;
     this.filteredCommunities = this.performFilter(value);
@@ -31,17 +37,29 @@ export class ViewCommunityComponent implements OnInit {
   constructor(
     private communityService: CommunityService,
     private userService: UserService,
-    private tokenService: TokenStorageService
+    private tokenService: TokenStorageService,
+    private toastr:ToastrService
   ) {}
+
+
 
   ngOnInit(): void {
     this.communityService.getCommunities().subscribe(
       (data) => {
-        console.log(data);
         this.communities = data;
         this.filteredCommunities = data;
-      },
-      (err) => {
+        this.filteredCommunities.isSubsribed = [];
+        for(let community of this.communities){
+          let flag = false;
+          community.bloggers.forEach((blogger: { id: any; }) => {
+            console.log(blogger);
+            if(blogger.id === this.tokenService.getUser().id) flag = true;
+          });
+          if(flag) this.isSubscribed.push(community.title);
+        }
+        this.isSubscribed = this.isSubscribed.reverse();
+        console.log(this.isSubscribed);
+      },      (err) => {
         this.error = JSON.parse(err.error).message;
       }
     );
@@ -58,8 +76,8 @@ export class ViewCommunityComponent implements OnInit {
     this.userService
       .joinCommunity(communityId, this.tokenService.getUser().id)
       .subscribe((data) => {
-        console.log(data);
-        this.isSubscribed = true;
+        this.toastr.success(data.toString());
+        this.ngOnInit();
       });
   }
 }

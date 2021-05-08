@@ -56,21 +56,21 @@
               <a
                 class="card-link"
                 (click)="joinCommunity(community.communityId)"
-                *ngIf="!isSubscribed"
+                *ngIf="!isSubscribed.includes(community.title)"
                 >Subscribe</a
               >
-              <a class="card-link" *ngIf="isSubscribed">Subscribed</a>
+              <a class="card-link" *ngIf="isSubscribed.includes(community.title)">Subscribed</a>
 
               <a
                 [routerLink]="['/community', community.title.toLowerCase()]"
                 class="card-link"
                 >Open Community</a
               >
-              <a *ngIf="isAdmin"
-                [routerLink]="['/community', community.title.toLowerCase()]"
-                class="card-link"
-                >Delete Community</a
-              >
+              <a
+              [routerLink]="['/community', community.title.toLowerCase()]"
+              class="card-link" *ngIf="showAdminBoard"
+              >Delete Community</a
+            >             
             </div>
           </div>
         </div>
