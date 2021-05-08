@@ -113,7 +113,8 @@
             &nbsp;
             <button
               class="login btn btn-outline-danger btn-sm col-md-3"
-              *ngIf="post.bloggerName === username"
+              *ngIf="(post.bloggerName === username) || (community.moderatorName === username)
+              || isAdmin"
               (click)="deletePost(post.postId)"
             >
               Delete Post

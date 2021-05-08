@@ -26,6 +26,13 @@
               style="width: 100%; margin-top: 5px"
               placeholder="Description"
             ></textarea>
+            <input
+            type="text"
+            [formControlName]="'image'"
+            class="form-control"
+            style="margin-top: 5px"
+            placeholder="Image URL"
+          />
             <div>
               <div style="margin-top: 5px" class="float-right">
                 <button (click)="discard()" class="btnDiscard">Discard</button>

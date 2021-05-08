@@ -29,6 +29,7 @@ export class CreatePostComponent implements OnInit {
     this.createPostForm = this.formBuilder.group({
       title: ['', [Validators.required]],
       description: ['', [Validators.required]],
+      image: [''],
       communityTitle: [''],
       notSafeForWork: [''],
       spoiler: [''],
@@ -42,6 +43,7 @@ export class CreatePostComponent implements OnInit {
       spoiler: false,
       originalContent: false,
       flairs: [],
+      imageUrl: ''
     };
   }
 
@@ -60,6 +62,7 @@ export class CreatePostComponent implements OnInit {
   createPost(form: FormGroup) {
     this.post.title = form.get('title')?.value;
     this.post.description = form.get('description')?.value;
+    this.post.imageUrl = form.get('image')?.value;
     this.post.notSafeForWork = form.get('notSafeForWork')?.value ? true : false;
     this.post.spoiler = form.get('spoiler')?.value ? true : false;
     this.post.originalContent = form.get('originalContent')?.value

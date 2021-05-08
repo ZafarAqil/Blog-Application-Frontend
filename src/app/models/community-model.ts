@@ -4,5 +4,6 @@ export interface Community {
     postRulesAllowed: string[],
     postRulesDisallowed: string[],
     banningPolicy: string[],
-    flairs: string[]  
+    flairs: string[],
+    imageUrl: string
 }

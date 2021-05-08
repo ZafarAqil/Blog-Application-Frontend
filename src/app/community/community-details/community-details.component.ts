@@ -33,6 +33,7 @@ export class CommunityDetailsComponent implements OnInit {
   communities: any[] = [];
   displayViewAll: any;
   error = '';
+  isAdmin: boolean = HeaderComponent.showAdminBoard;
 
   private _listFilter = '';
   get listFilter(): string {
