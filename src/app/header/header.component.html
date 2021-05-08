@@ -56,13 +56,13 @@
         >Post</a
       >
       <a
-        *ngIf="showAdminBoard"
+        *ngIf="isAdmin"
         routerLink="/admin"
         class="float-right login mr-2 shadow-sm rounded"
         >Admin</a
       >
       <a
-        *ngIf="showModeratorBoard"
+        *ngIf="isModerator"
         routerLink="/moderator"
         class="float-right login mr-2 shadow-sm rounded"
         >Moderator</a

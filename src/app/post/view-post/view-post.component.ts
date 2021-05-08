@@ -69,9 +69,11 @@ export class ViewPostComponent implements OnInit {
     }
     this.postService
       .postComment(this.comment, this.userId, this.postId)
-      .subscribe((data) => console.log(data));
-    form.reset();
-    this.ngOnInit();
+      .subscribe((data) => {
+        form.reset();
+        this.ngOnInit();
+        console.log(data);
+      });
   }
 
   getPost(postId: number) {
