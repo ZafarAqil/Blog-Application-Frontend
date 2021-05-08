@@ -14,6 +14,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { throwError } from 'rxjs';
 import { CommunityService } from 'src/app/shared/community.service';
+import { AwardType } from 'src/app/models/awardType';
 
 @Component({
   selector: 'app-view-post',
@@ -35,6 +36,7 @@ export class ViewPostComponent implements OnInit {
   displayViewAll: any;
   error = '';
   community: any;
+  count = { PLATINUM: 0, GOLD: 0, SILVER: 0, REGULAR: 0 };
 
   constructor(
     private route: ActivatedRoute,
@@ -99,12 +101,36 @@ export class ViewPostComponent implements OnInit {
   getPost(postId: number) {
     this.postService
       .getPostById(postId)
-      .subscribe((data) => (this.post = data));
+      .subscribe(data => {
+        this.post = data;
+        this.awardCount();
+      });
     console.log(this.post);
   }
 
+  awardCount() {
+    this.count = { PLATINUM: 0, GOLD: 0, SILVER: 0, REGULAR: 0 };
+    this.post.awardsReceived.forEach((award: { awardType: any; }) => {
+      switch (award.awardType) {
+        case "PLATINUM": this.count.PLATINUM += 1; break;
+        case "GOLD": this.count.GOLD += 1; break;
+        case "SILVER": this.count.SILVER += 1; break;
+        case "REGULAR": this.count.REGULAR += 1; break;
+      }
+    });
+  }
+
+  giveAward(id: number) {
+    let award: AwardType = id;
+    this.postService.giveAward(award, this.tokenService.getUser().id, this.postId).subscribe(
+      data => {
+        this.toastr.success(AwardType[award] + ' ' + data.toString());
+        this.ngOnInit();
+      });
+    }
+
   upvotePost(postId: number) {
-    if (!this.isLoggedIn) this.toastr.error('Please, Login to vote');
+      if(!this.isLoggedIn) this.toastr.error('Please, Login to vote');
     else {
       this.userId = this.tokenService.getUser().id;
 

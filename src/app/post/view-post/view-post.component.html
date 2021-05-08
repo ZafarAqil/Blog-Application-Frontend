@@ -7,22 +7,14 @@
         <div class="col-md-1">
           <div class="d-flex flex-column text-center votebox">
             <div class="p-2">
-              <fa-icon
-                (click)="upvotePost(post.postId)"
-                class="upvote"
-                [icon]="faArrowUp"
-                [style.color]="post.upVote ? 'green' : ''"
-              >
+              <fa-icon (click)="upvotePost(post.postId)" class="upvote" [icon]="faArrowUp"
+                [style.color]="post.upVote ? 'green' : ''">
               </fa-icon>
             </div>
             <div class="p-2 votecount">{{ post.votes }}</div>
             <div class="p-2">
-              <fa-icon
-                (click)="downvotePost(post.postId)"
-                class="downvote"
-                [icon]="faArrowDown"
-                [style.color]="post.downVote ? 'red' : ''"
-              >
+              <fa-icon (click)="downvotePost(post.postId)" class="downvote" [icon]="faArrowDown"
+                [style.color]="post.downVote ? 'red' : ''">
               </fa-icon>
             </div>
           </div>
@@ -30,22 +22,11 @@
         <!-- Section to Display Post Information-->
         <div class="col-md-11" style="margin-top: 20px; margin-bottom: 20px">
           <span class="subreddit-info">
-            <span class="subreddit-text"
-              ><a
-                class="posturl"
-                (click)="ngOnInit()"
-                [routerLink]="['/community', post.communityName.toLowerCase()]"
-                >r/{{ post.communityName }}</a
-              ></span
-            >
+            <span class="subreddit-text"><a class="posturl" (click)="ngOnInit()"
+                [routerLink]="['/community', post.communityName.toLowerCase()]">r/{{ post.communityName }}</a></span>
             <span>
               • Posted by
-              <a
-                class="username"
-                [routerLink]="['/profile', post.bloggerName]"
-                >{{ "u/" + post.bloggerName }}</a
-              ></span
-            >
+              <a class="username" [routerLink]="['/profile', post.bloggerName]">{{ "u/" + post.bloggerName }}</a></span>
             <span> • {{ post.createdDateTime | date: "medium" }}</span>
             <span *ngIf="post.notSafeForWork"> • NSFW</span>
             <span *ngIf="post.originalContent"> • OC</span>
@@ -58,32 +39,43 @@
 
           <div>
             <p class="post-text" [innerHtml]="post.description"></p>
+            <span>
+              <div>
+                <img src="https://www.redditstatic.com/gold/awards/icon/gold_32.png" alt="gold" title="GoldAward"/>{{ 'x' + count.GOLD}}
+                <img src="https://www.redditstatic.com/gold/awards/icon/silver_32.png" alt="silver" title="SilverAward"/>{{ 'x' + count.SILVER}}
+                <img src="https://www.redditstatic.com/gold/awards/icon/platinum_32.png" alt="platinum" title="PlatinumAward"/>{{ 'x' + count.PLATINUM}}
+                <img src="https://preview.redd.it/award_images/t5_22cerq/5izbv4fn0md41_Wholesome.png?width=32&height=32&auto=webp&s=d11484a208d68a318bf9d4fcf371171a1cb6a7ef" alt="regular" title="RegularAward"/>{{ 'x' + count.REGULAR}}
+              </div>
+              <div class="float-right dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                  Give Award
+                </a>
+                <div class="dropdown-menu shadow rounded">
+                  <a class="dropdown-item" (click)="giveAward(0)">Silver</a>
+
+
+                  <a class="dropdown-item" (click)="giveAward(1)" value="">Gold</a>
+                  <a class="dropdown-item" (click)="giveAward(2)">Platinum</a>
+                  <a class="dropdown-item" (click)="giveAward(3)">Regular</a>
+
+                </div>
+              </div>
+            </span>
           </div>
           <hr />
 
           <div class="post-comment" *ngIf="isLoggedIn">
-            <form
-              [formGroup]="commentForm"
-              (ngSubmit)="postComment(commentForm)"
-            >
+            <form [formGroup]="commentForm" (ngSubmit)="postComment(commentForm)">
               <div class="form-group">
-                <textarea
-                  rows="5"
-                  cols="40"
-                  class="form-control"
-                  [formControlName]="'commentDescription'"
-                  placeholder="Your Thoughts?"
-                ></textarea>
+                <textarea rows="5" cols="40" class="form-control" [formControlName]="'commentDescription'"
+                  placeholder="Your Thoughts?"></textarea>
               </div>
               <span>
                 <div style="margin-top: 5px" class="float-right">
                   <!-- <button (click)="discardPost()" class="btnDiscard">
                     Discard
                   </button> -->
-                  <button
-                    class="btnCreatePost"
-                    [disabled]="commentForm.invalid"
-                  >
+                  <button class="btnCreatePost" [disabled]="commentForm.invalid">
                     ADD COMMENT
                   </button>
                 </div>
@@ -92,18 +84,10 @@
           </div>
 
           <div class="post-comment" *ngIf="!isLoggedIn">
-            <form
-              [formGroup]="commentForm"
-              (ngSubmit)="postComment(commentForm)"
-            >
+            <form [formGroup]="commentForm" (ngSubmit)="postComment(commentForm)">
               <div class="form-group">
-                <textarea
-                  rows="5"
-                  cols="40"
-                  class="form-control"
-                  [formControlName]="'commentDescription'"
-                  placeholder="Please, Login to comment..."
-                ></textarea>
+                <textarea rows="5" cols="40" class="form-control" [formControlName]="'commentDescription'"
+                  placeholder="Please, Login to comment..."></textarea>
               </div>
               <span>
                 <div style="margin-top: 5px" class="float-right">
@@ -121,20 +105,14 @@
         <div class="col-md-1"></div>
 
         <div class="col-md-11">
-          <div
-            style="margin-top: 20px"
-            *ngFor="let comment of post?.comments | reverse"
-          >
+          <div style="margin-top: 20px" *ngFor="let comment of post?.comments | reverse">
             <div class="comment" style="display: inline">
               <div class="username">
-                <img
-                  class="account-icon"
-                  src="https://www.redditstatic.com/avatars/avatar_default_08_D4E815.png"
-                />
+                <img class="account-icon" src="https://www.redditstatic.com/avatars/avatar_default_08_D4E815.png" />
                 &nbsp;
                 <a [routerLink]="['/profile', comment.bloggerName]">{{
                   "u/" + comment.bloggerName
-                }}</a>
+                  }}</a>
                 <span class="text-right" style="margin-left: 480px">
                   {{ comment.createdDateTime | date: "medium" }}
                 </span>
@@ -151,29 +129,22 @@
     </div>
     <div class="col-md-3">
       <div class="sidebar shadow rounded">
-        <img
-          src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png"
-          style="width: 100%"
-        />
-        <div
-          style="
+        <img src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png" style="width: 100%" />
+        <div style="
             text-align: center;
             font-size: 1em;
             margin-bottom: 10px;
             margin-top: 10px;
-          "
-        >
+          ">
           Welcome to Blog Application. Come here to check in with your favorite
           communities
           <div style="text-align: center">
             <a routerLink="/create-post">
-              <button class="btnCreatePost">Create Post</button></a
-            >
+              <button class="btnCreatePost">Create Post</button></a>
           </div>
           <div style="text-align: center; margin-top: 5px">
             <a routerLink="/create-community">
-              <button class="btnCreateSubreddit">Create Community</button></a
-            >
+              <button class="btnCreateSubreddit">Create Community</button></a>
           </div>
         </div>
       </div>
@@ -181,14 +152,9 @@
         <div style="color: black; font-weight: bold">Browse Communities</div>
         <hr />
         <span *ngFor="let community of communities">
-          <span class="subreddit-text"
-            ><a
-              style="font-weight: bold"
-              [routerLink]="['/community', community.title.toLowerCase()]"
-              class="posturl profile-subreddit-view"
-              (click)="ngOnInit()"
-              >r/{{ community.title }}</a
-            >
+          <span class="subreddit-text"><a style="font-weight: bold"
+              [routerLink]="['/community', community.title.toLowerCase()]" class="posturl profile-subreddit-view"
+              (click)="ngOnInit()">r/{{ community.title }}</a>
             &nbsp; &nbsp;
             <span> Total Members: {{ community.totalMembers }} </span>
           </span>

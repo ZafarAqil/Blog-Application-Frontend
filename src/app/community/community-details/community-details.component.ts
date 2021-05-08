@@ -13,6 +13,7 @@ import { voteType } from 'src/app/models/voteType';
 import { throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { HeaderComponent } from 'src/app/header/header.component';
+import { PostService } from 'src/app/shared/post.service';
 
 @Component({
   selector: 'app-community-details',
@@ -28,7 +29,7 @@ export class CommunityDetailsComponent implements OnInit {
   filteredPosts: any;
   userId: any;
   isLoggedIn: boolean = false;
-  username:string = HeaderComponent.username;
+  username: string = HeaderComponent.username;
   communities: any[] = [];
   displayViewAll: any;
   error = '';
@@ -47,8 +48,9 @@ export class CommunityDetailsComponent implements OnInit {
     private communityService: CommunityService,
     private voteService: VoteService,
     private tokenService: TokenStorageService,
-    private toastr: ToastrService
-  ) {}
+    private toastr: ToastrService,
+    private postService: PostService
+  ) { }
 
   ngOnInit(): void {
     if (this.tokenService.getToken()) {
@@ -155,6 +157,13 @@ export class CommunityDetailsComponent implements OnInit {
         }
       );
     }
+  }
+
+  deletePost(postId: number) {
+    this.postService.deletePost(postId).subscribe(data => {
+      this.toastr.success(data.toString());
+      this.ngOnInit();
+    })
   }
 }
 // change() {
