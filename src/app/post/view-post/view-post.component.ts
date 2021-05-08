@@ -16,6 +16,7 @@ import {
 import { throwError } from 'rxjs';
 import { CommunityService } from 'src/app/shared/community.service';
 import { AwardType } from 'src/app/models/awardType';
+import { HeaderComponent } from 'src/app/header/header.component';
 
 @Component({
   selector: 'app-view-post',
@@ -38,6 +39,7 @@ export class ViewPostComponent implements OnInit {
   displayViewAll: any;
   error = '';
   community: any;
+  username: string = HeaderComponent.username;
   count = { PLATINUM: 0, GOLD: 0, SILVER: 0, REGULAR: 0 };
 
   constructor(
@@ -130,6 +132,16 @@ export class ViewPostComponent implements OnInit {
         this.ngOnInit();
       });
     }
+
+  deleteComment(commentId: number) {
+    this.userId = this.tokenService.getUser().id;
+    this.postService.deleteComment(this.userId, this.postId, commentId).subscribe(
+      data => {
+        this.toastr.success(data.toString());
+        this.ngOnInit();
+      }
+    );
+  }  
 
   upvotePost(postId: number) {
       if(!this.isLoggedIn) this.toastr.error('Please, Login to vote');

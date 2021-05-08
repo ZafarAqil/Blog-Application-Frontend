@@ -5,7 +5,8 @@ export interface Post {
     notSafeForWork: boolean,
     spoiler: boolean,
     originalContent: boolean,
-    flairs: string[]
+    flairs: string[],
+    imageUrl: string
 }
 
 export enum PostType {

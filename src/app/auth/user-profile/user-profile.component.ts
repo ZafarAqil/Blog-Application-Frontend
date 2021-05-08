@@ -13,6 +13,7 @@ import { VoteService } from 'src/app/shared/vote.service';
 import { voteType } from 'src/app/models/voteType';
 import { ToastrService } from 'ngx-toastr';
 import { throwError } from 'rxjs';
+import { PostService } from 'src/app/shared/post.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -51,7 +52,8 @@ export class UserProfileComponent implements OnInit {
     private communityService: CommunityService,
     private tokenService: TokenStorageService,
     private voteService: VoteService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private postService: PostService
   ) {}
 
   ngOnInit(): void {
@@ -134,4 +136,12 @@ export class UserProfileComponent implements OnInit {
         post.description.toLocaleLowerCase().includes(filterBy)
     );
   }
+
+  deletePost(postId: number) {
+    this.postService.deletePost(postId).subscribe(data => {
+      this.toastr.success(data.toString());
+      this.ngOnInit();
+    })
+  }
+
 }

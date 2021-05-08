@@ -35,4 +35,8 @@ export class PostService {
   giveAward(award: AwardType, userId: number, postId: number) {
     return this.httpClient.put(this.baseURL + `/community/blogger/${userId}/post/${postId}/award`, award, httpOptions);
   }
+
+  deleteComment(userId:number, postId: number, commentId: number) {
+    return this.httpClient.delete(this.baseURL + `/blogger/${userId}/posts/${postId}/comment/${commentId}`, httpOptions);
+  }
 }

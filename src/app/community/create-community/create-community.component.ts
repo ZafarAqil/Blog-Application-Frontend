@@ -24,6 +24,7 @@ export class CreateCommunityComponent implements OnInit {
     this.createSubredditForm = this.formBuilder.group({
       title: ['', [Validators.required]],
       communityDescription: ['', [Validators.required]],
+      image: ['', [Validators.required]],
     });
 
     this.community = {
@@ -44,7 +45,8 @@ export class CreateCommunityComponent implements OnInit {
         "OC",
         "NSFW",
         "SPOILER"
-    ]
+    ],
+    imageUrl: ''
     }
   }
 
@@ -57,6 +59,8 @@ export class CreateCommunityComponent implements OnInit {
   createSubreddit(form: FormGroup) {
     this.community.title = form.get('title')?.value;
     this.community.communityDescription = form.get('communityDescription')?.value;
+    this.community.imageUrl = form.get('image')?.value;
+
     // this.community.postRulesAllowed = form.get('postRulesAllowed')?.value;
     // this.community.postRulesDisallowed = form.get('postRulesDisallowed')?.value;
     // this.community.flairs = form.get('flairs')?.value;
