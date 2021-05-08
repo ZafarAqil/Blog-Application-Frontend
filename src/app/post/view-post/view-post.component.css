@@ -130,6 +130,7 @@
   position: relative;
   border-radius: 4px;
   padding: 5px;
+  height: 450px;
 }
 
 .btnCommments {
@@ -276,4 +277,22 @@
 
 .profile-subreddit-view {
   color: #0079d3;
+}
+
+.dropdown-item{
+  background-color: #f8f9fa;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 14px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.dropdown-item:hover{
+  background-color: #0079D3;
+}
+
+.dropdown-menu{
+  background-color: #f8f9fa;
+  min-width: 60px !important;
 }

@@ -29,9 +29,7 @@
           {{ name }}</a
         >
         <div class="dropdown-menu shadow rounded">
-          <a class="dropdown-item" [routerLink]="['/profile', name]"
-            >Profile</a
-          >
+          <a class="dropdown-item" [routerLink]="['/profile', name]">Profile</a>
           <a class="dropdown-item" (click)="logout()">Logout</a>
         </div>
       </div>
@@ -41,31 +39,31 @@
           class="float-right sign-up mr-2 shadow-sm rounded"
           >Sign up</a
         >
-        <a routerLink="/signin" class="float-right login mr-2 shadow-sm rounded"
+        <a routerLink="/signin" class="float-right login mr-2 btn btn-outline-primary btn-sm shadow-sm rounded"
           >Login</a
         >
       </div>
-      <a
-        routerLink="/community"
-        class="float-right login mr-2 shadow-sm rounded"
-        >Community</a
-      >
-      <a
-        routerLink="/create-post"
-        class="float-right login mr-2 shadow-sm rounded"
-        >Post</a
-      >
-      <a
+      <button
         *ngIf="isAdmin"
         routerLink="/admin"
-        class="float-right login mr-2 shadow-sm rounded"
-        >Admin</a
+        class="float-right login mr-2 btn btn-outline-primary btn-sm shadow-sm rounded"
+        >Admin</button
       >
-      <a
+      <button
         *ngIf="isModerator"
         routerLink="/moderator"
-        class="float-right login mr-2 shadow-sm rounded"
-        >Moderator</a
+        class="float-right login mr-2 btn btn-outline-primary btn-sm shadow-sm rounded"
+        >Moderator</button
+      >
+      <button
+        routerLink="/community"
+        class="float-right login mr-2 btn btn-outline-primary btn-sm shadow-sm rounded"
+        >All Communities</button
+      >
+      <button
+        routerLink="/create-post"
+        class="float-right login mr-2 btn btn-outline-primary btn-sm shadow-sm rounded"
+        >Create Post</button
       >
     </div>
   </nav>

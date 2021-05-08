@@ -47,6 +47,10 @@ header{
     opacity: 0.6;
 }
 
+.login:hover{
+    opacity: 0.8;
+}
+
 .userdetails{    
     background-color: transparent;
     border-color: #0079D3;

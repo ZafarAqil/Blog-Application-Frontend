@@ -32,7 +32,7 @@
           *ngFor="let community of filteredCommunities | reverse"
         >
           <div
-            class="card shadow rounded"
+            class="card shadow rounded text-center"
             style="width: auto; margin-bottom: 1rem"
           >
             <img
@@ -45,32 +45,49 @@
                 <strong>r/{{ community.title }}</strong>
               </h4>
 
-              <h5 class="card-subtitle mb-2 text-muted">
-                A commmunity for {{ community.title }}
-              </h5>
-              <hr />
               <p class="card-text">
                 {{ community.communityDescription }}
               </p>
 
-              <a
-                class="card-link"
-                (click)="joinCommunity(community.communityId)"
-                *ngIf="!isSubscribed.includes(community.title)"
-                >Subscribe</a
-              >
-              <a class="card-link" *ngIf="isSubscribed.includes(community.title)">Subscribed</a>
+              <hr />
 
-              <a
-                [routerLink]="['/community', community.title.toLowerCase()]"
-                class="card-link"
-                >Open Community</a
-              >
-              <a
-              [routerLink]="['/community', community.title.toLowerCase()]"
-              class="card-link" *ngIf="showAdminBoard"
-              >Delete Community</a
-            >             
+              <p class="card-text">
+                Total Members: {{ community.totalMembers }}
+              </p>
+
+              <p class="card-text">Total Posts: {{ community.posts.length }}</p>
+
+              <hr />
+              <div>
+                <button
+                  class="card-link btn btn-sm btn-primary"
+                  (click)="joinCommunity(community.communityId)"
+                  *ngIf="!isSubscribed.includes(community.title)"
+                >
+                  Join <fa-icon [icon]="faPlus"> </fa-icon>
+                </button>
+                <button
+                  class="card-link btn btn-sm btn-outline-primary disabled"
+                  *ngIf="isSubscribed.includes(community.title)"
+                >
+                  Joined <fa-icon [icon]="faCheck"> </fa-icon>
+                </button>
+
+                <button
+                  [routerLink]="['/community', community.title.toLowerCase()]"
+                  class="card-link btn btn-sm btn-primary"
+                >
+                  Open Community <fa-icon [icon]="faExternalLinkAlt"> </fa-icon>
+                </button>
+                <button
+                  [routerLink]="['/community', community.title.toLowerCase()]"
+                  class="card-link btn btn-sm btn-danger"
+                  style="margin-top: 10px"
+                  *ngIf="showAdminBoard"
+                >
+                  Delete Community <fa-icon [icon]="faTrash"> </fa-icon>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -106,13 +123,5 @@
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- <div *ngFor='let community of communities'>{{community}}</div> -->
-  <div *ngIf="community">
-    <div>
-      {{ community.title }}
-    </div>
-    <div>{{ community.communityDescription }}</div>
   </div>
 </div>
