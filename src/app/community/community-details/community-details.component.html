@@ -163,7 +163,14 @@
         </span>
         <hr />
         <span style="color: black; font-weight: bold" class="subreddit-text">
-          <p>Created by: u/{{ community?.moderatorName }}</p>
+          <p>
+            Created by:
+            <a
+              class="username"
+              [routerLink]="['/profile', community?.moderatorName]"
+              >{{ "u/" + community?.moderatorName }}</a
+            >
+          </p>
         </span>
         <hr />
         <span style="color: black; font-weight: bold" class="subreddit-text">
