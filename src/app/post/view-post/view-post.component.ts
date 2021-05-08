@@ -11,6 +11,7 @@ import {
   faArrowUp,
   faArrowDown,
   faAward,
+  faComment
 } from '@fortawesome/free-solid-svg-icons';
 import { throwError } from 'rxjs';
 import { CommunityService } from 'src/app/shared/community.service';
@@ -26,6 +27,7 @@ export class ViewPostComponent implements OnInit {
   faArrowUp = faArrowUp;
   faArrowDown = faArrowDown;
   faAward = faAward;
+  faComment = faComment;
   commentForm: FormGroup;
   post: any;
   comment: any;

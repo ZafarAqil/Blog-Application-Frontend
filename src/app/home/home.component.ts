@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommunityService } from '../shared/community.service';
 import { TokenStorageService } from 'src/app/shared/token-storage.service';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-home',
@@ -11,6 +13,8 @@ export class HomeComponent implements OnInit {
   communities: any[] = [];
   error: any = '';
   isLoggedIn: boolean = false;
+  faExternalLinkAlt = faExternalLinkAlt;
+  
   constructor(
     private communityService: CommunityService,
     private tokenService: TokenStorageService

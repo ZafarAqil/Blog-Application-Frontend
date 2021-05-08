@@ -5,6 +5,7 @@ import { UserService } from 'src/app/shared/user.service';
 import { TokenStorageService } from 'src/app/shared/token-storage.service';
 import { HeaderComponent } from 'src/app/header/header.component';
 import { ToastrService } from 'ngx-toastr';
+import { faCheck, faPlus, faExternalLinkAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-view-community',
@@ -16,18 +17,21 @@ export class ViewCommunityComponent implements OnInit {
   communities: any[] = [];
   error = '';
   filteredCommunities: any;
-  isSubscribed: string[]= [];
-  isLoggedIn:boolean=false;
-  roles: string[]=[];
-  showAdminBoard:boolean = HeaderComponent.showAdminBoard;
+  isSubscribed: string[] = [];
+  isLoggedIn: boolean = false;
+  roles: string[] = [];
+  showAdminBoard: boolean = HeaderComponent.showAdminBoard;
   showModeratorBoard = HeaderComponent.showModeratorBoard;
-  username: string='';
+  username: string = '';
+  faCheck = faCheck;
+  faPlus = faPlus;
+  faExternalLinkAlt = faExternalLinkAlt;
+  faTrash = faTrash;
 
   private _listFilter = '';
   get listFilter(): string {
     return this._listFilter;
   }
-
 
   set listFilter(value: string) {
     this._listFilter = value;
@@ -38,10 +42,8 @@ export class ViewCommunityComponent implements OnInit {
     private communityService: CommunityService,
     private userService: UserService,
     private tokenService: TokenStorageService,
-    private toastr:ToastrService
+    private toastr: ToastrService
   ) {}
-
-
 
   ngOnInit(): void {
     this.communityService.getCommunities().subscribe(
@@ -49,17 +51,18 @@ export class ViewCommunityComponent implements OnInit {
         this.communities = data;
         this.filteredCommunities = data;
         this.filteredCommunities.isSubsribed = [];
-        for(let community of this.communities){
+        for (let community of this.communities) {
           let flag = false;
-          community.bloggers.forEach((blogger: { id: any; }) => {
+          community.bloggers.forEach((blogger: { id: any }) => {
             console.log(blogger);
-            if(blogger.id === this.tokenService.getUser().id) flag = true;
+            if (blogger.id === this.tokenService.getUser().id) flag = true;
           });
-          if(flag) this.isSubscribed.push(community.title);
+          if (flag) this.isSubscribed.push(community.title);
         }
         this.isSubscribed = this.isSubscribed.reverse();
         console.log(this.isSubscribed);
-      },      (err) => {
+      },
+      (err) => {
         this.error = JSON.parse(err.error).message;
       }
     );
