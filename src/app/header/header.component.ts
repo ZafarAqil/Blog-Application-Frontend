@@ -5,10 +5,10 @@ import { TokenStorageService } from '../shared/token-storage.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  private roles: string[]=[];
+  private roles: string[] = [];
   isLoggedIn = false;
  public static  showAdminBoard = false;
  public static showModeratorBoard = false;
@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
  public static username: string='';
  name :string = '';
 
-  constructor(private tokenStorageService: TokenStorageService) { }
+  constructor(private tokenStorageService: TokenStorageService) {}
 
   ngOnInit() {
     this.isLoggedIn = !!this.tokenStorageService.getToken();

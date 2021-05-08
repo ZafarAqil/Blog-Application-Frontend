@@ -29,6 +29,9 @@ export class CommunityDetailsComponent implements OnInit {
   userId: any;
   isLoggedIn: boolean = false;
   username:string = HeaderComponent.username;
+  communities: any[] = [];
+  displayViewAll: any;
+  error = '';
 
   private _listFilter = '';
   get listFilter(): string {
@@ -67,6 +70,22 @@ export class CommunityDetailsComponent implements OnInit {
         this.getCommunityByTitle(title);
       }
     }
+    this.communityService.getCommunities().subscribe(
+      (data) => {
+        console.log(data);
+        this.communities = data;
+
+        if (data.length > 3) {
+          this.communities = data.reverse().splice(0, 3);
+          this.displayViewAll = true;
+        } else {
+          this.communities = data;
+        }
+      },
+      (err) => {
+        this.error = JSON.parse(err.error).message;
+      }
+    );
   }
 
   getCommunityById(id: number) {

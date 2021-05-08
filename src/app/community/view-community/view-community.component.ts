@@ -18,12 +18,10 @@ export class ViewCommunityComponent implements OnInit {
   filteredCommunities: any;
   isSubscribed: string[]= [];
   isLoggedIn:boolean=false;
-   roles: string[]=[];
+  roles: string[]=[];
   showAdminBoard:boolean = HeaderComponent.showAdminBoard;
   showModeratorBoard = HeaderComponent.showModeratorBoard;
   username: string='';
-
-
 
   private _listFilter = '';
   get listFilter(): string {
