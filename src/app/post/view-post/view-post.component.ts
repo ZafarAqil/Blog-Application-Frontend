@@ -31,6 +31,10 @@ export class ViewPostComponent implements OnInit {
   userId: any;
   postId: any;
   isLoggedIn: boolean = false;
+  communities: any[] = [];
+  displayViewAll: any;
+  error = '';
+  community: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -59,6 +63,22 @@ export class ViewPostComponent implements OnInit {
       this.postId = param;
       this.getPost(this.postId);
     }
+    this.communityService.getCommunities().subscribe(
+      (data) => {
+        console.log(data);
+        this.communities = data;
+
+        if (data.length > 3) {
+          this.communities = data.reverse().splice(0, 3);
+          this.displayViewAll = true;
+        } else {
+          this.communities = data;
+        }
+      },
+      (err) => {
+        this.error = JSON.parse(err.error).message;
+      }
+    );
   }
 
   postComment(form: FormGroup) {

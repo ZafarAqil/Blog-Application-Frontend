@@ -177,8 +177,29 @@
           </div>
         </div>
       </div>
-      <!-- <app-side-bar></app-side-bar> -->
-      <!-- <app-subreddit-side-bar></app-subreddit-side-bar> -->
+      <div class="sidebar-view-subreddit text-center shadow rounded">
+        <div style="color: black; font-weight: bold">Browse Communities</div>
+        <hr />
+        <span *ngFor="let community of communities">
+          <span class="subreddit-text"
+            ><a
+              style="font-weight: bold"
+              [routerLink]="['/community', community.title.toLowerCase()]"
+              class="posturl profile-subreddit-view"
+              (click)="ngOnInit()"
+              >r/{{ community.title }}</a
+            >
+            &nbsp; &nbsp;
+            <span> Total Members: {{ community.totalMembers }} </span>
+          </span>
+
+          <hr />
+        </span>
+        <div style="text-align: center" *ngIf="displayViewAll">
+          <!-- <div style="text-align: center"> -->
+          <a style="font-weight: bold" routerLink="/community">View All</a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
