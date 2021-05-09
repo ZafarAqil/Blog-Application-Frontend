@@ -1,77 +1,108 @@
 <div class="container">
-    <div class="row">
-        <div>
-            <nav class="navbar navbar-light bg-light shadow rounded" style="
-            margin-top: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #e9ecef;
-            margin-left: 130px;
-          ">
-                <span class="navbar-brand">
-                    <span class="navbar-brand mb-0 h1">Search Moderated Communities: </span>
-                    <span><input style="margin: auto" type="text" [(ngModel)]="listFilter"
-                            placeholder="Search" /></span>
-                </span>
-            </nav>
-        </div>
-        <div class="col-md-9">
-            <div class="row">
-                <div class="col-md-6" *ngFor="let community of filteredModCommunities | reverse">
-                    <div class="card shadow rounded text-center" style="width: auto; margin-bottom: 1rem">
-                        <img class="card-img-top"
-                            src={{community.imageUrl}}
-                            height="250px"
-                            alt="Card image cap" />
-                        <div class="card-body">
-                            <h3 class="card-title">
-                                <strong>r/{{ community.title }}</strong>
-                            </h3>
+  <div class="row">
+    <div>
+      <nav
+        class="navbar navbar-light bg-light shadow rounded"
+        style="
+          margin-top: 10px;
+          margin-bottom: 20px;
+          border: 1px solid #e9ecef;
+          margin-left: 130px;
+        "
+      >
+        <span class="navbar-brand">
+          <span class="navbar-brand mb-0 h1"
+            >Search Moderated Communities:
+          </span>
+          <span
+            ><input
+              style="margin: auto"
+              type="text"
+              [(ngModel)]="listFilter"
+              placeholder="Search"
+          /></span>
+        </span>
+      </nav>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <div
+          class="col-md-6"
+          *ngFor="let community of filteredModCommunities | reverse"
+        >
+          <div
+            class="card shadow rounded text-center"
+            style="width: auto; margin-bottom: 1rem"
+          >
+            <img
+              class="card-img-top"
+              src="{{ community.imageUrl }}"
+              height="250px"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <h3 class="card-title">
+                <strong>r/{{ community.title }}</strong>
+              </h3>
 
-                            <h4 class="card-subtitle mb-2 text-muted">
-                                {{ community.communityDescription }}
-                            </h4>
-                            <hr />
-                            <p class="card-text">
-                                Total Members: {{ community.totalMembers }}
-                            </p>
+              <h4 class="card-subtitle mb-2 text-muted">
+                {{ community.communityDescription }}
+              </h4>
+              <hr />
+              <p class="card-text">
+                Total Members: {{ community.totalMembers }}
+              </p>
 
-                            <button class="login btn btn-success btn-sm"
-                                [routerLink]="['/community', community.title.toLowerCase()]">
-                                Open Community
-                            </button>
+              <p class="card-text">Total Posts: {{ community.posts.length }}</p>
 
-                            <!-- <a
+              <hr />
+
+              <button
+                class="login btn btn-success btn-sm"
+                [routerLink]="['/community', community.title.toLowerCase()]"
+              >
+                Open Community <fa-icon [icon]="faExternalLinkAlt"> </fa-icon>
+              </button>
+
+              <!-- <a
                   [routerLink]="['/community', community.title.toLowerCase()]"
                   class="card-link"
                   >Open Community</a
                 > -->
-                        </div>
-                    </div>
-                </div>
             </div>
+          </div>
         </div>
-
-        <div class="col-md-3">
-            <div class="sidebar shadow rounded">
-                <img src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png" style="width: 100%" />
-                <div style="
-              text-align: center;
-              font-size: 1em;
-              margin-bottom: 10px;
-              margin-top: 10px;
-            ">
-                    Welcome to Blog Application. Come here to check in with your favorite
-                    communities
-                    <div style="text-align: center">
-                        <a routerLink="/create-post">
-                            <button class="btnCreatePost">Create Post</button></a>
-                    </div>
-                    <div style="text-align: center; margin-top: 5px">
-                        <a routerLink="/create-community">
-                            <button class="btnCreateSubreddit">Create Community</button></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+
+    <div class="col-md-3">
+      <div class="sidebar shadow rounded">
+        <img
+          src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png"
+          style="width: 100%"
+        />
+        <div
+          style="
+            text-align: center;
+            font-size: 1em;
+            margin-bottom: 10px;
+            margin-top: 10px;
+          "
+        >
+          Welcome to Blog Application. Come here to check in with your favorite
+          communities
+          <div style="text-align: center">
+            <a routerLink="/create-post">
+              <button class="btnCreatePost">Create Post</button></a
+            >
+          </div>
+          <div style="text-align: center; margin-top: 5px">
+            <a routerLink="/create-community">
+              <button class="btnCreateSubreddit">Create Community</button></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

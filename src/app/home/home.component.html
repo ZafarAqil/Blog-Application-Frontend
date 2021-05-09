@@ -28,15 +28,16 @@
             class="jumbotron shadow rounded"
             style="border: 2px solid #0069d9"
           >
-            <h1 class="display-4">Welcome to Blog Application!</h1>
+            <h1 class="display-4 text-center">Welcome to Blog Application!</h1>
             <p class="lead">
-              This is a simple hero unit, a simple jumbotron-style component for
-              calling extra attention to featured content or information.
+              Blog Application is a community-determined aggregator of content.
+              It is a social platform where users submit posts that other users
+              ‘upvote’ or ‘downvote’ based on if they like it.
             </p>
             <hr class="my-4" />
             <p>
-              It uses utility classes for typography and spacing to space
-              content out within the larger container.
+              Users can create communities, posts as well as comments and
+              participate in the discussion of their favorite community!
             </p>
             <p class="lead text-center" *ngIf="!isLoggedIn">
               <a
@@ -60,25 +61,29 @@
           <span class="navbar-brand mb-0 h1">Recent Communities</span>
         </nav>
 
-        <div class="row" style="margin-bottom: 1rem; margin-top: 15px">
-          <div class="col-sm-4 " *ngFor="let community of communities | reverse">
+        <div
+          class="row text-center"
+          style="margin-bottom: 1rem; margin-top: 15px"
+        >
+          <div class="col-sm-4" *ngFor="let community of communities | reverse">
             <div
               class="card h-100 shadow rounded"
               style="width: auto; margin-bottom: 1rem"
             >
               <img
                 class="card-img-top"
-                src={{community.imageUrl}}
+                src="{{ community.imageUrl }}"
                 alt="Card image cap"
-                
               />
               <div class="card-body">
                 <h4 class="card-title text-center">
                   <strong>r/{{ community.title }}</strong>
                 </h4>
-                <h6 class="card-subtitle mb-2 text-muted">
-                  A commmunity for {{ community.title }} lovers
-                </h6>
+                <h5 class="card-subtitle mb-2 text-muted">
+                  Total Members: {{ community.totalMembers }} &nbsp; &nbsp;
+                  &nbsp; Total Posts:
+                  {{ community.posts.length }}
+                </h5>
                 <hr />
                 <p class="card-text">
                   {{ community.communityDescription }}

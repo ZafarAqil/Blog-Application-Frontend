@@ -108,16 +108,19 @@
               class="login btn btn-outline-primary btn-sm col-md-3"
               [routerLink]="['/post', post.postId]"
             >
-              Read Post
+              Read Post &nbsp; <fa-icon [icon]="faBook"></fa-icon>
             </button>
             &nbsp;
             <button
               class="login btn btn-outline-danger btn-sm col-md-3"
-              *ngIf="(post.bloggerName === username) || (community.moderatorName === username)
-              || isAdmin"
+              *ngIf="
+                post.bloggerName === username ||
+                community.moderatorName === username ||
+                isAdmin
+              "
               (click)="deletePost(post.postId)"
             >
-              Delete Post
+              Delete Post &nbsp; <fa-icon [icon]="faTrash"></fa-icon>
             </button>
           </span>
         </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { CommunityService } from '../shared/community.service';
+import { faExternalLinkAlt} from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-moderator',
@@ -12,6 +14,7 @@ export class ModeratorComponent implements OnInit {
   modCommunities: any[] = [];
   username: any = HeaderComponent.username;
   filteredModCommunities: any;
+  faExternalLinkAlt = faExternalLinkAlt;
 
   private _listFilter = '';
 
