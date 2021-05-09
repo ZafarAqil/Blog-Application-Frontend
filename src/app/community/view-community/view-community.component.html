@@ -81,7 +81,7 @@
                   Open Community <fa-icon [icon]="faExternalLinkAlt"> </fa-icon>
                 </button>
                 <button
-                  [routerLink]="['/community', community.title.toLowerCase()]"
+                  (click)="deleteCommunity(community.communityId)"
                   class="card-link btn btn-sm btn-danger"
                   style="margin-top: 10px"
                   *ngIf="showAdminBoard"

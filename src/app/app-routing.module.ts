@@ -9,6 +9,7 @@ import { CreateCommunityComponent } from './community/create-community/create-co
 import { ViewCommunityComponent } from './community/view-community/view-community.component';
 import { HomeComponent } from './home/home.component';
 import { ModeratorComponent } from './moderator/moderator.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CreatePostComponent } from './post/create-post/create-post.component';
 import { ViewPostComponent } from './post/view-post/view-post.component';
 
@@ -24,7 +25,8 @@ const routes: Routes = [
 { path: 'communityId/:id',component: CommunityDetailsComponent},
 { path: 'post/:pid',component: ViewPostComponent},
 { path: 'admin',component: AdminComponent},
-{ path: 'moderator',component: ModeratorComponent}
+{ path: 'moderator',component: ModeratorComponent},
+{ path: '**',component: PageNotFoundComponent}
 ];
 
 @NgModule({

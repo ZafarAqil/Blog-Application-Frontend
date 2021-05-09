@@ -17,7 +17,7 @@
             style="margin-top: 5px"
             placeholder="Title"
           />
-
+          <div class="alert alert-danger" *ngIf="createPostForm.get('title')?.touched && createPostForm.get('title')?.invalid">Maximum 40 characters allowed</div>
           <select
             class="form-control"
             style="margin-top: 10px"
