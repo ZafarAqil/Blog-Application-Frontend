@@ -15,8 +15,7 @@
           src="https://www.redditstatic.com/avatars/avatar_default_08_D4E815.png"
         />
         <span class="navbar-brand mb-0 h1"
-          >Welcome to <strong>u/{{ user?.username }}'s</strong>
-          profile!</span
+          >Welcome to <strong>u/{{ user?.username }}'s</strong> profile!</span
         >
         <span
           >Search Posts:
@@ -26,16 +25,9 @@
             [(ngModel)]="listFilter"
             placeholder="Search"
         /></span>
-        <button
-        (click)=deleteBlogger(user.id)
-        class="card-link btn btn-sm btn-danger"
-        style="margin-top: 10px"
-        *ngIf="isAdmin"
-      >
-        Delete Account <fa-icon [icon]="faTrash"> </fa-icon>
-      </button>
       </span>
     </nav>
+
     <div class="col-md-9">
       <!-- Display Posts-->
       <div
@@ -119,18 +111,19 @@
               class="login btn btn-outline-primary btn-sm col-md-3"
               [routerLink]="['/post', post.postId]"
             >
-              Read Post
+              Read Post &nbsp; <fa-icon [icon]="faBook"></fa-icon>
             </button>
             <button
               class="login ml-2 btn btn-outline-danger btn-sm col-md-3"
               (click)="deletePost(post.postId)"
             >
-              Delete Post
+              Delete Post &nbsp; <fa-icon [icon]="faTrash"></fa-icon>
             </button>
           </span>
         </div>
       </div>
     </div>
+
     <div class="col-md-3">
       <div class="sidebar shadow rounded">
         <img
@@ -158,6 +151,16 @@
             <button class="btnCreateSubreddit">Create Community</button></a
           >
         </div>
+      </div>
+      <div class="text-center">
+        <button
+          (click)="deleteBlogger(user.id)"
+          class="btn btn-sm btn-danger shadow rounded"
+          style="margin-top: 10px; margin-bottom: 5px; margin-left: 60px;"
+          *ngIf="isAdmin"
+        >
+          Delete Account <fa-icon [icon]="faTrash"> </fa-icon>
+        </button>
       </div>
 
       <div class="sidebar-view-user text-center shadow rounded">

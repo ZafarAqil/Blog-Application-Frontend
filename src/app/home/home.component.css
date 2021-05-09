@@ -84,7 +84,7 @@
   }
    
   .card-img-top {
-    width: autp;
-    height: 20vw;
-    /* object-fit: cover; */
+    width: auto;
+    height: 15vw;
+    /* object-fit: contain; */
   }

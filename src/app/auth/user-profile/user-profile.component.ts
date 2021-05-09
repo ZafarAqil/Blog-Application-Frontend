@@ -6,7 +6,8 @@ import {
   faArrowUp,
   faArrowDown,
   faAward,
-  faTrash
+  faTrash,
+  faBook
 } from '@fortawesome/free-solid-svg-icons';
 import { CommunityService } from 'src/app/shared/community.service';
 import { TokenStorageService } from 'src/app/shared/token-storage.service';
@@ -29,6 +30,7 @@ export class UserProfileComponent implements OnInit {
   faArrowDown = faArrowDown;
   faAward = faAward;
   faTrash = faTrash;
+  faBook = faBook;
 
   community: any;
   communities: any[] = [];

@@ -6,6 +6,8 @@ import {
   faArrowUp,
   faArrowDown,
   faAward,
+  faBook,
+  faTrash
 } from '@fortawesome/free-solid-svg-icons';
 import { TokenStorageService } from 'src/app/shared/token-storage.service';
 import { VoteService } from 'src/app/shared/vote.service';
@@ -25,6 +27,8 @@ export class CommunityDetailsComponent implements OnInit {
   faArrowUp = faArrowUp;
   faArrowDown = faArrowDown;
   faAward = faAward;
+  faBook = faBook;
+  faTrash = faTrash;
   community: any;
   filteredPosts: any;
   userId: any;
@@ -99,10 +103,11 @@ export class CommunityDetailsComponent implements OnInit {
     },
       (error) => {
         this.toastr.error(error.error.message);
-        setTimeout(() => {
-          this.router.navigate(['page_not_found']);
-        }, 400);
+        // setTimeout(() => {
+        //   this.router.navigate(['page_not_found']);
+        // }, 400);
         //throwError(error);
+        this.router.navigate(['page_not_found']);
       }
     );
   }
@@ -110,9 +115,10 @@ export class CommunityDetailsComponent implements OnInit {
     this.communityService.getCommunityByTitle(title).subscribe((data) => {
       if (!data) {
         this.toastr.error('Community Not Found');
-        setTimeout(() => {
-          this.router.navigate(['page_not_found']);
-        }, 400);
+        // setTimeout(() => {
+        //   this.router.navigate(['page_not_found']);
+        // }, 400);
+        this.router.navigate(['page_not_found']);
       }
       else {
         this.community = data;
