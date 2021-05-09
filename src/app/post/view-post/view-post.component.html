@@ -55,7 +55,8 @@
             <p class="post-text" [innerHtml]="post.description"></p>
           </div>
           <div>
-            <img src={{post.imageUrl}}/>
+            <img src={{post.imageUrl}}
+            width="100%"/>
           </div>
           <!-- <hr /> -->
 
@@ -123,15 +124,19 @@
               </div>
               <br />
               <div>
-                <p>{{ comment.commentDescription }}</p>
+                <p>{{ comment.commentDescription }}
+                  <span>
+                    <div  class="float-right">
+                      <button class="card-link btn btn-sm  btn-outline-danger"
+                    
+                       *ngIf="comment.bloggerName === username"
+                       (click)=deleteComment(comment.commentId)>Delete<fa-icon class="ml-2" [icon]="faTrash"> </fa-icon></button>
+                    </div>
+                  </span>
+                </p>
+
               </div>
-              <span>
-              <div style="margin-bottom: 10px" class="float-right">
-                <button class="login btn btn-outline-danger btn-sm col-md-3"
-                 *ngIf="comment.bloggerName === username"
-                 (click)=deleteComment(comment.commentId)>Delete</button>
-              </div>
-            </span>
+
             </div>
             <hr />
           </div>

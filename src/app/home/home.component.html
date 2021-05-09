@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-9 col">
       <div class="row">
         <div class="col-md-12">
           <!-- <div class="jumbotron jumbotron-fluid bg-dark">
@@ -61,15 +61,16 @@
         </nav>
 
         <div class="row" style="margin-bottom: 1rem; margin-top: 15px">
-          <div class="col-sm-3" *ngFor="let community of communities | reverse">
+          <div class="col-sm-4 " *ngFor="let community of communities | reverse">
             <div
               class="card h-100 shadow rounded"
               style="width: auto; margin-bottom: 1rem"
             >
               <img
                 class="card-img-top"
-                src="https://i.redd.it/ms9hyj8wzax61.jpg"
+                src={{community.imageUrl}}
                 alt="Card image cap"
+                
               />
               <div class="card-body">
                 <h4 class="card-title text-center">
