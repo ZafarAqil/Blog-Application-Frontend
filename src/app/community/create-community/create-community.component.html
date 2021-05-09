@@ -9,7 +9,7 @@
         >
           <div class="form-group">
             <div class="create-subreddit-heading text-center">
-              Create Subreddit
+              Create Community
             </div>
             <hr />
             <input
@@ -19,6 +19,7 @@
               style="margin-top: 5px"
               placeholder="Title"
             />
+            <div class="alert alert-danger" *ngIf="createSubredditForm.get('title')?.touched && createSubredditForm.get('title')?.invalid">Maximum 15 characters allowed</div>
             <textarea
               type="text"
               class="form-control"
@@ -26,6 +27,7 @@
               style="width: 100%; margin-top: 5px"
               placeholder="Description"
             ></textarea>
+            <div class="alert alert-danger" *ngIf="createSubredditForm.get('communityDescription')?.touched && createSubredditForm.get('communityDescription')?.invalid">Maximum 40 characters allowed</div>
             <input
             type="text"
             [formControlName]="'image'"

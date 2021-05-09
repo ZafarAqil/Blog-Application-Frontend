@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/shared/user.service';
 import {
   faComments,
   faArrowUp,
   faArrowDown,
   faAward,
+  faTrash
 } from '@fortawesome/free-solid-svg-icons';
 import { CommunityService } from 'src/app/shared/community.service';
 import { TokenStorageService } from 'src/app/shared/token-storage.service';
@@ -14,6 +15,8 @@ import { voteType } from 'src/app/models/voteType';
 import { ToastrService } from 'ngx-toastr';
 import { throwError } from 'rxjs';
 import { PostService } from 'src/app/shared/post.service';
+import { HeaderComponent } from 'src/app/header/header.component';
+import { RoundPipe } from 'ngx-pipes';
 
 @Component({
   selector: 'app-user-profile',
@@ -25,6 +28,7 @@ export class UserProfileComponent implements OnInit {
   faArrowUp = faArrowUp;
   faArrowDown = faArrowDown;
   faAward = faAward;
+  faTrash = faTrash;
 
   community: any;
   communities: any[] = [];
@@ -32,6 +36,7 @@ export class UserProfileComponent implements OnInit {
   displayViewAll: any;
   filteredPosts: any;
   isLoggedIn: boolean = false;
+  isAdmin: boolean = HeaderComponent.showAdminBoard;
 
   username: any;
   user: any;
@@ -53,7 +58,8 @@ export class UserProfileComponent implements OnInit {
     private tokenService: TokenStorageService,
     private voteService: VoteService,
     private toastr: ToastrService,
-    private postService: PostService
+    private postService: PostService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -87,10 +93,14 @@ export class UserProfileComponent implements OnInit {
     this.userService.getUserProfile(username).subscribe((data) => {
       this.user = data;
       this.filteredPosts = this.user.posts;
-    });
-    this.userService
-      .getUserProfile(username)
-      .subscribe((data) => console.log(data));
+    },
+      (error) => {
+        this.toastr.error(error.error.message);
+        setTimeout(() => {
+          this.router.navigate(['page_not_found']);
+        }, 300);
+      }
+    );
   }
 
   upvotePost(postId: number) {
@@ -144,4 +154,12 @@ export class UserProfileComponent implements OnInit {
     })
   }
 
+  deleteBlogger(bloggerId: number) {
+    this.userService.deleteBlogger(bloggerId).subscribe(
+      data => {
+        this.toastr.success(data.toString());
+        this.router.navigate(['']);  
+      }
+    )
+  }
 }

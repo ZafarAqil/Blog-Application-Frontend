@@ -110,7 +110,14 @@ export class ViewPostComponent implements OnInit {
       .subscribe(data => {
         this.post = data;
         this.awardCount();
-      });
+      },
+      (error) => {
+        this.toastr.error(error.error.message);
+        setTimeout(() => {
+          this.router.navigate(['page_not_found']);
+        }, 300);
+      }
+      );
     console.log(this.post);
   }
 

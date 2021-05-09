@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
         this.communities = data;
 
         if (data.length > 3) {
-          this.communities = data.reverse().splice(0, 3);
+          this.communities = data.reverse().slice(0, 3);
         } else {
           this.communities = data;
         }

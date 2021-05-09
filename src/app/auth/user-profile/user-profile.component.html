@@ -26,6 +26,14 @@
             [(ngModel)]="listFilter"
             placeholder="Search"
         /></span>
+        <button
+        (click)=deleteBlogger(user.id)
+        class="card-link btn btn-sm btn-danger"
+        style="margin-top: 10px"
+        *ngIf="isAdmin"
+      >
+        Delete Account <fa-icon [icon]="faTrash"> </fa-icon>
+      </button>
       </span>
     </nav>
     <div class="col-md-9">

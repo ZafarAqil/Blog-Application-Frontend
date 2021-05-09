@@ -21,4 +21,8 @@ export class UserService {
   joinCommunity(communityId: number, userId: number) {
     return this.httpClient.put(this.baseURL + `/blogger/${communityId}/${userId}`, httpOptions);
   }
+
+  deleteBlogger(bloggerId: number) {
+    return this.httpClient.delete(this.baseURL + `/blogger/${bloggerId}`, httpOptions);
+  }
 }

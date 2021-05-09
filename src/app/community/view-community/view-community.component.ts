@@ -83,4 +83,13 @@ export class ViewCommunityComponent implements OnInit {
         this.ngOnInit();
       });
   }
+
+  deleteCommunity(communityId: number) {
+    this.communityService.deleteCommunity(communityId ,this.tokenService.getUser().id).subscribe(
+      data => {
+        this.toastr.success(data.toString());
+        this.ngOnInit();
+      }
+    );
+  }
 }

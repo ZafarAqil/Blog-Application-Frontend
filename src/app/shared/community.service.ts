@@ -32,4 +32,8 @@ export class CommunityService {
     return this.httpClient.post(this.baseURL + `/community/${moderatorId}`, community, httpOptions)
   }
 
+  deleteCommunity(communityId: number, adminId: number) {
+    return this.httpClient.delete(this.baseURL + `/admin/${adminId}/community/${communityId}`, httpOptions)
+  }
+
 }

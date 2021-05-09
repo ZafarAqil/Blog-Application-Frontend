@@ -23,6 +23,7 @@ import { ReversePipe } from './shared/reverse.pipe';
 import { ToastrModule } from 'ngx-toastr';
 import { AdminComponent } from './admin/admin.component';
 import { ModeratorComponent } from './moderator/moderator.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { ModeratorComponent } from './moderator/moderator.component';
     CommunityDetailsComponent,
     ReversePipe,
     AdminComponent,
-    ModeratorComponent
+    ModeratorComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

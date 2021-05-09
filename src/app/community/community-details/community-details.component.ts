@@ -100,7 +100,7 @@ export class CommunityDetailsComponent implements OnInit {
       (error) => {
         this.toastr.error(error.error.message);
         setTimeout(() => {
-          this.router.navigate(['/community']);
+          this.router.navigate(['page_not_found']);
         }, 400);
         //throwError(error);
       }
@@ -111,7 +111,7 @@ export class CommunityDetailsComponent implements OnInit {
       if (!data) {
         this.toastr.error('Community Not Found');
         setTimeout(() => {
-          this.router.navigate(['/community']);
+          this.router.navigate(['page_not_found']);
         }, 400);
       }
       else {
