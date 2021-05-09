@@ -43,7 +43,7 @@
             />
             <div class="card-body">
               <h4 class="card-title">
-                <strong>r/{{ community.title }}</strong>
+                <strong>r/{{ community.title }} <span *ngIf="community.posts.length === 0" class="badge badge-primary ml-2">New</span></strong>
               </h4>
 
               <p class="card-text">

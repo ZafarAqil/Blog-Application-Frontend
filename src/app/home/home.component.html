@@ -77,7 +77,7 @@
               />
               <div class="card-body">
                 <h4 class="card-title text-center">
-                  <strong>r/{{ community.title }}</strong>
+                  <strong>r/{{ community.title }}<span *ngIf="community.posts.length === 0" class="badge badge-primary ml-2">New</span></strong>
                 </h4>
                 <h5 class="card-subtitle mb-2 text-muted">
                   Total Members: {{ community.totalMembers }} &nbsp; &nbsp;

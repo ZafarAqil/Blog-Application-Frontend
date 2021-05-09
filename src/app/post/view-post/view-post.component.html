@@ -47,9 +47,9 @@
               ></span
             >
             <span> • {{ post.createdDateTime | date: "medium" }}</span>
-            <span *ngIf="post.notSafeForWork"> • NSFW</span>
-            <span *ngIf="post.originalContent"> • OC</span>
-            <span *ngIf="post.spoiler"> • Spoiler</span>
+            <span *ngIf="post.notSafeForWork"> • <span class="badge badge-pill badge-success">NSFW</span></span>
+            <span *ngIf="post.originalContent"> • <span class="badge badge-pill badge-info">OC</span></span>
+            <span *ngIf="post.spoiler"> • <span class="badge badge-pill badge-danger">Spoiler</span></span>
             <span style="float: right">
               <img
                 style="width: 20px; height: 20px"
@@ -92,7 +92,7 @@
           <hr />
 
           <div>
-            <img *ngIf="post.imageUrl" class="post-image shadow rounded" src="{{ post.imageUrl }}" />
+            <img *ngIf="post.imageUrl" class="post-image shadow rounded"  src="{{ post.imageUrl }}" />
           </div>
           <!-- <hr /> -->
 
