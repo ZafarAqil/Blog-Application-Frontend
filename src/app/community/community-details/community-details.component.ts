@@ -38,6 +38,7 @@ export class CommunityDetailsComponent implements OnInit {
   displayViewAll: any;
   error = '';
   isAdmin: boolean = HeaderComponent.showAdminBoard;
+  isPostsAvailable: boolean=false;
 
   private _listFilter = '';
   get listFilter(): string {
@@ -100,6 +101,9 @@ export class CommunityDetailsComponent implements OnInit {
     this.communityService.getCommunityById(id).subscribe((data) => {
       this.community = data;
       this.filteredPosts = this.community.posts;
+      if(this.filteredPosts){
+        this.isPostsAvailable=true;
+      }
     },
       (error) => {
         this.toastr.error(error.error.message);
