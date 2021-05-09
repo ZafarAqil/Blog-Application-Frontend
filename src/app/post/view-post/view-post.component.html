@@ -92,7 +92,7 @@
           <hr />
 
           <div>
-            <img class="post-image shadow rounded" src="{{ post.imageUrl }}" />
+            <img *ngIf="post.imageUrl" class="post-image shadow rounded" src="{{ post.imageUrl }}" />
           </div>
           <!-- <hr /> -->
 
@@ -109,6 +109,7 @@
                   [formControlName]="'commentDescription'"
                   placeholder="Write a comment..."
                 ></textarea>
+                <div class="alert alert-danger" *ngIf="commentForm.get('commentDescription')?.touched && commentForm.get('commentDescription')?.invalid">Maximum 255 characters allowed</div>
               </div>
 
               <span>
