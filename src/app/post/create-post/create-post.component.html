@@ -58,6 +58,7 @@
                         bullist numlist outdent indent | removeformat | help'
             }"
           ></editor>
+          <div class="alert alert-danger" *ngIf="createPostForm.get('description')?.touched && createPostForm.get('description')?.invalid">Maximum 255 characters allowed</div>
           <div class="form-check">
             <input
               type="checkbox"

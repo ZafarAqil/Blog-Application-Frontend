@@ -55,7 +55,7 @@ export class ViewPostComponent implements OnInit {
     private communityService: CommunityService
   ) {
     this.commentForm = this.formBuilder.group({
-      commentDescription: ['', [Validators.required]],
+      commentDescription: ['', [Validators.required, Validators.maxLength(255)]],
     });
     this.comment = {
       commentDescription: '',
@@ -111,12 +111,12 @@ export class ViewPostComponent implements OnInit {
         this.post = data;
         this.awardCount();
       },
-      (error) => {
-        this.toastr.error(error.error.message);
-        setTimeout(() => {
-          this.router.navigate(['page_not_found']);
-        }, 300);
-      }
+        (error) => {
+          this.toastr.error(error.error.message);
+          setTimeout(() => {
+            this.router.navigate(['page_not_found']);
+          }, 300);
+        }
       );
     console.log(this.post);
   }
@@ -140,7 +140,7 @@ export class ViewPostComponent implements OnInit {
         this.toastr.success(AwardType[award] + ' ' + data.toString());
         this.ngOnInit();
       });
-    }
+  }
 
   deleteComment(commentId: number) {
     this.userId = this.tokenService.getUser().id;
@@ -150,10 +150,10 @@ export class ViewPostComponent implements OnInit {
         this.ngOnInit();
       }
     );
-  }  
+  }
 
   upvotePost(postId: number) {
-      if(!this.isLoggedIn) this.toastr.error('Please, Login to vote');
+    if (!this.isLoggedIn) this.toastr.error('Please, Login to vote');
     else {
       this.userId = this.tokenService.getUser().id;
 
