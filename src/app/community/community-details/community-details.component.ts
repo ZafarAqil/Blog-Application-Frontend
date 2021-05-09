@@ -50,7 +50,8 @@ export class CommunityDetailsComponent implements OnInit {
     private voteService: VoteService,
     private tokenService: TokenStorageService,
     private toastr: ToastrService,
-    private postService: PostService
+    private postService: PostService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -95,13 +96,29 @@ export class CommunityDetailsComponent implements OnInit {
     this.communityService.getCommunityById(id).subscribe((data) => {
       this.community = data;
       this.filteredPosts = this.community.posts;
-    });
+    },
+      (error) => {
+        this.toastr.error(error.error.message);
+        setTimeout(() => {
+          this.router.navigate(['/community']);
+        }, 400);
+        //throwError(error);
+      }
+    );
   }
   getCommunityByTitle(title: string) {
     this.communityService.getCommunityByTitle(title).subscribe((data) => {
-      this.community = data;
-      this.filteredPosts = this.community.posts;
-      console.log(this.community);
+      if (!data) {
+        this.toastr.error('Community Not Found');
+        setTimeout(() => {
+          this.router.navigate(['/community']);
+        }, 400);
+      }
+      else {
+        this.community = data;
+        this.filteredPosts = this.community?.posts;
+        console.log(this.community);
+      }
     });
   }
 
