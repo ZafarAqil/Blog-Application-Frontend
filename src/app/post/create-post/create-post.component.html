@@ -17,7 +17,15 @@
             style="margin-top: 5px"
             placeholder="Title"
           />
-          <div class="alert alert-danger" *ngIf="createPostForm.get('title')?.touched && createPostForm.get('title')?.invalid">Maximum 40 characters allowed</div>
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              createPostForm.get('title')?.touched &&
+              createPostForm.get('title')?.invalid
+            "
+          >
+            Maximum 40 characters allowed
+          </div>
           <select
             class="form-control"
             style="margin-top: 10px"
@@ -31,18 +39,19 @@
               {{ community.title }}
             </option>
           </select>
-          <br/>
+          <br />
           <input
-          type="text"
-          [formControlName]="'image'"
-          class="form-control"
-          style="margin-top: 5px"
-          placeholder="Paste Image URL"
-        />
+            type="text"
+            [formControlName]="'image'"
+            class="form-control"
+            style="margin-top: 5px"
+            placeholder="Paste Image URL"
+          />
 
-          <br/>
+          <br />
 
-          <editor apiKey="857u1gu6pqqzt0pv5q81zuefhu293ri7uc7ark6y3gsaqgjr"
+          <editor
+            apiKey="857u1gu6pqqzt0pv5q81zuefhu293ri7uc7ark6y3gsaqgjr"
             [formControlName]="'description'"
             [init]="{
               height: 200,
@@ -58,30 +67,43 @@
                         bullist numlist outdent indent | removeformat | help'
             }"
           ></editor>
-          <div class="alert alert-danger" *ngIf="createPostForm.get('description')?.touched && createPostForm.get('description')?.invalid">Maximum 255 characters allowed</div>
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              createPostForm.get('description')?.touched &&
+              createPostForm.get('description')?.invalid
+            "
+          >
+            Maximum 255 characters allowed
+          </div>
           <div class="form-check">
             <input
               type="checkbox"
               [formControlName]="'notSafeForWork'"
               class="form-check-input"
+              id="nsfw"
             />
-            NSFW
+            <label class="form-check-label" for="nsfw"> NSFW </label>
           </div>
           <div class="form-check">
             <input
               type="checkbox"
               [formControlName]="'spoiler'"
               class="form-check-input"
+              id="spoiler"
             />
-            Spoiler
+            <label class="form-check-label" for="spoiler"> Spoiler </label>
           </div>
           <div class="form-check">
             <input
               type="checkbox"
               [formControlName]="'originalContent'"
               class="form-check-input"
+              id="originalContent"
             />
-            Original Content
+            <label class="form-check-label" for="originalContent">
+              Original Content
+            </label>
           </div>
           <!-- <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
             <mat-button-toggle value="bold">Bold</mat-button-toggle>
