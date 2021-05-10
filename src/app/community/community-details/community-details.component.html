@@ -75,9 +75,15 @@
               ></span
             >
             <span> • {{ post.createdDateTime | date: "medium" }}</span>
-            <span *ngIf="post.notSafeForWork"> • <span class="badge badge-pill badge-danger">NSFW</span></span>
-            <span *ngIf="post.originalContent"> • <span class="badge badge-pill badge-primary"> OC</span></span>
-            <span *ngIf="post.spoiler"> • <span class="badge badge-pill badge-dark">Spoiler</span></span>
+            <span *ngIf="post.notSafeForWork">
+              • <span class="badge badge-pill badge-danger">NSFW</span></span
+            >
+            <span *ngIf="post.originalContent">
+              • <span class="badge badge-pill badge-primary"> OC</span></span
+            >
+            <span *ngIf="post.spoiler">
+              • <span class="badge badge-pill badge-dark">Spoiler</span></span
+            >
           </span>
           <hr />
           <div class="post-title">
@@ -126,7 +132,13 @@
         </div>
       </div>
     </div>
-    <div class="col-md-9  card-title my-5" style="text-align: center;" *ngIf="this.community.posts.length === 0"> <b >POSTS NOT AVAILABLE</b> </div>
+    <div
+      class="col-md-9 card-title my-5"
+      style="text-align: center"
+      *ngIf="this.community.posts.length === 0"
+    >
+      <b>POSTS NOT AVAILABLE</b>
+    </div>
     <div class="col-md-3">
       <div class="sidebar shadow rounded">
         <img
@@ -190,14 +202,16 @@
         <span *ngFor="let community of communities">
           <span class="subreddit-text"
             ><a
-              style="font-weight: bold"
+              style="font-weight: bold; float: left; margin-left: 20px"
               [routerLink]="['/community', community.title.toLowerCase()]"
               class="posturl profile-subreddit-view"
               (click)="ngOnInit()"
               >r/{{ community.title }}</a
             >
             &nbsp; &nbsp;
-            <span> Total Members: {{ community.totalMembers }} </span>
+            <span style="float: right; margin-right: 20px">
+              Total Members: {{ community.totalMembers }}
+            </span>
           </span>
 
           <hr />
