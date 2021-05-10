@@ -29,7 +29,6 @@ export class HomeComponent implements OnInit {
       //   this.communities = data;
       // },
       (data) => {
-        console.log(data);
         this.communities = data;
 
         if (data.length > 3) {

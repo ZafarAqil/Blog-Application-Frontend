@@ -16,7 +16,6 @@ export class CommunityService {
   constructor(private httpClient: HttpClient) { }
 
   getCommunities(): Observable<any> {
-    console.log('getCommu')
     return this.httpClient.get<any>(`${this.baseURL}/communities`, httpOptions);
   }
 

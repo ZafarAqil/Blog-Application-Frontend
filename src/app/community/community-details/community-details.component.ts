@@ -67,7 +67,6 @@ export class CommunityDetailsComponent implements OnInit {
     if (this.route.snapshot.paramMap.get('id')) {
       const param = this.route.snapshot.paramMap.get('id');
       if (param) {
-        console.log(param);
         const id = +param;
         this.getCommunityById(id);
       }
@@ -81,7 +80,6 @@ export class CommunityDetailsComponent implements OnInit {
     }
     this.communityService.getCommunities().subscribe(
       (data) => {
-        console.log(data);
         this.communities = data;
 
         if (data.length > 3) {
@@ -105,10 +103,6 @@ export class CommunityDetailsComponent implements OnInit {
     },
       (error) => {
         this.toastr.error(error.error.message);
-        // setTimeout(() => {
-        //   this.router.navigate(['page_not_found']);
-        // }, 400);
-        //throwError(error);
         this.router.navigate(['page_not_found']);
       }
     );
@@ -117,15 +111,11 @@ export class CommunityDetailsComponent implements OnInit {
     this.communityService.getCommunityByTitle(title).subscribe((data) => {
       if (!data) {
         this.toastr.error('Community Not Found');
-        // setTimeout(() => {
-        //   this.router.navigate(['page_not_found']);
-        // }, 400);
         this.router.navigate(['page_not_found']);
       }
       else {
         this.community = data;
         this.filteredPosts = this.community?.posts;
-        console.log(this.community);
       }
     });
   }
@@ -138,17 +128,6 @@ export class CommunityDetailsComponent implements OnInit {
         post.description.toLocaleLowerCase().includes(filterBy)
     );
   }
-
-  // upvotePost(postId: number) {
-  //   this.userId = this.tokenService.getUser().id;
-
-  //   this.voteService.vote(voteType.UPVOTE, this.userId, postId).subscribe(data => {
-  //     this.ngOnInit();
-  //   }, error => {
-  //     this.toastr.error(error.error.message);
-  //     throwError(error);
-  //   });
-  // }
 
   upvotePost(postId: number) {
     if (!this.isLoggedIn) this.toastr.error('Please, Login to vote');
@@ -174,7 +153,6 @@ export class CommunityDetailsComponent implements OnInit {
 
       this.voteService.vote(voteType.DOWNVOTE, this.userId, postId).subscribe(
         (data) => {
-          console.log(data);
           this.ngOnInit();
         },
         (error) => {
@@ -192,8 +170,3 @@ export class CommunityDetailsComponent implements OnInit {
     })
   }
 }
-// change() {
-//   for (let post of this.community.posts) {
-//     post.createdDateTime = new Date(post.createdDateTime);
-//   }
-// }

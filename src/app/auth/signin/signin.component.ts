@@ -21,7 +21,6 @@ export class SigninComponent implements OnInit {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
-      console.log(this.tokenStorage.getToken());
       setTimeout(() => this.router.navigate(['']),400);
     }
   }
@@ -31,7 +30,6 @@ export class SigninComponent implements OnInit {
       data => {
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
-        console.log(data);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;

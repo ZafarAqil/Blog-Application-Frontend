@@ -27,24 +27,20 @@ export class ModeratorComponent implements OnInit {
     this.filteredModCommunities = this.performFilter(value);
   }
 
-  constructor(private CommunityService: CommunityService) { }
+  constructor(private communityService: CommunityService) { }
 
   ngOnInit(): void {
-    this.CommunityService.getCommunities().subscribe((data) => {
+    this.communityService.getCommunities().subscribe((data) => {
       this.communities = data;
       this.filterCommunity(this.communities);
-      console.log('Inside moderator ngOnInit');
     });
   }
 
   filterCommunity(data: any) {
     for (let community of data) {
-      console.log('inside filter');
-      console.log(community.moderatorName);
       if (community.moderatorName === HeaderComponent.username) {
         this.modCommunities.push(community);
         this.filteredModCommunities = this.modCommunities;
-        console.log(this.modCommunities);
       }
     }
   }

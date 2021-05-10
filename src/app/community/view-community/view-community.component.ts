@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Community } from 'src/app/models/community-model';
 import { CommunityService } from 'src/app/shared/community.service';
 import { UserService } from 'src/app/shared/user.service';
 import { TokenStorageService } from 'src/app/shared/token-storage.service';
@@ -51,17 +50,6 @@ export class ViewCommunityComponent implements OnInit {
       (data) => {
         this.communities = data;
         this.filteredCommunities = data;
-        // this.filteredCommunities.isSubsribed = [];
-        // for (let community of this.communities) {
-        //   let flag = false;
-        //   community.bloggers.forEach((blogger: { id: any }) => {
-        //     console.log(blogger);
-        //     if (blogger.id === this.tokenService.getUser().id) flag = true;
-        //   });
-        //   if (flag) this.isSubscribed.push(community.title);
-        // }
-        // this.isSubscribed = this.isSubscribed.reverse();
-        // console.log(this.isSubscribed);
       },
       (err) => {
         this.error = JSON.parse(err.error).message;
@@ -70,7 +58,6 @@ export class ViewCommunityComponent implements OnInit {
     this.userService.getUserProfile(this.tokenService.getUser().username).subscribe((data) => {
       this.user = data;
       this.joinedCommunities = this.user[1];
-      //console.log(this.joinedCommunities);
     });
   }
 
