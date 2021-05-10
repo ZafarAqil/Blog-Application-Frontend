@@ -73,7 +73,6 @@ export class ViewPostComponent implements OnInit {
     }
     this.communityService.getCommunities().subscribe(
       (data) => {
-        console.log(data);
         this.communities = data;
 
         if (data.length > 3) {
@@ -100,7 +99,6 @@ export class ViewPostComponent implements OnInit {
       .subscribe((data) => {
         form.reset();
         this.ngOnInit();
-        console.log(data);
       });
   }
 
@@ -118,7 +116,6 @@ export class ViewPostComponent implements OnInit {
           }, 300);
         }
       );
-    console.log(this.post);
   }
 
   awardCount() {
@@ -176,7 +173,6 @@ export class ViewPostComponent implements OnInit {
 
       this.voteService.vote(voteType.DOWNVOTE, this.userId, postId).subscribe(
         (data) => {
-          console.log(data);
           this.ngOnInit();
         },
         (error) => {

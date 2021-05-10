@@ -17,7 +17,6 @@ import { ToastrService } from 'ngx-toastr';
 import { throwError } from 'rxjs';
 import { PostService } from 'src/app/shared/post.service';
 import { HeaderComponent } from 'src/app/header/header.component';
-import { RoundPipe } from 'ngx-pipes';
 
 @Component({
   selector: 'app-user-profile',
@@ -39,7 +38,7 @@ export class UserProfileComponent implements OnInit {
   filteredPosts: any;
   isLoggedIn: boolean = false;
   isAdmin: boolean = HeaderComponent.showAdminBoard;
-  joinedCommunities: String[] = [];
+  joinedCommunities: string[] = [];
   loggedUser: string = HeaderComponent.username;
 
   username: any;
@@ -77,7 +76,6 @@ export class UserProfileComponent implements OnInit {
     }
     this.communityService.getCommunities().subscribe(
       (data) => {
-        console.log(data);
         this.communities = data;
 
         if (data.length > 3) {
@@ -133,7 +131,6 @@ export class UserProfileComponent implements OnInit {
 
       this.voteService.vote(voteType.DOWNVOTE, this.userId, postId).subscribe(
         (data) => {
-          console.log(data);
           this.ngOnInit();
         },
         (error) => {

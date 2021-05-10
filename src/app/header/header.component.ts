@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ModeratorComponent } from '../moderator/moderator.component';
 import { TokenStorageService } from '../shared/token-storage.service';
 
 @Component({

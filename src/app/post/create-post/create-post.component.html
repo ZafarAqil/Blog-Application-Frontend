@@ -2,58 +2,31 @@
   <div class="row">
     <hr />
     <div class="create-post-container col-md-12 shadow rounded">
-      <form
-        class="post-form"
-        [formGroup]="createPostForm"
-        (ngSubmit)="createPost(createPostForm)"
-      >
+      <form class="post-form" [formGroup]="createPostForm" (ngSubmit)="createPost(createPostForm)">
         <div class="form-group">
           <div class="create-post-heading">Create Post</div>
           <hr />
-          <input
-            type="text"
-            [formControlName]="'title'"
-            class="form-control"
-            style="margin-top: 5px"
-            placeholder="Title"
-          />
-          <div
-            class="alert alert-danger"
-            *ngIf="
+          <input type="text" [formControlName]="'title'" class="form-control" style="margin-top: 5px"
+            placeholder="Title" />
+          <div class="alert alert-danger" *ngIf="
               createPostForm.get('title')?.touched &&
               createPostForm.get('title')?.invalid
-            "
-          >
+            ">
             Maximum 255 characters allowed
           </div>
-          <select
-            class="form-control"
-            style="margin-top: 10px"
-            [formControlName]="'communityTitle'"
-          >
+          <select class="form-control" style="margin-top: 10px" [formControlName]="'communityTitle'">
             <option value="" selected disabled>Select Community</option>
-            <option
-              *ngFor="let community of communities"
-              [value]="community.communityId"
-            >
+            <option *ngFor="let community of communities" [value]="community.communityId">
               {{ community.title }}
             </option>
           </select>
           <br />
-          <input
-            type="text"
-            [formControlName]="'image'"
-            class="form-control"
-            style="margin-top: 5px"
-            placeholder="Paste Image URL"
-          />
+          <input type="text" [formControlName]="'image'" class="form-control" style="margin-top: 5px"
+            placeholder="Paste Image URL" />
 
           <br />
 
-          <editor
-            apiKey="857u1gu6pqqzt0pv5q81zuefhu293ri7uc7ark6y3gsaqgjr"
-            [formControlName]="'description'"
-            [init]="{
+          <editor apiKey="857u1gu6pqqzt0pv5q81zuefhu293ri7uc7ark6y3gsaqgjr" [formControlName]="'description'" [init]="{
               height: 200,
               menubar: false,
               plugins: [
@@ -65,52 +38,28 @@
                 'undo redo | formatselect | bold italic backcolor | \
                         alignleft aligncenter alignright alignjustify | \
                         bullist numlist outdent indent | removeformat | help'
-            }"
-          ></editor>
-          <div
-            class="alert alert-danger"
-            *ngIf="
+            }"></editor>
+          <div class="alert alert-danger" *ngIf="
               createPostForm.get('description')?.touched &&
               createPostForm.get('description')?.invalid
-            "
-          >
+            ">
             Maximum 1000 characters allowed
           </div>
           <div class="form-check">
-            <input
-              type="checkbox"
-              [formControlName]="'notSafeForWork'"
-              class="form-check-input"
-              id="nsfw"
-            />
+            <input type="checkbox" [formControlName]="'notSafeForWork'" class="form-check-input" id="nsfw" />
             <label class="form-check-label" for="nsfw"> NSFW </label>
           </div>
           <div class="form-check">
-            <input
-              type="checkbox"
-              [formControlName]="'spoiler'"
-              class="form-check-input"
-              id="spoiler"
-            />
+            <input type="checkbox" [formControlName]="'spoiler'" class="form-check-input" id="spoiler" />
             <label class="form-check-label" for="spoiler"> Spoiler </label>
           </div>
           <div class="form-check">
-            <input
-              type="checkbox"
-              [formControlName]="'originalContent'"
-              class="form-check-input"
-              id="originalContent"
-            />
+            <input type="checkbox" [formControlName]="'originalContent'" class="form-check-input"
+              id="originalContent" />
             <label class="form-check-label" for="originalContent">
               Original Content
             </label>
           </div>
-          <!-- <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-            <mat-button-toggle value="bold">Bold</mat-button-toggle>
-            <mat-button-toggle value="italic">Italic</mat-button-toggle>
-            <mat-button-toggle value="underline">Underline</mat-button-toggle>
-          </mat-button-toggle-group> -->
-
           <span>
             <div style="margin-top: 5px" class="float-right">
               <button (click)="discardPost()" class="btnDiscard">
