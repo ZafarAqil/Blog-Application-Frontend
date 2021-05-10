@@ -76,7 +76,7 @@
             >
             <span> • {{ post.createdDateTime | date: "medium" }}</span>
             <span *ngIf="post.notSafeForWork"> • <span class="badge badge-pill badge-danger">NSFW</span></span>
-            <span *ngIf="post.originalContent"> •<span class="badge badge-pill badge-primary"> OC</span></span>
+            <span *ngIf="post.originalContent"> • <span class="badge badge-pill badge-primary"> OC</span></span>
             <span *ngIf="post.spoiler"> • <span class="badge badge-pill badge-dark">Spoiler</span></span>
           </span>
           <hr />
@@ -99,7 +99,7 @@
               <fa-icon [icon]="faComments"></fa-icon>
               Comments({{ post.comments.length }})
             </a>
-            <span class="btnAwards col-md-3" role="button">
+            <span class="btnAwards col-md-3">
               <fa-icon [icon]="faAward"></fa-icon>
               Awards Received({{ post.awardsReceived.length }})
             </span>
