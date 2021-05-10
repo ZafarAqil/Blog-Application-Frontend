@@ -122,6 +122,7 @@
             <button
               class="login ml-2 btn btn-outline-danger btn-sm col-md-3"
               (click)="deletePost(post.postId)"
+              *ngIf="post?.bloggerName === loggedUser || isAdmin"
             >
               Delete Post &nbsp; <fa-icon [icon]="faTrash"></fa-icon>
             </button>

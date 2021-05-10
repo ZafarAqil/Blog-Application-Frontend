@@ -40,6 +40,7 @@ export class UserProfileComponent implements OnInit {
   isLoggedIn: boolean = false;
   isAdmin: boolean = HeaderComponent.showAdminBoard;
   joinedCommunities: String[] = [];
+  loggedUser: string = HeaderComponent.username;
 
   username: any;
   user: any;
