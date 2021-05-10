@@ -47,9 +47,9 @@
               ></span
             >
             <span> • {{ post.createdDateTime | date: "medium" }}</span>
-            <span *ngIf="post.notSafeForWork"> • <span class="badge badge-pill badge-success">NSFW</span></span>
-            <span *ngIf="post.originalContent"> • <span class="badge badge-pill badge-info">OC</span></span>
-            <span *ngIf="post.spoiler"> • <span class="badge badge-pill badge-danger">Spoiler</span></span>
+            <span *ngIf="post.notSafeForWork"> • <span class="badge badge-pill badge-danger">NSFW</span></span>
+            <span *ngIf="post.originalContent"> • <span class="badge badge-pill badge-primary">OC</span></span>
+            <span *ngIf="post.spoiler"> • <span class="badge badge-pill badge-dark">Spoiler</span></span>
             <span style="float: right">
               <img
                 style="width: 20px; height: 20px"

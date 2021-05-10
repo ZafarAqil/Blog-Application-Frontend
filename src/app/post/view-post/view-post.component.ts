@@ -55,7 +55,7 @@ export class ViewPostComponent implements OnInit {
     private communityService: CommunityService
   ) {
     this.commentForm = this.formBuilder.group({
-      commentDescription: ['', [Validators.required, Validators.maxLength(255)]],
+      commentDescription: ['', [Validators.minLength(1), Validators.maxLength(255)]],
     });
     this.comment = {
       commentDescription: '',
