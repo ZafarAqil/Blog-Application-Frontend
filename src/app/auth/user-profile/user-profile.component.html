@@ -13,6 +13,7 @@
         <img
           class="account-icon"
           src="https://www.redditstatic.com/avatars/avatar_default_08_D4E815.png"
+          alt="account-icon"
         />
         <span class="navbar-brand mb-0 h1"
           >Welcome to <strong>u/{{ user?.username }}'s</strong> profile!</span
@@ -72,12 +73,6 @@
                 >r/{{ post.communityName }}</a
               ></span
             >
-            <!-- <span>
-                . Posted by
-                <a class="username" [routerLink]="['/profile', user.username]">{{
-                  "u/" + user.bloggerName
-                }}</a></span
-              > -->
             <span> • {{ post.createdDateTime | date: "medium" }}</span>
             <span *ngIf="post.notSafeForWork">
               • <span class="badge badge-pill badge-danger">NSFW</span></span
@@ -136,6 +131,7 @@
         <img
           style="width: 100%"
           src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png"
+          alt="reddit-banner"
         />
         <div
           style="
@@ -213,7 +209,6 @@
           <hr />
         </span>
         <div style="text-align: center" *ngIf="displayViewAll">
-          <!-- <div style="text-align: center"> -->
           <a style="font-weight: bold" routerLink="/community">View All</a>
         </div>
       </div>

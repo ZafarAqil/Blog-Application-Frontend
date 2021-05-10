@@ -92,9 +92,8 @@
           <hr />
 
           <div>
-            <img *ngIf="post.imageUrl" class="post-image shadow rounded"  src="{{ post.imageUrl }}" />
+            <img *ngIf="post.imageUrl" class="post-image shadow rounded"  src="{{ post.imageUrl }}" alt="post-image"/>
           </div>
-          <!-- <hr /> -->
 
           <div class="post-comment" *ngIf="isLoggedIn">
             <form
@@ -159,9 +158,6 @@
               </div>
               <span>
                 <div style="margin-top: 5px" class="float-right">
-                  <!-- <button (click)="discardPost()" class="btnDiscard">
-                    Discard
-                  </button> -->
                   <button class="btnCreatePost">LOGIN</button>
                 </div>
               </span>
@@ -185,6 +181,7 @@
                 <img
                   class="account-icon"
                   src="https://www.redditstatic.com/avatars/avatar_default_08_D4E815.png"
+                  alt="account-icon"
                 />
                 &nbsp;
                 <a [routerLink]="['/profile', comment.bloggerName]">{{
@@ -222,6 +219,7 @@
         <img
           src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png"
           style="width: 100%"
+          alt="reddit-banner"
         />
         <div
           style="
@@ -264,7 +262,6 @@
           <hr />
         </span>
         <div style="text-align: center" *ngIf="displayViewAll">
-          <!-- <div style="text-align: center"> -->
           <a style="font-weight: bold" routerLink="/community">View All</a>
         </div>
       </div>
