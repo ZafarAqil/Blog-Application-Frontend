@@ -63,13 +63,14 @@
                 <button
                   class="card-link btn btn-sm btn-primary"
                   (click)="joinCommunity(community.communityId)"
-                  *ngIf="!isSubscribed.includes(community.title)"
+                  *ngIf="!joinedCommunities.includes(community.title)"
                 >
                   Join <fa-icon [icon]="faPlus"> </fa-icon>
                 </button>
                 <button
                   class="card-link btn btn-sm btn-outline-primary disabled"
-                  *ngIf="isSubscribed.includes(community.title)"
+                  (click)="leaveCommunity(community.communityId)"
+                  *ngIf="joinedCommunities.includes(community.title)"
                 >
                   Joined <fa-icon [icon]="faCheck"> </fa-icon>
                 </button>
