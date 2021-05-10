@@ -27,8 +27,8 @@ export class CreatePostComponent implements OnInit {
     private router: Router
   ) {
     this.createPostForm = this.formBuilder.group({
-      title: ['', [Validators.required, Validators.maxLength(40)]],
-      description: ['', [Validators.required, , Validators.maxLength(255)]],
+      title: ['', [Validators.required, Validators.maxLength(255)]],
+      description: ['', [Validators.required, Validators.maxLength(1000)]],
       image: [''],
       communityTitle: [''],
       notSafeForWork: [''],
