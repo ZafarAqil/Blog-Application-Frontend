@@ -3,31 +3,7 @@
     <div class="col-md-9 col">
       <div class="row">
         <div class="col-md-12">
-          <!-- <div class="jumbotron jumbotron-fluid bg-dark">
-            <div class="jumbotron-background">
-              <img src="https://placeimg.com/2000/1000/nature" class="blur" />
-            </div>
-
-            <div class="container text-white">
-              <h1 class="display-4 text-center">Welcome to Blog Application</h1>
-              <p class="lead">
-                This is a simple hero unit, a simple jumbotron-style component
-                for calling extra attention to featured content or information.
-              </p>
-              <hr class="my-4" />
-              <p>
-                It uses utility classes for typography and spacing to space
-                content out within the larger container.
-              </p>
-              <a class="btn btn-primary btn-lg" href="#" role="button"
-                >Register</a
-              >
-            </div>
-          </div> -->
-          <div
-            class="jumbotron shadow rounded"
-            style="border: 2px solid #0069d9"
-          >
+          <div class="jumbotron shadow rounded" style="border: 2px solid #0069d9">
             <h1 class="display-4 text-center">Welcome to Blog Application!</h1>
             <p class="lead">
               Blog Application is a community-determined aggregator of content.
@@ -40,44 +16,23 @@
               participate in the discussion of their favorite community!
             </p>
             <p class="lead text-center" *ngIf="!isLoggedIn">
-              <a
-                class="btn btn-primary btn-lg"
-                routerLink="/signup"
-                role="button"
-                >Sign Up</a
-              >
+              <a class="btn btn-primary btn-lg" routerLink="/signup" role="button">Sign Up</a>
             </p>
           </div>
         </div>
 
-        <!-- <div>
-          <h2>Trending Communities</h2>
-        </div> -->
-
-        <nav
-          class="navbar navbar-light bg-light shadow rounded"
-          style="border: 1px solid #e9ecef"
-        >
+        <nav class="navbar navbar-light bg-light shadow rounded" style="border: 1px solid #e9ecef">
           <span class="navbar-brand mb-0 h1">Recent Communities</span>
         </nav>
 
-        <div
-          class="row text-center"
-          style="margin-bottom: 1rem; margin-top: 15px"
-        >
+        <div class="row text-center" style="margin-bottom: 1rem; margin-top: 15px">
           <div class="col-sm-4" *ngFor="let community of communities">
-            <div
-              class="card h-100 shadow rounded"
-              style="width: auto; margin-bottom: 1rem"
-            >
-              <img
-                class="card-img-top"
-                src="{{ community.imageUrl }}"
-                alt="Card image cap"
-              />
+            <div class="card h-100 shadow rounded" style="width: auto; margin-bottom: 1rem">
+              <img class="card-img-top" src="{{ community.imageUrl }}" alt="Card image cap" />
               <div class="card-body">
                 <h4 class="card-title text-center">
-                  <strong>r/{{ community.title }}<span *ngIf="community.posts.length === 0" class="badge badge-primary ml-2">New</span></strong>
+                  <strong>r/{{ community.title }}<span *ngIf="community.posts.length === 0"
+                      class="badge badge-primary ml-2">New</span></strong>
                 </h4>
                 <h5 class="card-subtitle mb-2 text-muted">
                   Total Members: {{ community.totalMembers }} &nbsp; &nbsp;
@@ -90,123 +45,37 @@
                 </p>
               </div>
               <div class="card-footer text-center">
-                <!-- <a href="#" class="card-link">Vote</a>
-                <a href="#" class="card-link">Comment</a> -->
-                <!-- <a
-                  [routerLink]="['/community', community.title.toLowerCase()]"
-                  class="card-link"
-                  >Open Community</a
-                > -->
-                <button
-                  [routerLink]="['/community', community.title.toLowerCase()]"
-                  class="card-link btn btn-sm btn-primary"
-                >
+                <button [routerLink]="['/community', community.title.toLowerCase()]"
+                  class="card-link btn btn-sm btn-primary">
                   Open Community <fa-icon [icon]="faExternalLinkAlt"> </fa-icon>
                 </button>
               </div>
             </div>
           </div>
 
-          <!-- <div class="col-sm-3">
-              <div class="card h-100" style="width: auto; margin-bottom: 1rem">
-                <img
-                  class="card-img-top"
-                  src="https://i1.wp.com/theathleteshub.org/wp-content/uploads/2021/04/EURO-Group-A.jpg"
-                  alt="Card image cap"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">r/Football</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">
-                    A commmunity for Football lovers
-                  </h6>
-                  <p class="card-text">
-                    Euro 2021 Preview: Group A: Italy, Turkey, Switzerland and
-                    Wales
-                  </p>
-                </div>
-                <div class="card-footer text-center">
-                  <a href="#" class="card-link">Vote</a>
-                  <a href="#" class="card-link">Comment</a>
-                </div>
-              </div>
-            </div>
-   
-            <div class="col-sm-3">
-              <div class="card h-100" style="width: auto; margin-bottom: 1rem">
-                <img
-                  class="card-img-top"
-                  src="https://i.redd.it/9kdje737ifx61.jpg"
-                  alt="Card image cap"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">r/Memes</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">
-                    A commmunity for Meme lovers
-                  </h6>
-                  <p class="card-text">
-                    I want you to know you make everyday a special day, by just
-                    you being you.
-                  </p>
-                </div>
-                <div class="card-footer text-center">
-                  <a href="#" class="card-link">Vote</a>
-                  <a href="#" class="card-link">Comment</a>
-                </div>
-              </div>
-            </div>
-   
-            <div class="col-sm-3">
-              <div class="card h-100" style="width: auto; margin-bottom: 1rem">
-                <img
-                  class="card-img-top"
-                  src="https://i.redd.it/w0cc9odovax61.jpg"
-                  alt="Card image cap"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">r/Food</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">
-                    A commmunity for Food lovers
-                  </h6>
-                  <p class="card-text">
-                    [Homemade] Fried Chicken and Jalapeño & Cheddar Cornbread
-                    Waffles
-                  </p>
-                </div>
-                <div class="card-footer text-center">
-                  <a href="#" class="card-link">Vote</a>
-                  <a href="#" class="card-link">Comment</a>
-                </div>
-              </div>
-            </div>-->
         </div>
       </div>
     </div>
 
     <div class="col-md-3">
       <div class="sidebar shadow rounded">
-        <img
-          src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png"
-          style="width: 100%"
-        />
-        <div
-          style="
+        <img src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png" style="width: 100%"
+          alt="reddit-banner" />
+        <div style="
             text-align: center;
             font-size: 1em;
             margin-bottom: 10px;
             margin-top: 10px;
-          "
-        >
+          ">
           Welcome to Blog Application. Come here to check in with your favorite
           communities
           <div style="text-align: center">
             <a routerLink="/create-post">
-              <button class="btnCreatePost">Create Post</button></a
-            >
+              <button class="btnCreatePost">Create Post</button></a>
           </div>
           <div style="text-align: center; margin-top: 5px">
             <a routerLink="/create-community">
-              <button class="btnCreateSubreddit">Create Community</button></a
-            >
+              <button class="btnCreateSubreddit">Create Community</button></a>
           </div>
         </div>
       </div>

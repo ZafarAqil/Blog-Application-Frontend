@@ -1,5 +1,4 @@
 .create-subreddit-container {
-    margin-top: 10px;
     --post-line-color: #ccc;
     border: 1px solid #ccc;
     margin-top: 10px;
@@ -30,7 +29,6 @@
     border: 1px solid;
     border-radius: 4px;
     text-align: center;
-    letter-spacing: 1px;
     text-decoration: none;
     font-size: 12px;
     font-weight: 700;
@@ -48,7 +46,6 @@
     border: 1px solid;
     border-radius: 4px;
     text-align: center;
-    letter-spacing: 1px;
     text-decoration: none;
     font-size: 12px;
     font-weight: 700;
@@ -78,7 +75,6 @@
     height: 242px;
     --post-line-color: #ccc;
     border: 1px solid #ccc;
-    margin-bottom: 10px;
     overflow: hidden;
     background-color: rgba(255, 255, 255, 0.8);
     color: #878A8C;

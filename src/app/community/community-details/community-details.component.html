@@ -32,9 +32,6 @@
         class="row post shadow rounded"
         *ngFor="let post of filteredPosts | reverse"
       >
-        <!-- <app-vote-button [post]="post"></app-vote-button> -->
-
-        <!-- Section to Display Votes-->
         <div class="col-md-1">
           <div class="d-flex flex-column text-center votebox">
             <div class="p-2">
@@ -137,13 +134,14 @@
       style="text-align: center"
       *ngIf="this.community?.posts.length === 0"
     >
-      <b>POSTS NOT AVAILABLE</b>
+      <strong>POSTS NOT AVAILABLE</strong>
     </div>
     <div class="col-md-3">
       <div class="sidebar shadow rounded">
         <img
           src="https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png"
           style="width: 100%"
+          alt="reddit-banner"
         />
         <div
           style="
