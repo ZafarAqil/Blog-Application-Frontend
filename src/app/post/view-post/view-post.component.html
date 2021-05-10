@@ -251,14 +251,14 @@
         <span *ngFor="let community of communities">
           <span class="subreddit-text"
             ><a
-              style="font-weight: bold"
-              [routerLink]="['/community', community.title.toLowerCase()]"
+            style="font-weight: bold; float: left; margin-left: 20px"
+            [routerLink]="['/community', community.title.toLowerCase()]"
               class="posturl profile-subreddit-view"
               (click)="ngOnInit()"
               >r/{{ community.title }}</a
             >
             &nbsp; &nbsp;
-            <span> Total Members: {{ community.totalMembers }} </span>
+            <span style="float: right; margin-right: 20px"> Total Members: {{ community.totalMembers }} </span>
           </span>
 
           <hr />

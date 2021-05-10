@@ -17,7 +17,8 @@ export class ViewCommunityComponent implements OnInit {
   communities: any[] = [];
   error = '';
   filteredCommunities: any;
-  isSubscribed: string[] = [];
+  user: any;
+  joinedCommunities: string[] = [];
   isLoggedIn: boolean = false;
   roles: string[] = [];
   showAdminBoard: boolean = HeaderComponent.showAdminBoard;
@@ -50,22 +51,27 @@ export class ViewCommunityComponent implements OnInit {
       (data) => {
         this.communities = data;
         this.filteredCommunities = data;
-        this.filteredCommunities.isSubsribed = [];
-        for (let community of this.communities) {
-          let flag = false;
-          community.bloggers.forEach((blogger: { id: any }) => {
-            console.log(blogger);
-            if (blogger.id === this.tokenService.getUser().id) flag = true;
-          });
-          if (flag) this.isSubscribed.push(community.title);
-        }
-        this.isSubscribed = this.isSubscribed.reverse();
-        console.log(this.isSubscribed);
+        // this.filteredCommunities.isSubsribed = [];
+        // for (let community of this.communities) {
+        //   let flag = false;
+        //   community.bloggers.forEach((blogger: { id: any }) => {
+        //     console.log(blogger);
+        //     if (blogger.id === this.tokenService.getUser().id) flag = true;
+        //   });
+        //   if (flag) this.isSubscribed.push(community.title);
+        // }
+        // this.isSubscribed = this.isSubscribed.reverse();
+        // console.log(this.isSubscribed);
       },
       (err) => {
         this.error = JSON.parse(err.error).message;
       }
     );
+    this.userService.getUserProfile(this.tokenService.getUser().username).subscribe((data) => {
+      this.user = data;
+      this.joinedCommunities = this.user[1];
+      //console.log(this.joinedCommunities);
+    });
   }
 
   performFilter(filterBy: string) {
@@ -78,6 +84,15 @@ export class ViewCommunityComponent implements OnInit {
   joinCommunity(communityId: number) {
     this.userService
       .joinCommunity(communityId, this.tokenService.getUser().id)
+      .subscribe((data) => {
+        this.toastr.success(data.toString());
+        this.ngOnInit();
+      });
+  }
+
+  leaveCommunity(communityId: number) {
+    this.userService
+      .leaveCommunity(communityId, this.tokenService.getUser().id)
       .subscribe((data) => {
         this.toastr.success(data.toString());
         this.ngOnInit();

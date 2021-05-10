@@ -39,6 +39,7 @@ export class UserProfileComponent implements OnInit {
   filteredPosts: any;
   isLoggedIn: boolean = false;
   isAdmin: boolean = HeaderComponent.showAdminBoard;
+  joinedCommunities: String[] = [];
 
   username: any;
   user: any;
@@ -62,7 +63,7 @@ export class UserProfileComponent implements OnInit {
     private toastr: ToastrService,
     private postService: PostService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     if (this.tokenService.getToken()) {
@@ -94,6 +95,8 @@ export class UserProfileComponent implements OnInit {
   getUserProfile(username: string) {
     this.userService.getUserProfile(username).subscribe((data) => {
       this.user = data;
+      this.joinedCommunities = this.user[1];
+      this.user = this.user[0];
       this.filteredPosts = this.user.posts;
     },
       (error) => {
@@ -160,7 +163,7 @@ export class UserProfileComponent implements OnInit {
     this.userService.deleteBlogger(bloggerId).subscribe(
       data => {
         this.toastr.success(data.toString());
-        this.router.navigate(['']);  
+        this.router.navigate(['']);
       }
     )
   }
