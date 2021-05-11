@@ -23,7 +23,7 @@ export class CreateCommunityComponent implements OnInit {
     private tokenStorage: TokenStorageService) {
     this.createSubredditForm = this.formBuilder.group({
       title: ['', [Validators.required, Validators.maxLength(15)]],
-      communityDescription: ['', [Validators.required, Validators.maxLength(40)]],
+      communityDescription: ['', [Validators.required, Validators.maxLength(80)]],
       image: ['', [Validators.required]],
     });
 

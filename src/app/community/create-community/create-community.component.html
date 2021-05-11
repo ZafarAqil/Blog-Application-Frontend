@@ -27,7 +27,7 @@
               style="width: 100%; margin-top: 5px"
               placeholder="Description"
             ></textarea>
-            <div class="alert alert-danger" *ngIf="createSubredditForm.get('communityDescription')?.touched && createSubredditForm.get('communityDescription')?.invalid">Maximum 40 characters allowed</div>
+            <div class="alert alert-danger" *ngIf="createSubredditForm.get('communityDescription')?.touched && createSubredditForm.get('communityDescription')?.invalid">Maximum 80 characters allowed</div>
             <input
             type="text"
             [formControlName]="'image'"
